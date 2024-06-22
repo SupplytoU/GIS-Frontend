@@ -1,0 +1,109 @@
+.Forgotdiv-2 {
+    .div-2 {
+        gap: 100px;
+        display:flex;
+      }
+  }
+  @media (max-width: 991px) {
+    .Forgotdiv-2 {
+      max-width: 100%;
+      padding-right: 20px;
+    }
+  }
+  .ForgotImg {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: auto;
+    object-fit: fill;
+    object-position: center;
+    margin-left: 17%;
+  }
+  .ForgotPassword {
+    position: relative;
+    align-self: start;
+    margin-top: 4%;
+    margin-left: 6%;
+    font: 700 50px Kantumruy, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .ForgotPassword {
+      max-width: 100%;
+      margin-top: 40px;
+      font-size: 40px;
+    }
+  }
+  .Content {
+    position: relative;
+    display: flex;
+    width: 450px;
+    flex-direction: column;
+    font-weight: 400;
+    text-align: center;
+    margin-top: -6%;
+    margin-left: 65%;
+  }
+  @media (max-width: 991px) {
+    .Content {
+      margin: 40px 10px 40px 0;
+    }
+  }
+  .Details {
+    margin-top: 11%;
+    margin-left:40.5%; 
+    position: relative;
+    text-align: center;
+    font: 15px Kantumruy, sans-serif;
+    width: 18%;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 991px) {
+    .Details {
+      margin-top: 10%;
+      font-size: 10px; /* Adjust font size for smaller screens */
+    }
+  }
+  
+  
+  input[type="ResetEmail"] {
+    padding: 5px;
+    margin-bottom: 10%;
+    margin-right: 20%;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 60%;
+  }
+
+  input[type="ResetEmail"]::placeholder{
+    color: #646464;
+  }
+
+  @media (max-width: 991px) {
+    .ResetEmail {
+      padding: 0 20px;
+    }
+  }
+  .ResetButton {
+    border-radius: 7px;
+    border-width: 1px;
+    background-color: #0c920a;
+    align-self: center;
+    color: #fff;
+    justify-content: center;
+    padding: 6px 4px;
+    font: 500 14px Kantumruy, sans-serif;
+    margin-right:20%;
+    cursor: pointer;
+  }
+
+  .Success{
+    font-size:22px;
+    margin-right: 22% ;
+    margin-top:0% ;
+  }
+
+  .setResetError{
+    margin-bottom: 0%;
+  }

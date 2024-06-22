@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Home from './Components/Home.js';
+import Login from './Components/Login.js';
+import Signup from './Components/Signup.js';
+import Forgot from './Components/Forgot.js';
+import Settings from './Components/Settings.js';
+import Solutions from './Components/Dropdown/Solutions.js';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+    <Router>
+        <div className='HomePage'>
+          <Switch>
+            <Route exact path='/'>
+              <Home />
+            </Route>
+          </Switch>
+      
+          <Switch>
+            <Route exact path='/Login'>
+              <Login />
+            </Route>
+          </Switch>
+
+          <Switch>
+            <Route exact path='/Signup'>
+              <Signup />
+            </Route>
+          </Switch>
+
+          <Switch>
+            <Route exact path='/Reset Password'>
+              <Forgot />
+            </Route>
+          </Switch>
+
+          <Switch>
+            <Route exact path='/Help'>
+              < Settings />
+            </Route>
+          </Switch>
+
+          <Switch>
+            <Route exact path='/OurSolutions'>
+              <Solutions />
+            </Route>
+          </Switch>
+
+        </div>
+    </Router>
     </div>
   );
 }
