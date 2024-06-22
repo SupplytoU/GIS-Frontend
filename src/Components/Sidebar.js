@@ -19,7 +19,7 @@ function Sidebar() {
               <img loading="lazy" src={Arrow2} className="Settingsimg-1" />
               <br />Settings
             </div>
-            <div className="Account">
+            <div className="SettingsAccount">
               <img loading="lazy" src={Account} className="Settingsimg-1" />
               <div className="AccountTxt">Account</div>
             </div>
@@ -27,18 +27,18 @@ function Sidebar() {
           <div className="SettingsLine" />
           <div className="Settingsdiv-8">
             <div className="Settingsdiv-9">
-              <div className="EditProfile">
-                <div className="Edit">Edit Profile</div>
-                <div className="ChangePass">Change Password</div>
+              <div className="SettingsEditProfile">
+                <div className="SettingsEdit"><Link to='/Account'>Edit Profile</Link></div>
+                <div className="SettingsChangePass"><Link to='/Account'>Change Password</Link></div>
               </div>
               <div className="Settingsdiv-13">
-                <img loading="lazy" src={Arrow3} className="Settingsimg-2" />
-                <img loading="lazy" src={Arrow3} className="Settingsimg-3" />
+              <Link to='/Account'><img loading="lazy" src={Arrow3} className="Settingsimg-2" /></Link>
+              <Link to='/Account'><img loading="lazy" src={Arrow3} className="Settingsimg-3" /></Link>
               </div>            
             </div>
           </div>
           <div className="Settingsdiv-3">
-            <div className="Account">
+            <div className="SettingsAccount">
               <img loading="lazy" src={Notifications} className="Settingsimg-1" />
               <div className="AccountTxt">Notifications</div>
             </div>
@@ -54,7 +54,7 @@ function Sidebar() {
             </div>
           </div>
           <div className="Settingsdiv-3">
-            <div className="Account">
+            <div className="SettingsAccount">
               <img loading="lazy" src={HelpImg} className="Settingsimg-1" />
               <div className="AccountTxt">Help</div>
             </div>
@@ -62,13 +62,13 @@ function Sidebar() {
           <div className="SettingsLine" />
           <div className="Settingsdiv-8">
             <div className="Settingsdiv-9">
-              <div className="EditProfile">
-                <div className="Edit">FAQs</div>
-                <div className="ChangePass">Inquiries</div>
+              <div className="SettingsEditProfile">
+                <div className="SettingsEdit"><Link to='/FAQs'>FAQs</Link></div>
+                <div className="SettingsChangePass"><Link to='Inquiries'>Inquiries</Link></div>
               </div>
               <div className="Settingsdiv-13">
-                <img loading="lazy" src={Arrow3} className="Settingsimg-2" />
-                <img loading="lazy" src={Arrow3} className="Settingsimg-3" />
+                <Link to='/FAQs'><img loading="lazy" src={Arrow3} className="Settingsimg-2" /></Link>
+                <Link to='Inquiries'><img loading="lazy" src={Arrow3} className="Settingsimg-3" /></Link>
               </div>
             </div>
             <div className="Settingsdiv-26">
