@@ -9,11 +9,11 @@ function Home() {
   return (
     <>
       <div className="background">
-        <img
+        {/* <img
           loading="lazy"
           srcSet="/Components/Images/background.png"
           className="img"
-        />
+        /> */}
         <div className="Login"><Link to='/Login'>Log in</Link></div>
         <div className="body">
           <div className="Header">

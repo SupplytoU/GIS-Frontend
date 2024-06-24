@@ -48,9 +48,9 @@ function Login() {
 
   return (
     <>
-      <div className="div">
+      <div className="Logindiv">
         <div className="LoginContainer">
-          <div className="column">
+          <div className="Logincolumn">
             <div className="CreateAccount">
               <div className="Loginimg-1">
               </div>
@@ -58,7 +58,7 @@ function Login() {
               <div className="Signup"><Link to="/Signup">SIGN UP</Link></div>
             </div>
           </div>
-          <div className="column-2">
+          <div className="Logincolumn-2">
             <div className="Auth">
               {!success ? (
                 <>
