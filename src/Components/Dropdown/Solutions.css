@@ -64,3 +64,10 @@
   background-color: rgba(5, 142, 10, 0.3); /* Background color on hover */
   color: white; /* Text color on hover */
 }
+
+.dropdown-item a{
+  color: white;
+}
+.dropdown-item a :visited{
+  color: white;
+}

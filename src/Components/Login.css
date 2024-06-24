@@ -194,13 +194,15 @@
     border-width: 0px;
     background-color: #000;
     height: 2px;
+    margin-bottom: 8px;
   }
   @media (max-width: 991px) {
     .Line2 {
       max-width: 100%;
     }
   }
-  .Forgot {
+  .Forgot a{
+    text-decoration: none;
     color: #0c3e03;
     letter-spacing: -0.72px;
     align-self: end;
@@ -209,6 +211,8 @@
     font: 24px Kdam Thmor, sans-serif;
     font-size: 15px;
   }
+
+
   .LoginButton {
     font-family: Inter, sans-serif;
     border-radius: 30px;
@@ -222,6 +226,7 @@
     margin-top: 45px ;
     padding: 6px 175px;
     text-decoration: none;
+    cursor: pointer;
   }
 
 .LoginButton a{
@@ -262,6 +267,7 @@
     padding: 3px;
     width: 30vw;
     align-self: center;
+    cursor: pointer;
   }
   @media (max-width: 991px) {
     .SigninWithGoogle {

@@ -25,7 +25,7 @@ function Home() {
                 <div className="Services"><Solutions></Solutions></div>
                 
               </div>
-              <Link to="/Help">Help</Link>
+              <Link to="/FAQs">Help</Link>
             </div>
           </div>
           
