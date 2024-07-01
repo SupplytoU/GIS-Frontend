@@ -42,7 +42,7 @@
     width: 45%;
     object-fit:fill;
     object-position: justify;
-    background: url("/src/Components/Images/Login.jpeg");
+    background: url("/src/Images/Login.jpeg");
     height: auto;
     background-repeat: no-repeat;
   }

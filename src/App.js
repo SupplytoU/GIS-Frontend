@@ -13,14 +13,16 @@ import Locations from './OurSolutions/Locations.js';
 import Analytics from './OurSolutions/Analytics.js'
 import SideBar from './Sidebar.js'
 import Footer from './Footer.js';
+import Reset from './Reset.js';
+import PasswordChanged from "./PasswordChanged.js";
+import Help from "./Help.js";
+import Inquries from "./Inquiries.js"
 
 const App = () => {
   return (
     <>
       <Router>
-          <Route exact path='/login'>
-            <Login />
-          </Route>
+      <Switch>
           <Route exact path="/reset">
             <Reset />
           </Route>
@@ -33,10 +35,6 @@ const App = () => {
           <Route exact path= "/inquiries">
          <Inquries/>
           </Route>
-        </Switch>       <Switch>
-          <Route exact path='/'>
-            <MyComponent />
-          </Route>
           <Route exact path='/login'>
             <Login />
           </Route>
@@ -45,9 +43,6 @@ const App = () => {
           </Route>
           <Route exact path="/password-changed">
             <PasswordChanged />
-          </Route>
-          <Route exact path= "/help">
-          <Help/>
           </Route>
           <Route exact path= "/inquiries">
          <Inquries/>
@@ -70,6 +65,7 @@ const App = () => {
           </Switch>
 
     </Router>
+    </>
   );
 }
 

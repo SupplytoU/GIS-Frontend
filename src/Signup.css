@@ -151,3 +151,15 @@
   padding-left: 1px;
   
 }
+
+input[type="text"] {
+  color: black;
+  opacity: 1;
+  font-size: 16px;
+  /* Adjust padding to align with the line */
+  padding-left: 1px;
+}
+
+input[type="text"]::placeholder{
+  color: #000;
+}
