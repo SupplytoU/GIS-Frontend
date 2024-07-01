@@ -2,7 +2,7 @@ import * as React from "react";
 import './Home.css';
 import {Link} from "react-router-dom";
 import leaves from "./Images/leaves.png"
-import Arrow from "./Images/arrow.png"
+import Arrow from "./Images/arrow-1.png"
 import Solutions from "./Dropdown/Solutions"
 
 function Home() {
@@ -25,7 +25,7 @@ function Home() {
                 <div className="Services"><Solutions></Solutions></div>
                 
               </div>
-              <Link to="/FAQs">Help</Link>
+              <Link to="/Help">Help</Link>
             </div>
           </div>
           
