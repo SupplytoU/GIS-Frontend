@@ -45,7 +45,7 @@ function Inquiries() {
                 <div className="field-container">
                   {/* <label className="field-label" htmlFor="firstName">First Name</label> */}
                   <input
-                    id="firstName"
+                    id="InqfirstName"
                     className="form-fields"
                     type="text"
                     value={formData.firstName}
@@ -57,7 +57,7 @@ function Inquiries() {
                 <div className="field-container">
                   {/* <label className="field-label" htmlFor="lastName">Last Name</label> */}
                   <input
-                    id="lastName"
+                    id="InqlastName"
                     className="form-fields"
                     type="text"
                     value={formData.lastName}
@@ -70,7 +70,7 @@ function Inquiries() {
               <div className="field-container">
                 {/* <label className="field-label" htmlFor="email">Email</label> */}
                 <input
-                  id="email"
+                  id="Inqemail"
                   className="form-fields"
                   type="email"
                   value={formData.email}
