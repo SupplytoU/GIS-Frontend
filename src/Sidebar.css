@@ -32,7 +32,8 @@
 }
 
 .Settings {
-  margin-top: 4%;
+  margin-top: 8%;
+  margin-left: 15%;
   font: 35px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
@@ -45,7 +46,7 @@
 
 .SettingsAccount {
   display: flex;
-  margin-top: 13%;
+  margin-top: 15%;
   gap: 19px;
   font-size: 18px;
   align-items: center;
@@ -170,15 +171,6 @@
 .Settingsimg3 {
   margin-right: 5%;
 }
-
-/* .Settingsdiv-18{ 
-  display: flex;
-  flex-direction: column;
-  font-size: 16px;
-  color: #000;
-  font-weight: 400;
-  font-family: Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
-} */
 
 .Settingsdiv-19 {
   align-self: start;

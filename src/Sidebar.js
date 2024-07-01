@@ -7,18 +7,18 @@ import Arrow2 from "./Images/Arrow-2.png";
 import Arrow3 from "./Images/Arrow-3.png";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
+import { useState } from 'react';
 
 function Sidebar() {
+  const [ShowNav,setShowNav]=useState(true);
+  onclick=()=>setShowNav(!ShowNav)
   return (
     <>
       <div className="Settingsdiv">
         <div className="vertical-line"></div>
         <div className="Settingsdiv-2">
           <div className="Settingsdiv-3">
-            <div className="Settings">
-              <img loading="lazy" src={Arrow2} className="Settingsimg-1" />
-              <br />Settings
-            </div>
+            <div className="Settings">Settings</div>
             <div className="SettingsAccount">
               <img loading="lazy" src={Account} className="Settingsimg-1" />
               <div className="AccountTxt">Account</div>
