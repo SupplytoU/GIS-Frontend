@@ -1,16 +1,19 @@
 import React from 'react';
-import Home from './Components/Home.js';
-import Login from './Components/Login.js';
-import Signup from './Components/Signup.js';
-import Forgot from './Components/Forgot.js';
-import SettingsHelpFaqs from './Components/SettingsHelpFaqs.js';
-import SettingsHelpInquiries from './Components/SettingsHelpInquiries.js'
-import SettingsAccount from './Components/SettingsAccount.js'
-import Solutions from './Components/Dropdown/Solutions.js';
-import Track from './Components/OurSolutions/Track.js';
-import Locations from './Components/OurSolutions/Locations.js';
-import Analytics from './Components/OurSolutions/Analytics.js'
+import Home from './Home.js';
+import Login from './Login.js';
+import Signup from './Signup.js';
+import Forgot from './Forgot.js';
+import SettingsHelpFaqs from './SettingsHelpFaqs.js';
+import SettingsHelpInquiries from './SettingsHelpInquiries.js'
+import SettingsAccount from './SettingsAccount.js'
+import Solutions from './Dropdown/Solutions.js';
+import Track from './OurSolutions/Track.js';
+import Locations from './OurSolutions/Locations.js';
+import Analytics from './OurSolutions/Analytics.js'
+import SideBar from './Sidebar.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Footer from './Footer.js';
 
 const App = () => {
   return (
@@ -18,70 +21,22 @@ const App = () => {
     <Router>
         <div className='HomePage'>
           <Switch>
-            <Route exact path='/'>
-              <Home />
-            </Route>
-          </Switch>
-      
-          <Switch>
-            <Route exact path='/Login'>
-              <Login />
-            </Route>
-          </Switch>
-          <Switch>
-            <Route exact path='/OurSolutions'>
-              <Solutions />
-            </Route>
-          </Switch>
-
-          <Switch>
-            <Route exact path='/Signup'>
-              <Signup />
-            </Route>
-          </Switch>
-
-          <Switch>
-            <Route exact path='/Reset Password'>
-              <Forgot />
-            </Route>
-          </Switch>
+          <Route exact path='/'><Home /></Route>
+          <Route exact path='/Login'><Login /></Route>
+          <Route exact path='/OurSolutions'><Solutions /></Route>
+          <Route exact path='/Signup'><Signup /></Route>
+          <Route exact path='/Reset Password'><Forgot /></Route>
 {/* Solutions */}
-          <Switch>
-            <Route exact path='/Track Order'>
-              <Track/>
-            </Route>
-          </Switch>
-          <Switch>
-            <Route exact path='/Locations'>
-              <Locations />
-            </Route>
-          </Switch>
-          <Switch>
-            <Route exact path='/Analytics'>
-              <Analytics />
-            </Route>
-          </Switch>
-
-          
+          <Route exact path='/Track Order'><Track/></Route>
+          <Route exact path='/Locations'><Locations /></Route>
+          <Route exact path='/Analytics'><Analytics /></Route>
 {/* Settings */}
-          <Switch>
-            <Route exact path='/Account'>
-              <SettingsAccount />
-            </Route>
+          <Route exact path='/Account'><SettingsAccount /></Route>
+          <Route exact path='/FAQs'>< SettingsHelpFaqs /></Route>
+          <Route exact path='/Inquiries'><SettingsHelpInquiries /></Route>
+          <Route exact path='/SideBar'><SideBar /></Route>
+          <Route exact path='/Footer'><Footer /></Route>
           </Switch>
-
-          <Switch>
-            <Route exact path='/FAQs'>
-              < SettingsHelpFaqs />
-            </Route>
-          </Switch>
-          
-          <Switch>
-            <Route exact path='/Inquiries'>
-              <SettingsHelpInquiries />
-            </Route>
-          </Switch>
-
         </div>
     </Router>
     </div>

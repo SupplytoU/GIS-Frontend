@@ -1,7 +1,7 @@
 .background {
   display: flex;
   flex-direction: column;
-  background: url('/src/Components/Images/background.png');
+  background: url('/src/Images/background.png');
   overflow: hidden;
   color: #fff;
   background-size: cover;
@@ -108,19 +108,20 @@
   .Nav {
     align-self: start;
     margin-top: 0;
-    gap: 22px;
-    font-size: 17px;
+    gap: 20px;
+    font-size: 16px;
     font-weight: 500;
     display: flex;
     justify-content: space-between;
     margin-top: 2%;
-    margin-right: 3%;
+    margin-right: 0%;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
   }
 
   .Nav a{
     text-decoration: none;
+    color: white;
   }
 
   .Nav a:hover{
@@ -216,7 +217,7 @@
   }
 
 .img3{
-  background: url('/src/Components/Images/leaves.png');
+  background: url('/src/Images/leaves.png');
   object-fit: auto;
   object-position: center;
   width: 15px;
