@@ -1,0 +1,153 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.image-container {
+  flex: 1;
+  position: relative;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  padding: 20px;
+  border: none;
+}
+
+.login-section {
+  text-align: center;
+}
+
+.signup-section {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* .welcome-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font: 700 35px Inter, sans-serif;
+  color: #136b04;
+  margin-top:10px ;
+} */
+
+.question {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+ margin-right: 5px;
+}
+
+.login-button {
+  position: relative;
+    border-radius: 30px;
+    border-color: rgba(255, 255, 255, 1);
+    border-style: solid;
+    border-width: 2px;
+    background-color: rgba(2, 2, 2, 0);
+    margin-top: 35px;
+    justify-content: center;
+    padding: 8px 22px;
+    font: 600 18px Inter, sans-serif;
+    color: white;
+}
+
+.signup-button {
+  border-radius: 30px;
+  border-color: rgba(255, 255, 255, 1);
+  background-color: #136b04;
+  align-self: center;
+  margin-top: 20px;
+  width: 500px;
+  font-weight: 500;
+  height: 50px;
+  max-width: 100%;
+  color: #fff;
+  font: 400 20px Inter, sans-serif;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-title {
+  margin-bottom: 40px;
+  margin-top: 10px;
+  margin-left: 10px;
+  font: 600 30px Inter, sans-serif;
+}
+
+
+.form-group {
+  margin-bottom: 40px;
+  margin-left: 15px;
+ 
+ 
+
+}
+.name-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0px;
+}
+
+.form-group.firstname,
+.form-group.lastname {
+  flex: 1;
+}
+.form-group.firstname {
+  margin-right: 20px;
+}
+
+.Line1 {
+  border-color: rgba(0, 0, 0, 1);
+  border-style: solid;
+  border-width: 0px;
+  background-color: #000;
+  margin-top: 8px;
+  height: 2px;
+  margin-left: 10px;
+
+}
+
+.form-input {
+  border: none; /* Remove the border-bottom property */
+  font-size: 16px;
+  margin: 0;
+  padding: 5px;
+  width: 100%;
+  margin-left: 5px;
+  outline: none;
+  
+
+}
+
+.form-input::placeholder {
+  color: black;
+  opacity: 1;
+  font-size: 16px;
+  /* Adjust padding to align with the line */
+  padding-left: 1px;
+  
+}

@@ -1,0 +1,345 @@
+.inquiries-container {
+    display: flex;
+    /* flex-direction: column; */
+    overflow: hidden;
+    /* position: relative; */
+    /* min-height: 796px; */
+    /* padding: 80px 34px 0; */
+    width: 75%;
+    margin-left: 25%;
+}
+
+@media (max-width: 991px) {
+    .inquiries-container {
+        padding: 0 20px;
+    }
+}
+
+.inquiries-img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 75%;
+    object-fit: fill;
+    object-position: center;
+    margin-left: 25%;
+}
+
+.form-container {
+    position: relative;
+    z-index: 10;
+    margin-top: 80px ;
+}
+
+@media (max-width: 991px) {
+    .form-container {
+        max-width: 100%;
+        margin-top: 40px;
+    }
+}
+
+.form-layout {
+    gap: 20px;
+    display: flex;
+}
+
+@media (max-width: 991px) {
+    .form-layout {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0px;
+    }
+}
+
+.message-column {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 73%;
+    margin-left: 70px;
+}
+
+@media (max-width: 991px) {
+    .message-column {
+        width: 100%;
+    }
+}
+
+.message-box {
+    border-color: rgba(217, 217, 217, 1);
+    border-style: solid;
+    border-width: 1px;
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 23px;
+    color: #5c5858;
+    font-weight: 400;
+    width: 100%;
+    padding: 0px 26px 30px;
+}
+
+@media (max-width: 991px) {
+    .message-box {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
+
+.send-message-header {
+    display: flex;
+    gap: 2px;
+    font-size: 27px;
+    color: #000;
+    margin-top: 2%;
+}
+
+@media (max-width: 991px) {
+    .send-message-header {
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
+.send-message-title {
+    font-family: Kdam Thmor, sans-serif;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+    
+}
+
+.icon-mail {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 45px;
+}
+
+.name-fields {
+    display: flex;
+    margin-top: 30px;
+    align-items: start;
+    gap: 20px;
+    text-align: justify;
+}
+
+@media (max-width: 991px) {
+    .name-fields {
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
+.field-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+    width: fit-content;
+}
+
+.field-label {
+    font-family: Kdam Thmor, sans-serif;
+}
+
+.form-fields {
+    text-align: justify;
+    font-family: Kdam Thmor, sans-serif;
+    border-color: rgba(217, 217, 217, 1);
+    border-style: solid;
+    border-width: 0px;
+    margin-top: 35px;
+    font-size: 16px;
+    padding: 5px;
+    width: 100%;
+    margin-left: 5px;
+    outline: none;
+}
+
+.form-fields::placeholder {
+    color: black;
+    opacity: 1;
+    font-size: 16px;
+    padding-left: 1px;
+}
+
+.submit-button {
+    border-radius: 30px;
+    border-color: rgba(255, 255, 255, 1);
+    background-color: #105a03;
+    align-self: end;
+    width: 120px;
+    max-width: 100%;
+    align-items: start;
+    color: #fff;
+    justify-content: center;
+    margin: 35px 42px 0 0;
+    padding: 10px 0px;
+    /* margin-left: 300px; */
+    font: 600 18px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+    .submit-button {
+        margin-right: 10px;
+        padding: 14px 20px;
+    }
+}
+
+.contact-column {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 35%;
+    margin-left: 32px;
+}
+
+@media (max-width: 991px) {
+    .contact-column {
+        width: 100%;
+    }
+}
+
+.contact-box {
+    background-color: #3a3636;
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    width: 100%;
+    padding: 70px 0;
+}
+
+.contact-header {
+    color: #fff;
+    align-self: center;
+    margin-bottom: 0px;
+    font: 700 27px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.Line2 {
+    border-color: rgba(0, 0, 0, 1);
+    border-style: solid;
+    border-width: 0px;
+    background-color: #000;
+    margin-top: 15px;
+    height: 2px;
+    margin-left: 10px;
+    width: 80%;
+  
+  }
+  .Line3 {
+    border-color: rgba(0, 0, 0, 1);
+    border-style: solid;
+    border-width: 0px;
+    background-color: #000;
+    margin-top: 8px;
+    height: 2px;
+    margin-left: 10px;
+    width: 390%;
+  
+  }
+  .Line4 {
+    border-color: rgba(0, 0, 0, 1);
+    border-style: solid;
+    border-width: 0px;
+    background-color: #000;
+    margin-top: 8px;
+    height: 2px;
+    margin-left: 10px;
+    width: 425%;
+  
+  }
+
+.contact-details {
+    display: flex;
+    margin-top: 89px;
+    flex-direction: column;
+    padding: 0 8px;
+    width: 200px;
+}
+
+@media (max-width: 991px) {
+    .contact-details {
+        margin-top: 40px;
+    }
+}
+
+.contact-info {
+    display: flex;
+    gap: 14px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 400;
+    white-space: nowrap;
+    margin-top: 20px;
+    
+}
+
+@media (max-width: 991px) {
+    .contact-info {
+        white-space: initial;
+    }
+}
+
+.contact-icon {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 37px;
+}
+
+/* .social-media-section {
+    color: #fff;
+    margin-top: 80px;
+    font: 400 20px Kdam Thmor, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+    .social-media-section {
+        margin-top: 40px;
+    }
+}
+
+.social-media-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    margin: 11px 23px 0;
+}
+
+@media (max-width: 991px) {
+    .social-media-icons {
+        margin: 0 10px;
+    }
+}
+
+.icon-facebook {
+    aspect-ratio: 0.8;
+    object-fit: auto;
+    object-position: center;
+    width: 40px;
+    align-self: stretch;
+}
+
+.icon-instagram {
+    aspect-ratio: 1.18;
+    object-fit: auto;
+    object-position: center;
+    width: 40px;
+    align-self: stretch;
+    margin: auto 0;
+}
+
+.icon-twitter {
+    aspect-ratio: 1.18;
+    object-fit: auto;
+    object-position: center;
+    width: 40px;
+    align-self: stretch;
+    margin: auto 0;
+} */

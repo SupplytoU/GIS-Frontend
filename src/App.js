@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React from 'react';
 import Home from './Home.js';
 import Login from './Login.js';
@@ -11,18 +12,48 @@ import Track from './OurSolutions/Track.js';
 import Locations from './OurSolutions/Locations.js';
 import Analytics from './OurSolutions/Analytics.js'
 import SideBar from './Sidebar.js'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 import Footer from './Footer.js';
 
 const App = () => {
   return (
-    <div className='App'>
-    <Router>
-        <div className='HomePage'>
-          <Switch>
+    <>
+      <Router>
+          <Route exact path='/login'>
+            <Login />
+          </Route>
+          <Route exact path="/reset">
+            <Reset />
+          </Route>
+          <Route exact path="/password-changed">
+            <PasswordChanged />
+          </Route>
+          <Route exact path= "/help">
+          <Help/>
+          </Route>
+          <Route exact path= "/inquiries">
+         <Inquries/>
+          </Route>
+        </Switch>       <Switch>
+          <Route exact path='/'>
+            <MyComponent />
+          </Route>
+          <Route exact path='/login'>
+            <Login />
+          </Route>
+          <Route exact path="/reset">
+            <Reset />
+          </Route>
+          <Route exact path="/password-changed">
+            <PasswordChanged />
+          </Route>
+          <Route exact path= "/help">
+          <Help/>
+          </Route>
+          <Route exact path= "/inquiries">
+         <Inquries/>
+          </Route>
+     
           <Route exact path='/'><Home /></Route>
-          <Route exact path='/Login'><Login /></Route>
           <Route exact path='/OurSolutions'><Solutions /></Route>
           <Route exact path='/Signup'><Signup /></Route>
           <Route exact path='/Reset Password'><Forgot /></Route>
@@ -37,9 +68,8 @@ const App = () => {
           <Route exact path='/SideBar'><SideBar /></Route>
           <Route exact path='/Footer'><Footer /></Route>
           </Switch>
-        </div>
+
     </Router>
-    </div>
   );
 }
 
