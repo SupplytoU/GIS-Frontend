@@ -18,9 +18,6 @@ import Locations from './OurSolutions/Locations.js';
 import Analytics from './OurSolutions/Analytics.js'
 import SideBar from './Sidebar.js'
 import Footer from './Footer.js';
-import Reset from './Reset.js';
-import PasswordChanged from "./PasswordChanged.js";
-import Help from "./Help.js";
 import Inquries from "./Inquiries.js"
 
 function App() {
@@ -45,18 +42,6 @@ function App() {
           <Route exact path='/login'>
             <Login />
           </Route>
-          <Route exact path="/reset">
-            <Reset />
-          </Route>
-          <Route exact path="/password-changed">
-            <PasswordChanged />
-          </Route>
-          <Route exact path= "/help">
-          <Help/>
-          </Route>
-        
-        </Switch>
-      </Router>
           <Route exact path= "/inquiries">
          <Inquries/>
           </Route>
@@ -72,7 +57,6 @@ function App() {
 {/* Settings */}
           <Route exact path='/Account'><SettingsAccount /></Route>
           <Route exact path='/FAQs'>< SettingsHelpFaqs /></Route>
-          <Route exact path='/Inquiries'><SettingsHelpInquiries /></Route>
           <Route exact path='/SideBar'><SideBar /></Route>
           <Route exact path='/Footer'><Footer /></Route>
           </Switch>
