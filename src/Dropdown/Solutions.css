@@ -61,7 +61,7 @@
 }
 
 .dropdown-item:hover {
-  background-color: rgba(5, 142, 10, 0.3); /* Background color on hover */
+  background-color: rgba(73, 74, 73, 0.3); /* Background color on hover */
   color: white; /* Text color on hover */
 }
 

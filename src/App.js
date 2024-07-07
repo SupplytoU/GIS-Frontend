@@ -10,7 +10,6 @@ import Home from './Home.js';
 import Signup from './Signup.js';
 import Forgot from './Forgot.js';
 import SettingsHelpFaqs from './SettingsHelpFaqs.js';
-import SettingsHelpInquiries from './SettingsHelpInquiries.js'
 import SettingsAccount from './SettingsAccount.js'
 import Solutions from './Dropdown/Solutions.js';
 import Track from './OurSolutions/Track.js';
@@ -19,6 +18,7 @@ import Analytics from './OurSolutions/Analytics.js'
 import SideBar from './Sidebar.js'
 import Footer from './Footer.js';
 import Inquries from "./Inquiries.js"
+import LoginIcon from './LoginIcon.js';
 
 function App() {
   return (
@@ -59,6 +59,7 @@ function App() {
           <Route exact path='/FAQs'>< SettingsHelpFaqs /></Route>
           <Route exact path='/SideBar'><SideBar /></Route>
           <Route exact path='/Footer'><Footer /></Route>
+          <Route exact path='/LoginIcon'><LoginIcon /></Route>
           </Switch>
 
     </Router>
