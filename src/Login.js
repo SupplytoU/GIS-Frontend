@@ -90,7 +90,7 @@ function Login() {
                           required
                         />
                       </div>
-                      <div className="Line2" />
+                      <div className="Line1" />
                       <div className="Forgot"><Link to="/Reset Password">Forgot password?</Link></div>
                       <button type="submit" className="LoginButton">LOG IN</button>
                     </form>

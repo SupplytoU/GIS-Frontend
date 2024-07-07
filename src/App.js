@@ -5,7 +5,6 @@ import Login from './Login.js';
 import Signup from './Signup.js';
 import Forgot from './Forgot.js';
 import SettingsHelpFaqs from './SettingsHelpFaqs.js';
-import SettingsHelpInquiries from './SettingsHelpInquiries.js'
 import SettingsAccount from './SettingsAccount.js'
 import Solutions from './Dropdown/Solutions.js';
 import Track from './OurSolutions/Track.js';
@@ -17,6 +16,7 @@ import Reset from './Reset.js';
 import PasswordChanged from "./PasswordChanged.js";
 import Help from "./Help.js";
 import Inquries from "./Inquiries.js"
+import LoginIcon from './LoginIcon.js';
 
 const App = () => {
   return (
@@ -59,9 +59,9 @@ const App = () => {
 {/* Settings */}
           <Route exact path='/Account'><SettingsAccount /></Route>
           <Route exact path='/FAQs'>< SettingsHelpFaqs /></Route>
-          <Route exact path='/Inquiries'><SettingsHelpInquiries /></Route>
           <Route exact path='/SideBar'><SideBar /></Route>
           <Route exact path='/Footer'><Footer /></Route>
+          <Route exact path='/LoginIcon'><LoginIcon /></Route>
           </Switch>
 
     </Router>
