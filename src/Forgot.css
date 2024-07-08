@@ -1,3 +1,9 @@
+.Forgotdiv{
+  background-color: #fff;
+  height: 100vh;
+  color: #000000;
+  padding-top: 8yyvh;
+}
 .Forgotdiv-2 {
     .div-2 {
         gap: 100px;
@@ -32,7 +38,7 @@
   .ForgotPassword {
     position: relative;
     align-self: start;
-    margin-top: 4%;
+    margin-top: 0%;
     margin-left: 6%;
     font: 700 50px Kantumruy, sans-serif;
   }

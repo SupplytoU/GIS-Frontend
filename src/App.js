@@ -8,7 +8,7 @@ import Help from "./Help.js";
 import Home from './Home.js';
 import Signup from './Signup.js';
 import Forgot from './Forgot.js';
-import SettingsHelpInquiries from './SettingsHelpInquiries.js'
+
 import SettingsAccount from './SettingsAccount.js'
 import Solutions from './Dropdown/Solutions.js';
 import Track from './OurSolutions/Track.js';
@@ -17,7 +17,7 @@ import Analytics from './OurSolutions/Analytics.js'
 import SideBar from './Sidebar.js'
 import Footer from './Footer.js';
 import Inquries from "./Inquiries.js"
-import Success from "./Success.js"
+
 
 function App() {
   return (
@@ -41,15 +41,7 @@ function App() {
           <Route exact path='/login'>
             <Login />
           </Route>
-          <Route exact path="/reset">
-            <Reset />
-          </Route>
-          <Route exact path="/password-changed">
-            <PasswordChanged />
-          </Route>
-          <Route exact path= "/help">
-          <Help/>
-          </Route>
+
           <Route exact path= "/inquiries">
          <Inquries/>
           </Route>
@@ -65,10 +57,10 @@ function App() {
           <Route exact path='/Analytics'><Analytics /></Route>
 {/* Settings */}
           <Route exact path='/Account'><SettingsAccount /></Route>
-          <Route exact path='/Help'>< Help /></Route>
-          <Route exact path='/Inquiries'><SettingsHelpInquiries /></Route>
+
           <Route exact path='/SideBar'><SideBar /></Route>
           <Route exact path='/Footer'><Footer /></Route>
+          <Route exact path='/LoginIcon'><LoginIcon /></Route>
           </Switch>
 
     </Router>
