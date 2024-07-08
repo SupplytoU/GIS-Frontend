@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './Help.css';
 import faq from "./Images/Faq.jpeg";
-import arrow from "./Images/Arrow.png";
+import Sidebar from './Sidebar';
 
 function Help() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -19,6 +19,8 @@ function Help() {
   ];
 
   return (
+    <div className="help-container">
+      <Sidebar />
     <div className="faq-container">
       <div className="faq-header">
         <div className="header-content">
@@ -34,7 +36,14 @@ function Help() {
         <React.Fragment key={index}>
           <div className="faq-item" onClick={() => toggleAnswer(index)}>
             <div className="question1">{item.question}</div>
-            <img loading="lazy" src={arrow} alt="dropdown" className={`img-small ${openIndex === index ? 'open' : ''}`} />
+            <svg
+              className={`drop-down ${openIndex === index ? 'open' : ''}`}
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
           </div>
           {openIndex === index && (
             <div className="answer">{item.answer}</div>
@@ -42,6 +51,7 @@ function Help() {
           <div className="separator" />
         </React.Fragment>
       ))}
+    </div>
     </div>
   );
 }
