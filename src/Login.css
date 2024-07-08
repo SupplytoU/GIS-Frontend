@@ -1,6 +1,8 @@
 .LoginContainer {
   display: flex;
   gap: 100px;
+  background-color: #fff;
+  height: 100vh;
 }
 
 .Logincolumn {

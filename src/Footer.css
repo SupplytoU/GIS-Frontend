@@ -1,36 +1,43 @@
-/* Ensure the entire page background is black */
 body, html {
-  background-color: #262626;
+  background: #262626;
+  background-size: 400% 400%;
   margin: 0;
   height: 100%;
-  color: white; /* Text color for better visibility against the black background */
-  overflow: hidden; /* Disable scrolling */
+  color: white;
+  overflow: hidden;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
-  width: 12px; /* Width of the scrollbar */
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #333; /* Background color of the scrollbar track */
+  background: #333;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #888; /* Color of the scrollbar thumb */
-  border-radius: 10px; /* Rounded corners for the scrollbar thumb */
-  border: 2px solid #333; /* Padding around the thumb */
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #333;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Color of the scrollbar thumb when hovered */
+  background: #555;
 }
 
 .home-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Ensure the container spans the full viewport height */
+  min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
   margin-top: -1.4%;
@@ -38,30 +45,32 @@ body, html {
 
 .home-column {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  max-width: 100%; 
-  box-sizing: border-box;
   position: relative;
 }
 
 .home-image1 {
-  width: 190px; /* Adjusted width */
-  height: auto;
+  width: 190px;
   background-color: #262626;
   position: absolute;
   top: 2%;
-  left: 7%;
+  left: 0%;
   transform: translateX(-50%);
-  z-index: 2; 
+  z-index: 2;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.home-image1:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
 }
 
 .home-column1 {
   display: flex;
   flex-direction: column;
-  width: 9%; 
+  width: 9%;
   margin-top: 35vh;
   align-items: center;
   z-index: 1;
@@ -75,7 +84,7 @@ body, html {
 
 .dotted-lines {
   color: white;
-  font-size: 18px; /* Adjusted font size */
+  font-size: 18px;
   text-align: center;
   line-height: 0.8;
   margin-top: 1vh;
@@ -83,15 +92,20 @@ body, html {
 
 .home-vertical-line {
   width: 1px;
-  height: 55px; /* Adjusted height */
+  height: 55px;
   background-color: white;
   margin: 32px 0;
 }
 
 .home-image-secondary {
-  width: 21px; /* Adjusted width */
-  height: auto;
+  width: 21px;
   margin: 4px 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.home-image-secondary:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
 }
 
 .home-content-section {
@@ -100,38 +114,47 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative; /* Ensure children can be positioned relative to this container */
-}
-
-.home-main-image {
-  width: 100%; 
-  height: 100vh; /* Set height to 100% of the viewport height */
-  object-fit: cover; /* Ensures the image covers the container without stretching */
   position: relative;
 }
 
-.home-heading, .home-paragraph {
-  position: absolute; /* Position heading and paragraph absolutely within the container */
-  text-align: center; /* Center-align the text */
-  color: white; /* Text color for better visibility against the image */
+.home-main-video {
   width: 100%;
-  z-index: 2; /* Ensure text appears above the image */
+  height: 100vh;
+  object-fit: cover;
+  position: relative;
+  opacity: 92%;
+}
+
+.home-heading, .home-paragraph {
+  position: absolute;
+  text-align: center;
+  color: white;
+  width: 100%;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.home-heading.visible, .home-paragraph.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .home-heading {
-  font-size: 4em; /* Adjusted font size */
-  top: 23%; /* Adjusted top position */
-  left: 20%; /* Adjusted position */
+  font-size: 4em;
+  top: 23%;
+  left: 20%;
   text-align: justify;
 }
 
 .home-paragraph {
-  font-size: 1em; /* Adjusted font size */
+  font-size: 1em;
   line-height: 1.5;
   margin: 0;
-  top: 60%; /* Adjusted top position */
-  left: 20%; /* Adjusted position */
-  text-align: justify; /* Changed text-align */
+  top: 60%;
+  left: 20%;
+  text-align: justify;
 }
 
 .HomeNav {
@@ -139,76 +162,88 @@ body, html {
   top: 8vh;
   right: 3vw;
   gap: 20px;
-  font-size: 15px; /* Adjusted font size */
+  font-size: 15px;
   font-weight: 500;
   display: flex;
-  justify-content: space-between;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
   z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.HomeNav.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .HomeNav a {
   text-decoration: none;
   color: white;
+  transition: color 0.1s ease, transform 0.2s ease, filter 0.2s ease;
+}
+
+.HomeNav a:visited {
+  color: #ffffff;
 }
 
 .HomeNav a:hover {
   color: #000000;
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }
 
-.HomeNav a:visited {
-  color: rgb(255, 255, 255);
+.HomeServices {
+  margin-top: -0.5%;
 }
 
-.HomeNav a:visited:hover {
-  color: black;
-}
-
-.HomeOurServices {
-  align-self: start;
-  display: flex;
-  gap: 0px;
-  font-size: 15px;
-  margin-top: -1%;
-}
 @keyframes moveLeftRight {
   0% { left: 10%; }
   50% { left: 13%; }
   100% { left: 10%; }
 }
 
+.GetStartedBtn {
+  position: absolute;
+  text-align: center;
+  color: white;
+  z-index: 2;
+  bottom: 5%;
+  margin-left: 55%;
+  transform: translateX(-50%);
+  animation: moveLeftRight 4s infinite;
+}
 
 .GetStartedBtn a, .GetStartedBtn a:visited {
-  position: absolute; /* Position the element absolutely within the container */
-  text-align: center; /* Center-align the text */
-  color: white; /* Text color for better visibility against the image */
-  width: auto; /* Adjust width to fit the content */
-  z-index: 2; /* Ensure the element appears above other elements */
-  top: 78vh; /* Maintain the vertical position */
-  text-decoration: none; /* Remove underline from the text */
-  border-style: solid; /* Add border style */
-  border-width: 2px; /* Set border width */
-  border-color: white; /* Set border color */
-  border-radius: 30px; /* Rounded corners for the border */
-  padding: 6.5px 17px; /* Padding inside the border */
-  background-color: rgba(0, 0, 0, 0.368); /* Optional: add a semi-transparent background */
-  animation: moveLeftRight 4s infinite; /* Add the animation */
-  transition: all 0.4s ease-in-out; /* Add transition for hover effects */
-  margin-left: 55%;
-  font-size: 18px;
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  border-radius: 30px;
+  padding: 10px 20px;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.368);
+  transition: all 0.4s ease-in-out;
 }
 
 .GetStartedBtn a:hover {
-  background-color: white; /* Change background color on hover */
-  color: #262626; /* Change text color on hover */
-  border-color: #262626; /* Change border color on hover */
-  transform: scale(1.1); /* Slightly increase the size */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+  background-color: white;
+  color: #262626;
+  transform: scale(1.1);
 }
 
-/* Optional: Active state for a more interactive feel */
 .GetStartedBtn a:active {
-  transform: scale(1.05); /* Slightly decrease the size on click */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Reduce the shadow effect on click */
+  transform: scale(0.95);
+}
+
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

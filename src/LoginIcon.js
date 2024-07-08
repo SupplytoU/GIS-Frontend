@@ -28,7 +28,7 @@ const LoginIcon  = () => {
                 src={loginicon}
                 className="LoginImage"
               />
-          <span className="Loginarrow"><FaChevronDown/></span>
+          <span className="arrow"><FaChevronDown/></span>
           {dropdownVisible && (
             <ul className="dropdown">
               <li className="dropdown-item"><Link to='/Login'>Login</Link></li>
