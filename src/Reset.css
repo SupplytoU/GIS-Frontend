@@ -66,10 +66,11 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+ 
 }
 
 .input-field {
-  padding: 15px;
+  padding: 30px;
   border: none;
   border-radius: 0px;
   width: 85%;
@@ -77,13 +78,15 @@
   font-family: Inter, sans-serif;
   font-size: 16px;
   color: black;
+  height: 40px;
+  
 }
 
 .input-field:focus + .input-label,
 .input-field:not(:placeholder-shown) + .input-label {
   transform: translateY(-30px);
-  font-size: 12px;
-  color: grey;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
 }
 
 .input-label {
@@ -92,9 +95,10 @@
   left: 15px;
   font-family: Inter, sans-serif;
   font-size: 16px;
-  color: grey;
+  color: rgb(0, 0, 0);
   pointer-events: none;
   transition: all 0.3s ease;
+ 
 }
 
 .set-password-button {

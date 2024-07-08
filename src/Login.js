@@ -11,8 +11,7 @@ function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (emailRef.current) {
