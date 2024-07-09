@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <div className="Homecontainer">
+    <div className="Footer-container">
       <div className="Footerheader">
         <div className="Footer-logo-container">
           <Link to="/">
@@ -31,7 +31,7 @@ function Footer() {
         />
         <div className="footer-content">
           <div className="footer-links">
-            <Link to="/">Terms & Conditions</Link> | <Link to="/">Privacy Policy</Link> | <Link to="/">Accessibility</Link>
+            <Link to="/Soon">Terms & Conditions</Link> | <Link to="/Soon">Privacy Policy</Link> | <Link to="/Soon">Accessibility</Link>
           </div>
           <div className="footer-text"> © 2024 Supply2U | All rights Reserved</div>
         </div>

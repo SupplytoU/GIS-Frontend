@@ -22,6 +22,7 @@ import Inquries from "./Inquiries.js"
 import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
 
+import Construct from './Construct.js';
 function App() {
   return (
     <>
@@ -62,13 +63,13 @@ function App() {
           <Route exact path='/Analytics'><Analytics /></Route>
 {/* Settings */}
           <Route exact path='/Account'><SettingsAccount /></Route>
-
           <Route exact path='/SideBar'><SideBar /></Route>
           <Route exact path='/Section1'><Section1 /></Route>
           <Route exact path='/LoginIcon'><LoginIcon /></Route>
-
           <Route exact path='/HomeF'><HomeFinal /></Route>
           <Route exact path='/Footer'><Footer /></Route>
+
+          <Route exact path='/Soon'><Construct /></Route>
           </Switch>
 
     </Router>

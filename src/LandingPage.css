@@ -1,23 +1,20 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  animation: gradientAnimation 15s ease infinite;
 }
 
 .landing-page {
-  background-color: #2C2C2C;
   color: #fff;
   text-align: center;
   padding: 20px;
-  height: auto;
-  /* overflow: hidden; */
-  overflow-y: auto; 
-  max-height: 100vh; 
- 
+  min-height: 100vh;
 }
 
 .header h1 {
   margin: 0;
   padding: 5px 0;
+  font-size: 26px;
 }
 
 .green-text {
@@ -37,7 +34,7 @@ body {
   display: flex;
   flex-direction: column;
   line-height: normal;
-  width: 25%; 
+  width: 27%; 
   margin-left: 20px;
   position: relative;
 }
@@ -50,48 +47,64 @@ body {
 .watermark {
   position: absolute;
   top: 30%;
-  left: -360px; /* Adjust based on your preference */
+  left: -300px;
   transform: translateY(-50%) rotate(-90deg);
   font-size: 100px;
-  color: rgba(255, 255, 255, 0.2); /* Adjust opacity as needed */
-  pointer-events: none; /* Ensures it doesn't interfere with other elements */
+  color: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
 }
 .horizontal-watermark {
   position: absolute;
-  top: 50%;
-  bottom: 10px; /* Adjust based on your preference */
-  right: -150px; /* Adjust based on your preference */
-  font-size: 95px;
-  color: rgba(255, 255, 255, 0.2); /* Adjust opacity as needed */
-  pointer-events: none; /* Ensures it doesn't interfere with other elements */
-  z-index: 1; /* Ensures it overlays the images and text */
+  font-weight: 600;
+  top: 45%;
+  bottom: 10px;
+  right: -75%;
+  font-size: 85px;
+  color: rgba(255, 255, 255, 0.164);
+  pointer-events: none;
+  z-index: 1;
 }
 
-.left-column h2,
-.right-column h2 {
+.left-column h2 {
   margin: 5px 0 20px 0;
-  
+  font-size: 20px;
+  text-align: left;
+}
+
+.right-column h2 {
+  margin: 5px 0 20px 100px;
+  font-size: 20px;
+  text-align: left;
 }
 
 .left-column p {
   margin: 0;
   line-height: 1.5;
   gap: 5px;
+  text-align: justify;
+}
+
+.LandingContent {
+  font-size: 14px;
+  margin-top: 2vh;
 }
 
 .white-separator {
   position: absolute;
   left: 54%; 
   transform: translateX(-50%);
-  width: 1px; 
-  height: 90%; 
+  width: 0.5px; 
+  height: 80%; 
+  top: 7.5%;
   background-color: #fff; 
+  margin-left: -0.8vw;
 }
 
 .right-column img {
-  width: 35px;
-  height: 35px;
-  margin-left: 150px;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  margin-bottom: -3%;
 }
 
 .solutions {
@@ -102,21 +115,21 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; 
-  width: 100%;
-
+  width: 85%;
+  margin-left: 6.5vw;
 }
 
 .solution {
   position: relative;
-  flex: 1; /* Each solution takes up equal space */
+  flex: 1;
   text-align: center;
-  margin: 0; 
-  padding: 0; 
+  margin: 0;
+  padding: 0;
 }
 
 .solution img {
   width: 100%; 
-  height: 80%; 
+  height: 75%; 
   object-fit: cover; 
 }
 
@@ -128,25 +141,27 @@ body {
   transform: translateX(-50%);
   font-weight: bold;
   margin-bottom: 140px;
-  padding: 10px; /* Padding for text */
+  padding: 10px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); 
   box-sizing: border-box;
+  text-align: left;
 }
 
-/* ::-webkit-scrollbar {
-  width: 14px; 
-} */
-
-::-webkit-scrollbar-track {
-  background: #5a5959; 
+.Icons {
+  align-items: center;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #888; 
-  border-radius: 10px; 
-  border: 2px solid #333; 
-} */
+.Icons p {
+  font-size: 15px;
+}
 
-::-webkit-scrollbar-thumb:hover {
-  background: #949393;
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
