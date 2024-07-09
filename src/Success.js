@@ -9,7 +9,7 @@ function Success() {
   useEffect(() => {
     const timer = setTimeout(() => {
       history.push('/login');
-    }, 2000); // 2-second delay
+    }, 1500); // 2-second delay
 
     return () => clearTimeout(timer);
   }, [history]);
@@ -17,8 +17,8 @@ function Success() {
   return (
     <div className="success-container">
       <img src={tickImg} alt="Tick" className="success-image" />
-      <h1 className="success-heading">Sign up Successful!</h1>
-      <p className="success-subheading">Redirecting to Login...</p>
+      <h1 className="success-heading">Sign up Successful!<br/>Redirecting to Login... </h1>
+      {/* <p className="success-subheading">Redirecting to Login...</p> */}
     </div>
   );
 }
