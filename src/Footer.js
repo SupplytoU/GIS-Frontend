@@ -1,102 +1,39 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import * as React from "react";
 import "./Footer.css";
-import logo from './Images/Logo1.png';
-import website from './Images/home-website.png';
-import email from './Images/home-email.png';
-import call from './Images/home-call.png';
-import mainVideo from './Images/video.mp4'; // Ensure this path is correct
-import Solutions from "./Dropdown/Solutions";
-import LoginIcon from "./LoginIcon";
+import footerlogo from './Images/Logo1.png'
+import { Link } from "react-router-dom";
 
 function Footer() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // Stop observing once it's visible
-        }
-      });
-    }, { threshold: 0.1 }); // Trigger when 10% of the element is in view
-
-    document.querySelectorAll('.fade-in').forEach(element => {
-      observer.observe(element);
-    });
-  }, []);
-
   return (
-    <div className="home-container">
-      <div className="home-column">
-        <Link to="/">
+    <div className="Homecontainer">
+      <div className="Footerheader">
+        <div className="Footer-logo-container">
+          <Link to="/">
           <img
             loading="lazy"
-            src={logo}
-            className="home-image1 fade-in"
-            alt="Logo"
-          />
-        </Link>
-        {/* Sidebar */}
-        <div className="home-column1 fade-in">
-          <div className="vertical-line-wrapper">
-            <div className="dotted-lines">.<br />.<br />.<br /><br /><br />.<br />.<br />.<br />.</div>
-            <div className="home-vertical-line" />
-            <a href="https://supply2u.jhubafrica.com/">
-              <img
-                loading="lazy"
-                src={website}
-                className="home-image-secondary"
-                alt="Website"
-              />
-            </a>
-            <img
-              loading="lazy"
-              src={email}
-              className="home-image-secondary"
-              alt="Email"
-            />
-            <Link to="Inquiries">
-              <img
-                loading="lazy"
-                src={call}
-                className="home-image-secondary"
-                alt="Call"
-              />
-            </Link>
-          </div>
+           src={footerlogo}
+            className="Footer-logo"
+          /></Link>
+          {/* <div className="company-name">Supply2U</div> */}
         </div>
-        {/* Body */}
-        <div className="home-content-section fade-in">
-          <div className="HomeNav fade-in">
-            <Link to="/">Home</Link>
-            <a href="https://supply2u.jhubafrica.com/#introduction">About us</a>
-            <div className="HomeServices"><Solutions /></div>
-            <Link to="/Help">Help</Link>
-            <div className="loginSct">
-              <LoginIcon />
-            </div>
+        <div className="nav-links">
+          <div className="nav-item"><a href="https://supply2u.jhubafrica.com/">About</a></div>
+          <div className="nav-item"><a href='https://supply2u.jhubafrica.com/#solutions'>Our Solutions</a></div>
+          <div className="nav-item"><Link to='/Inquiries'>Contact Us</Link></div>
+          <div className="nav-item"><Link to='/Help'>FAQs</Link></div>
+        </div>
+      </div>
+      <div className="footer">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/df0a24fd779e2d5822a8f27903af233327fc176187074d845bb68faa2465e617?apiKey=7a55d1e3f90e440382ed8e79ea8a2c83&"
+          className="footer-logo"
+        />
+        <div className="footer-content">
+          <div className="footer-links">
+            <Link to="/">Terms & Conditions</Link> | <Link to="/">Privacy Policy</Link> | <Link to="/">Accessibility</Link>
           </div>
-          <video
-            className="home-main-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src={mainVideo} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <h1 className="home-heading fade-in">
-            Smart Agriculture with<br /> Geo Insights
-          </h1>
-          <p className="home-paragraph fade-in">
-            Transforming agriculture supply chains through precise integration of farm geolocation data,<br /> real-time analytics,
-            and consumer behavior insights.
-            Empowering stakeholders at every step<br /> with unparalleled efficiency and informed decision-making.
-          </p>
-          <div className="GetStartedBtn fade-in">
-            <Link to='/Signup'>Get started</Link>
-          </div>
+          <div className="footer-text"> © 2024 Supply2U | All rights Reserved</div>
         </div>
       </div>
     </div>
