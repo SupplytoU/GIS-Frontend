@@ -1,18 +1,19 @@
-import React, { useState } from "react";
-import "./Signup.css";
-import img from "./Images/Signup.jpeg";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import './Signup.css';
+import img from './Images/Signup.jpeg';
 
 function Signup() {
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
-  const [errors, setErrors] = useState({});
+  const [error, setError] = useState('');
+  const history = useHistory();
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -24,25 +25,18 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newErrors = {};
+    setError('');
 
-    if (!formData.firstname) newErrors.firstname = "First name is required";
-    if (!formData.lastname) newErrors.lastname = "Last name is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
-    if (!formData.confirmPassword)
-      newErrors.confirmPassword = "Confirm password is required";
-    if (formData.password !== formData.confirmPassword)
-      newErrors.confirmPassword = "Passwords do not match";
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
       return;
     }
 
     // Submit form data
-    console.log("Form data submitted:", formData);
-    setErrors({});
+    console.log('Form data submitted:', formData);
+
+    // Navigate to success page
+    history.push('/Success');
   };
 
   return (
@@ -64,31 +58,27 @@ function Signup() {
           <div className="name-container">
             <div className="form-group firstname">
               <input
-                type="text"
+                type="message"
                 placeholder="First Name"
                 id="firstname"
                 className="form-input"
                 value={formData.firstname}
                 onChange={handleInputChange}
+                required
               />
               <div className="Line1"></div>
-              {errors.firstname && (
-                <p className="error-message">{errors.firstname}</p>
-              )}
             </div>
             <div className="form-group lastname">
               <input
-                type="text"
+                type="message"
                 placeholder="Last Name"
                 id="lastname"
                 className="form-input"
                 value={formData.lastname}
                 onChange={handleInputChange}
+                required
               />
               <div className="Line1"></div>
-              {errors.lastname && (
-                <p className="error-message">{errors.lastname}</p>
-              )}
             </div>
           </div>
           <div className="form-group">
@@ -99,9 +89,9 @@ function Signup() {
               className="form-input"
               value={formData.email}
               onChange={handleInputChange}
+              required
             />
             <div className="Line1"></div>
-            {errors.email && <p className="error-message">{errors.email}</p>}
           </div>
           <div className="form-group">
             <input
@@ -111,11 +101,9 @@ function Signup() {
               className="form-input"
               value={formData.password}
               onChange={handleInputChange}
+              required
             />
             <div className="Line1"></div>
-            {errors.password && (
-              <p className="error-message">{errors.password}</p>
-            )}
           </div>
           <div className="form-group">
             <input
@@ -125,10 +113,11 @@ function Signup() {
               className="form-input"
               value={formData.confirmPassword}
               onChange={handleInputChange}
+              required
             />
             <div className="Line1"></div>
-            {errors.confirmPassword && (
-              <p className="error-message">{errors.confirmPassword}</p>
+            {error && (
+              <p className="error-message">{error}</p>
             )}
           </div>
           <button type="submit" className="signup-button">

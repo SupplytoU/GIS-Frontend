@@ -1,10 +1,9 @@
-.Homecontainer {
+.Home-container {
   display: flex;
   flex-direction: column;
   font-weight: 400;
   padding-left: 44px;
   padding-right: 44px;
-  /* background-color: #262626; */
 }
 
 .Footerheader {
@@ -35,20 +34,6 @@
   width: 30%;
   margin-bottom:-5% ;
 }
-
-/* .company-name {
-  font-family: Jost, sans-serif;
-  align-self: start;
-  margin-top: 18vh;
-  flex-grow: 1;
-  flex-basis: auto;
-}
-
-@media (max-width: 991px) {
-  .company-name {
-    margin-top: 40px;
-  }
-} */
 
 .nav-links {
   align-self: end;
@@ -107,22 +92,6 @@
 .footer a:hover{
   color: white;
 }
-/* .footer-logo {
-  object-fit: auto;
-  object-position: center;
-  width: 100%;
-  stroke-width: 1px;
-  stroke: #71777d;
-  border-color: rgba(113, 119, 125, 1);
-  border-style: solid;
-  border-width: 1px;
-} */
-
-/* @media (max-width: 991px) {
-  .footer-logo {
-    max-width: 100%;
-  }
-} */
 
 .footer-content {
   display: flex;

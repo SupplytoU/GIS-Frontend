@@ -5,11 +5,12 @@ import Login from './Login.js';
 import Reset from './Reset.js';
 import PasswordChanged from "./PasswordChanged.js";
 import Help from "./Help.js";
-// import MyComponent from "./Signup.js";
 import Home from './Home.js';
 import Signup from './Signup.js';
 import Forgot from './Forgot.js';
-import SettingsHelpFaqs from './SettingsHelpFaqs.js';
+import Success from './Success.js'
+import LoginIcon from './LoginIcon.js'
+import LandingPage from './LandingPage.js';
 import SettingsAccount from './SettingsAccount.js'
 import Solutions from './Dropdown/Solutions.js';
 import Track from './OurSolutions/Track.js';
@@ -18,8 +19,6 @@ import Analytics from './OurSolutions/Analytics.js'
 import SideBar from './Sidebar.js'
 import Section1 from './Section1.js';
 import Inquries from "./Inquiries.js"
-import LoginIcon from './LoginIcon.js';
-
 import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
 
@@ -40,11 +39,14 @@ function App() {
           </Route>
           <Route exact path= "/inquiries">
          <Inquries/>
-
           </Route>
           <Route exact path='/login'>
             <Login />
           </Route>
+          <Route exact path='/landingPage'>
+            <LandingPage />
+          </Route>
+
           <Route exact path= "/inquiries">
          <Inquries/>
           </Route>
@@ -52,6 +54,7 @@ function App() {
           <Route exact path='/'><Home /></Route>
           <Route exact path='/OurSolutions'><Solutions /></Route>
           <Route exact path='/Signup'><Signup /></Route>
+          <Route exact path='/Success'><Success/></Route>
           <Route exact path='/Reset Password'><Forgot /></Route>
 {/* Solutions */}
           <Route exact path='/Track Order'><Track/></Route>
@@ -59,7 +62,7 @@ function App() {
           <Route exact path='/Analytics'><Analytics /></Route>
 {/* Settings */}
           <Route exact path='/Account'><SettingsAccount /></Route>
-          <Route exact path='/FAQs'>< SettingsHelpFaqs /></Route>
+
           <Route exact path='/SideBar'><SideBar /></Route>
           <Route exact path='/Section1'><Section1 /></Route>
           <Route exact path='/LoginIcon'><LoginIcon /></Route>
@@ -69,6 +72,7 @@ function App() {
           </Switch>
 
     </Router>
+
     </>
   );
 }

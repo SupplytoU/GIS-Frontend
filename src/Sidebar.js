@@ -63,11 +63,11 @@ function Sidebar() {
           <div className="Settingsdiv-8">
             <div className="Settingsdiv-9">
               <div className="SettingsEditProfile">
-                <div className="SettingsEdit"><Link to='/FAQs'>FAQs</Link></div>
+                <div className="SettingsEdit"><Link to='/Help'>FAQs</Link></div>
                 <div className="SettingsChangePass"><Link to='Inquiries'>Inquiries</Link></div>
               </div>
               <div className="Settingsdiv-13">
-                <Link to='/FAQs'><img loading="lazy" src={Arrow3} className="Settingsimg-2" /></Link>
+                <Link to='/Help'><img loading="lazy" src={Arrow3} className="Settingsimg-2" /></Link>
                 <Link to='Inquiries'><img loading="lazy" src={Arrow3} className="Settingsimg-3" /></Link>
               </div>
             </div>
