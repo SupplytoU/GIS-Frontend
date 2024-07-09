@@ -11,17 +11,16 @@ import Forgot from './Forgot.js';
 import Success from './Success.js'
 import LoginIcon from './LoginIcon.js'
 import LandingPage from './LandingPage.js';
-
-
 import SettingsAccount from './SettingsAccount.js'
 import Solutions from './Dropdown/Solutions.js';
 import Track from './OurSolutions/Track.js';
 import Locations from './OurSolutions/Locations.js';
 import Analytics from './OurSolutions/Analytics.js'
 import SideBar from './Sidebar.js'
-import Footer from './Footer.js';
+import Section1 from './Section1.js';
 import Inquries from "./Inquiries.js"
-
+import HomeFinal from './HomeFinal.js';
+import Footer from './Footer.js';
 
 function App() {
   return (
@@ -65,8 +64,11 @@ function App() {
           <Route exact path='/Account'><SettingsAccount /></Route>
 
           <Route exact path='/SideBar'><SideBar /></Route>
-          <Route exact path='/Footer'><Footer /></Route>
+          <Route exact path='/Section1'><Section1 /></Route>
           <Route exact path='/LoginIcon'><LoginIcon /></Route>
+
+          <Route exact path='/HomeF'><HomeFinal /></Route>
+          <Route exact path='/Footer'><Footer /></Route>
           </Switch>
 
     </Router>
