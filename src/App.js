@@ -8,6 +8,10 @@ import Help from "./Help.js";
 import Home from './Home.js';
 import Signup from './Signup.js';
 import Forgot from './Forgot.js';
+import Success from './Success.js'
+import LoginIcon from './LoginIcon.js'
+import LandingPage from './LandingPage.js';
+
 
 import SettingsAccount from './SettingsAccount.js'
 import Solutions from './Dropdown/Solutions.js';
@@ -36,10 +40,12 @@ function App() {
           </Route>
           <Route exact path= "/inquiries">
          <Inquries/>
-
           </Route>
           <Route exact path='/login'>
             <Login />
+          </Route>
+          <Route exact path='/landingPage'>
+            <LandingPage />
           </Route>
 
           <Route exact path= "/inquiries">

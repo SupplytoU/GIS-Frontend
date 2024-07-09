@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import tickImg from './Images/Tick.jpeg'; // Make sure to have the tick image in the correct path
+import tickImg from './Images/Tick.jpeg';
 import './Success.css';
 
 function Success() {

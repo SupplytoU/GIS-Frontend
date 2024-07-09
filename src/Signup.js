@@ -36,7 +36,7 @@ function Signup() {
     console.log('Form data submitted:', formData);
 
     // Navigate to success page
-    history.push('/success');
+    history.push('/Success');
   };
 
   return (
