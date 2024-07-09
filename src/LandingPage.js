@@ -1,39 +1,60 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import './LandingPage.css';
-import TrackingIcon from  "./Images/TrackingIcon.png";
-import GeolocationIcon from  "./Images/GeolocationIcon.png";
-import AnalyticsIcon from  "./Images/AnalyticsIcon.png";
-import Traceability from "./Images/Traceability.jpeg";
-import Realtime from "./Images/Realtime.jpeg";
-import SupplyChainOptImage from "./Images/SupplyChainOpt.jpg"
-import DataAnalysis from "./Images/DataAnalysis.jpg";
-
+import TrackingIcon from './Images/realtime.png';
+import GeolocationIcon from './Images/GeolocationIcon.png';
+import AnalyticsIcon from './Images/AnalyticsIcon.png';
+import Traceability from './Images/Traceability.jpeg';
+import Realtime from './Images/Realtime.jpeg';
+import SupplyChainOptImage from './Images/SupplyChainOpt.jpg';
+import DataAnalysis from './Images/DataAnalysis.jpg';
 
 function LandingPage() {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach((element) => {
+      observer.observe(element);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="landing-page">
       <header className="header">
         <h1>ABOUT <span className="green-text">SUPPLY2U</span></h1>
       </header>
       <div className="columns-container">
-        <div className="column left-column">
-        <p className="watermark">About</p>
-          <h2>Enhancing Your Supply<br/>Chain with Real-Time<br/>Precision</h2>
-          <p>At Supply2U, we enhance your<br/> supply chain with advanced real<br/>-time tracking, geolocation<br/> analytics, and retail insights. Our<br/> cutting-edge technology provides<br/> unmatched visibility and control<br/> from production to consumption.</p>
+        <div className="column left-column fade-in">
+          <p className="watermark">About</p>
+          <h2>Enhancing Your Supply<br />Chain with Real-Time<br />Precision</h2>
+          <div className="LandingContent">
+            <p>At Supply2U, we enhance your supply chain with advanced real-time tracking, geolocation, analytics, and retail insights. Our cutting-edge technology provides unmatched visibility and control from production to consumption.</p>
+          </div>
         </div>
         <div className="white-separator"></div>
-        <div className="column right-column">
-          <h2>Our<br/>Specialisation:</h2>
-          <img src={TrackingIcon} alt="Realtime tracking" />
-          <h3>Realtime tracking</h3>
-          <img src={GeolocationIcon} alt="Geo-location data" />
-          <h3>Geo-location data</h3>
-          <img src={AnalyticsIcon} alt="Analytical insights" />
-          <h3>Analytical insights</h3>
-          <p className="horizontal-watermark">About</p>
+        <div className="column right-column fade-in">
+          <h2>Our<br />Specialisation:</h2>
+          <div className="Icons">
+            <img src={TrackingIcon} alt="Realtime tracking" />
+            <p>Realtime tracking</p>
+            <img src={GeolocationIcon} alt="Geo-location data" />
+            <p>Geo-location data</p>
+            <img src={AnalyticsIcon} alt="Analytical insights" />
+            <p>Analytical insights</p>
+          </div>
         </div>
       </div>
-      <section className="solutions">
+      <section className="solutions fade-in">
         <h2>OUR <span className="green-text">SOLUTIONS</span></h2>
         <div className="solutions-container">
           <div className="solution">

@@ -1,0 +1,21 @@
+.constimage{
+    height:auto;
+    width: 60vw;
+    align-self: center;
+    margin-left: 20%;
+}
+.Construct{
+    background-color: rgb(247, 244, 244);    
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+}
+.Construct p{
+    position: relative;
+    z-index: 2;
+    color: black;
+    font-size: 30px;
+    font-weight: 500;
+    font-family:fantasy;
+    margin-left: 25%;
+}

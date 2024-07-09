@@ -26,9 +26,9 @@ const Solutions  = () => {
           <span className="arrow"><FaChevronDown/></span>
           {dropdownVisible && (
             <ul className="dropdown">
-              <li className="dropdown-item"><Link to='/Track Order'>Track An Order</Link></li>
-              <li className="dropdown-item"><Link to='/Locations'>View Locations</Link></li>
-              <li className="dropdown-item"><Link to='/Analytics'>View Analytics</Link></li>
+              <Link to='/Track Order'><li className="dropdown-item">Track An Order</li></Link>
+              <Link to='/Locations'><li className="dropdown-item">View Locations</li></Link>
+              <Link to='/Analytics'><li className="dropdown-item">View Analytics</li></Link>
             </ul>
           )}
         </li>
