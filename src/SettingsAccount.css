@@ -1,11 +1,14 @@
 .Accountdiv {
-    display: flex;
+  display: flex;
     flex-direction: column;
     position: relative;
     width:75%;
+    height: 100vh;
     left: 25%;
-    margin-top: -40.88%;
+    margin-top: -47.56%;
     align-items: center;
+    padding-bottom: 4px;
+    background-color: white;
   }
 
   @media (max-width: 991px) {
