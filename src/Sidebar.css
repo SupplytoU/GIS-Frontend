@@ -2,17 +2,18 @@
   display: flex;
   max-width: 480px;
   width: 25%;
+  height: 100vh;
   flex-direction: column;
-  padding: 0 30px 7px;
   position: relative;
   background-color: white ;
- 
+  z-index: 1;
 }
 
 .Settingsdiv-2 {
   display: flex;
   width: 100%;
   flex-direction: column;
+  padding-left: 21px;
 }
 
 .Settingsdiv-3 {
@@ -23,14 +24,14 @@
   font-weight: 600;
   white-space: nowrap;
 }
-
+/* Removed it */
 .vertical-line {
   position: fixed; /* Ensures the line stays in place when scrolling */
   top: 0;
   bottom: 0;
   left: 25%; /* Adjust the position as needed */
-  width: 3px; /* Width of the line */
-  background-color: rgb(212, 212, 211); /* Color of the line */
+  width: 4px; /* Width of the line */
+  background-color: rgba(212, 212, 211, 0); /* Color of the line */
 }
 
 .Settings {
@@ -144,6 +145,7 @@
   flex-basis: auto;
   font-size: 16px;
   margin-top: 4%;
+  color: #000;
 }
 
 .SettingsLine {
@@ -216,7 +218,7 @@
 
 .Inquiries {
   margin-top: 13px;
-  margin-bottom: 50%;
+  margin-bottom:40%;
   font: 25px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
@@ -226,15 +228,6 @@
   object-position: center;
   width: 25px;
   align-self: start;
-}
-
-.Settingsdiv-26 {
-  position: absolute;
-  bottom: -75px;
-  right:85px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
 .Logout {
@@ -247,7 +240,7 @@
 
 .Settingsdiv-27 {
   display: flex;
-  margin-top: 20%;
+  margin-top: 21.5%;
   gap: 6px;
   font-size: 15px;
   color: #02570a;
@@ -269,7 +262,7 @@
 }
 
 .Settingsdiv-29 {
-  transform: translateY(430%);
+  transform: translateY(420%);
 }
 
 .Settingsdiv-29 a {
@@ -312,10 +305,10 @@
 .Slider::before {
   position: absolute;
   content: "";
-  height: 11.5px;
+  height: 11px;
   width: 12px;
   left: 2px;
-  bottom: 1.5px;
+  bottom: 2px;
   background-color: rgb(255, 255, 255);
   transition: .3s;
   border-radius: 50%;

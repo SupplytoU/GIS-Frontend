@@ -71,8 +71,7 @@ function Sidebar() {
                 <Link to='Inquiries'><img loading="lazy" src={Arrow3} className="Settingsimg-3" /></Link>
               </div>
             </div>
-            <div className="Settingsdiv-26">
-              
+            <div className="Settingsdiv-29"><Link to="/">SUPPLY2U</Link></div>
               <div className='Settingsdiv-27'>
                 <img
                   loading="lazy"
@@ -81,9 +80,8 @@ function Sidebar() {
                 />
                 <div className="Settingsdiv-28">Logout</div>
               </div>
-            </div>
           </div>
-          <div className="Settingsdiv-29"><Link to="/">SUPPLY2U</Link></div>
+          
         </div>
       </div>
     </>

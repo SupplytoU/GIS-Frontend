@@ -5,7 +5,7 @@ import Login from './Login.js';
 import Reset from './Reset.js';
 import PasswordChanged from "./PasswordChanged.js";
 import Help from "./Help.js";
-import Home from './Home.js';
+// import Home from './Home.js';
 import Signup from './Signup.js';
 import Forgot from './Forgot.js';
 import Success from './Success.js'
@@ -52,7 +52,7 @@ function App() {
          <Inquries/>
           </Route>
      
-          <Route exact path='/'><Home /></Route>
+          <Route exact path='/'><HomeFinal /></Route>
           <Route exact path='/OurSolutions'><Solutions /></Route>
           <Route exact path='/Signup'><Signup /></Route>
           <Route exact path='/Success'><Success/></Route>
@@ -66,7 +66,6 @@ function App() {
           <Route exact path='/SideBar'><SideBar /></Route>
           <Route exact path='/Section1'><Section1 /></Route>
           <Route exact path='/LoginIcon'><LoginIcon /></Route>
-          <Route exact path='/HomeF'><HomeFinal /></Route>
           <Route exact path='/Footer'><Footer /></Route>
 
           <Route exact path='/Soon'><Construct /></Route>
