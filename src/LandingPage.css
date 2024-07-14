@@ -81,7 +81,8 @@ body {
   margin: 0;
   line-height: 1.5;
   gap: 5px;
-  text-align: justify;
+  text-align:justify;
+  width: 23vw;
 }
 
 .LandingContent {

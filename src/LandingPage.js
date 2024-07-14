@@ -38,7 +38,10 @@ function LandingPage() {
           <p className="watermark">About</p>
           <h2>Enhancing Your Supply<br />Chain with Real-Time<br />Precision</h2>
           <div className="LandingContent">
-            <p>At Supply2U, we enhance your supply chain with advanced real-time tracking, geolocation, analytics, and retail insights. Our cutting-edge technology provides unmatched visibility and control from production to consumption.</p>
+            <p>At Supply2U, we enhance your supply chain with 
+              advanced real-time tracking, geolocation, analytics, 
+              and retail insights. Our cutting-edge technology provides
+               unmatched visibility and control from production to consumption.</p>
           </div>
         </div>
         <div className="white-separator"></div>
