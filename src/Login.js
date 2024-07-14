@@ -62,6 +62,7 @@ function Login() {
               {!success ? (
                 <>
                   <div className="Login-title">Log In</div>
+                  <div className='GSect'>
                   <section>
                     <form onSubmit={handleSubmit}>
                       <div className="UserEmail">
@@ -77,7 +78,7 @@ function Login() {
                         />
                       </div>
                       {error && <div className="Error">{error}</div>}
-                      <div className="Line1" />
+                      <div className="Login-Line1" />
                       <div className="Password">
                         <input
                           type="password"
@@ -89,16 +90,19 @@ function Login() {
                           required
                         />
                       </div>
-                      <div className="Line1" />
+                      <div className="Login-Line1" />
                       <div className="Forgot"><Link to="/Reset Password">Forgot password?</Link></div>
                       <button type="submit" className="LoginButton">LOG IN</button>
                     </form>
                   </section>
+                  <div className='Signup2'>Don't have an account yet? <span className='SignupSpan'>Register here</span></div>
+                  </div>
                   <div className="Or">OR</div>
                   <div className="SigninWithGoogle">
                     <img loading="lazy" src={google} className="Loginimg-2" alt="Google" />
-                    <div className="Google">Sign in with Google</div>
+                    <div className="Google"><Link to="/Soon">Sign in with Google</Link></div>
                   </div>
+                  
                 </>
               ) : (
                 <div className="Success">

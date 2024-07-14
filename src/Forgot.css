@@ -1,129 +1,115 @@
-.Forgotdiv{
+/* Base styles */
+.Forgotdiv {
   background-color: #fff;
   height: 100vh;
   color: #000000;
-  padding-top: 8yyvh;
+  padding-top: 8vh;
 }
-.Forgotdiv-2 {
-    .div-2 {
-        gap: 100px;
-        display:flex;
-      }
-  }
-  @media (max-width: 991px) {
-    .Forgotdiv-2 {
-      max-width: 100%;
-      padding-right: 20px;
-    }
-  }
+
+.ForgotImg {
+  position: absolute;
+  inset: 0;
+  height: 100vh;
+  width: auto;
+  object-fit: fill;
+  object-position: center;
+  margin-left: 17%;
+}
+
+.ForgotPassword {
+  position: relative;
+  align-self: start;
+  margin-top: 0%;
+  margin-left: 6%;
+  font: 700 50px Kantumruy, sans-serif;
+  z-index: 3;
+}
+
+.Content {
+  position: relative;
+  display: flex;
+  width: 450px;
+  flex-direction: column;
+  font-weight: 400;
+  text-align: center;
+  margin-top: -6%;
+  margin-left: 65%;
+}
+
+.Details {
+  margin-top: 11%;
+  margin-left: 40.5%;
+  position: relative;
+  text-align: center;
+  font: 15px Kantumruy, sans-serif;
+  width: 18%;
+  font-weight: 500;
+}
+
+input[type="ResetEmail"] {
+  padding: 5px;
+  margin-bottom: 10%;
+  margin-right: 20%;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  font-size: 15px;
+  width: 60%;
+}
+
+input[type="ResetEmail"]::placeholder {
+  color: #646464;
+}
+
+.ResetButton {
+  border-radius: 7px;
+  border-width: 1px;
+  background-color: #0c920a;
+  align-self: center;
+  color: #fff;
+  justify-content: center;
+  padding: 6px 4px;
+  font: 500 14px Kantumruy, sans-serif;
+  margin-right: 20%;
+  cursor: pointer;
+}
+
+.Success {
+  font-size: 22px;
+  margin-right: 22%;
+  margin-top: 0%;
+}
+
+.setResetError {
+  margin-bottom: 0%;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 991px) {
   .ForgotImg {
-    position: absolute;
-    inset: 0;
+    object-fit: contain;
     height: 100%;
-    width: auto;
-    object-fit: fill;
-    object-position: center;
-    margin-left: 17%;
+    width: 100%;
+    margin-left: 0%;
+    margin-top: -10vh;
   }
 
-  @media (max-width: 991px){
-    .ForgotImg{
-      object-fit:contain;
-      height: 100%;
-      width: 100%;
-      margin-left: 0%;
-      margin-top: -10vh;
-    }
-  }
   .ForgotPassword {
-    position: relative;
-    align-self: start;
-    margin-top: 0%;
-    margin-left: 6%;
-    font: 700 50px Kantumruy, sans-serif;
+    font-size: 40px;
   }
-  @media (max-width: 991px) {
-    .ForgotPassword {
-      max-width: 100%;
-      margin-top: 40px;
-      font-size: 35px;
-    }
-  }
+
   .Content {
-    position: relative;
-    display: flex;
-    width: 450px;
-    flex-direction: column;
-    font-weight: 400;
-    text-align: center;
-    margin-top: -6%;
-    margin-left: 65%;
+    margin: 340px 10px 40px 20px;
   }
-  @media (max-width: 991px) {
-    .Content {
-      margin: 350px 10px 40px 0;
-    }
-  }
+
   .Details {
-    margin-top: 11%;
-    margin-left:40.5%; 
-    position: relative;
-    text-align: center;
-    font: 15px Kantumruy, sans-serif;
-    width: 18%;
-    font-weight: 500;
-  }
-  
-  @media (max-width: 991px) {
-    .Details {
-      margin-top: 55%;
-      margin-left: 51%;
-      width: 40%;
-      font-size: 12px; /*Adjust font size for smaller screens*/
-    }
-  }
-  
-  
-  input[type="ResetEmail"] {
-    padding: 5px;
-    margin-bottom: 10%;
-    margin-right: 20%;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    font-size: 15px;
-    width: 60%;
+    margin-top: 48%;
+    margin-left: 51%;
+    width: 40%;
+    font-size: 12px;
   }
 
-  input[type="ResetEmail"]::placeholder{
-    color: #646464;
+  .ResetEmail {
+    margin-top: -29%;
+    padding: 0 20px;
   }
-
-  @media (max-width: 991px) {
-    .ResetEmail {
-      margin-top: -29%;
-      padding: 0 20px;
-    }
-
-  }
-  .ResetButton {
-    border-radius: 7px;
-    border-width: 1px;
-    background-color: #0c920a;
-    align-self: center;
-    color: #fff;
-    justify-content: center;
-    padding: 6px 4px;
-    font: 500 14px Kantumruy, sans-serif;
-    margin-right:20%;
-    cursor: pointer;
-  }
-
-  .Success{
-    font-size:22px;
-    margin-right: 22% ;
-    margin-top:0% ;
-  }
-
-  .setResetError{
-    margin-bottom: 0%;
-  }
+}
