@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React from 'react';
-import { useMediaQuery } from 'react-responsive';
+// import { useMediaQuery } from 'react-responsive';
 
 
 import Login from './Login.js';
@@ -26,11 +26,11 @@ import Footer from './Footer.js';
 
 import Construct from './Construct.js';
 function App() {
-const isMobileDevice = useMediaQuery({ query: "(min-device-width: 480px)" });
-const isTabletDevice = useMediaQuery({ query: "(min-device-width: 768px)" });
-const isLaptop = useMediaQuery({ query: "(min-device-width: 1024px)" });
-const isDesktop = useMediaQuery({ query: "(min-device-width: 1200px)" });
-const isBigScreen = useMediaQuery({ query: "(min-device-width: 1201px)" });
+// const isMobileDevice = useMediaQuery({ query: "(min-device-width: 480px)" });
+// const isTabletDevice = useMediaQuery({ query: "(min-device-width: 768px)" });
+// const isLaptop = useMediaQuery({ query: "(min-device-width: 1024px)" });
+// const isDesktop = useMediaQuery({ query: "(min-device-width: 1200px)" });
+// const isBigScreen = useMediaQuery({ query: "(min-device-width: 1201px)" });
 
   return (
     <>

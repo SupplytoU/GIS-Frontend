@@ -33,7 +33,7 @@ function Sidebar() {
               </div>
               <div className="Settingsdiv-13">
               <Link to='/Account'><img loading="lazy" src={Arrow3} className="Settingsimg-2" /></Link>
-              <Link to='/Account'><img loading="lazy" src={Arrow3} className="Settingsimg-3" /></Link>
+              <Link to='/Account'><img loading="lazy" src={Arrow3} className="Settingsimg-2" /></Link>
               </div>            
             </div>
           </div>
@@ -67,7 +67,7 @@ function Sidebar() {
                 <div className="SettingsChangePass"><Link to='Inquiries'>Inquiries</Link></div>
               </div>
               <div className="Settingsdiv-13">
-                <Link to='/Help'><img loading="lazy" src={Arrow3} className="Settingsimg-2" /></Link>
+                <Link to='/Help'><img loading="lazy" src={Arrow3} className="Settingsimg-3" /></Link>
                 <Link to='Inquiries'><img loading="lazy" src={Arrow3} className="Settingsimg-3" /></Link>
               </div>
             </div>
