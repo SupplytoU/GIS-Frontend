@@ -54,7 +54,7 @@ function Login() {
               <div className="Loginimg-1">
               </div>
               <div className="Create">Create An Account</div>
-              <div className="Signup"><Link to="/Signup">SIGN UP</Link></div>
+              <div className="Signup-Btn"><Link to="/Signup">SIGN UP</Link></div>
             </div>
           </div>
           <div className="Logincolumn-2">
@@ -95,7 +95,7 @@ function Login() {
                       <button type="submit" className="LoginButton">LOG IN</button>
                     </form>
                   </section>
-                  <div className='Signup2'>Don't have an account yet? <span className='SignupSpan'>Register here</span></div>
+                  <div className='Signup2'>Don't have an account yet?<br/> <span className='SignupSpan'><Link to="/Signup">Register here</Link></span></div>
                   </div>
                   <div className="Or">OR</div>
                   <div className="SigninWithGoogle">
