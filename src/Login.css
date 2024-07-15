@@ -43,7 +43,7 @@
   height: 100vh;
   padding: 2rem;
   border-top-left-radius: 15px;
-  border-bottom-left-radius: 15pxy;
+  border-bottom-left-radius: 15px;
 }
 
 .Create {
@@ -71,7 +71,7 @@
   color: white;
 }
 
-.Signup:hover {
+.Signup :hover {
   background-color: #ffffff19;
   color: #136b04;
 }
