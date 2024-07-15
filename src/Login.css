@@ -53,25 +53,25 @@
   color: #fff;
 }
 
-.Signup {
+.Signup-Btn {
   position: relative;
   border-radius: 30px;
   border: 2px solid #fff;
   background-color: rgba(17, 89, 5, 0);
   margin-top: 30px;
   justify-content: center;
-  padding: 6px 18px;
+  padding: 6px 17px;
   font: 600 15px 'Inter', sans-serif;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.Signup a {
+.Signup-Btn a {
   text-decoration: none;
   color: white;
 }
 
-.Signup :hover {
+.Signup-Btn :hover {
   background-color: #ffffff19;
   color: #136b04;
 }
@@ -98,15 +98,15 @@
 }
 
 input[type="email"], input[type="password"] {
-  padding: 6px;
-  width: 23vw;
-  border: 2px solid #000000;
-  border-width: 1.5px;
-  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+  border: none; /* Remove other borders */
+  border-bottom: 1.5px solid #000; /* Add bottom border */
+  border-radius: 0; /* Ensure no border radius */
   font-size: 15px;
   outline: none;
-  margin-bottom: 20px;
   transition: border-color 0.3s;
+  margin-bottom: 3vh;
 }
 
 input[type="email"]:focus, input[type="password"]:focus {
@@ -177,6 +177,7 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
   cursor: pointer;
   transition: border-color 0.3s;
   margin-top: 3vh;
+  text-align: center;
 }
 
 .SigninWithGoogle:hover {
@@ -308,11 +309,6 @@ input[type="password"] {
   color: white;
 }
 
-.Login-Line1 {
-  /* background-color: #000; */
-  height: 2px;
-}
-
 /* .Password {
   margin-top: 70px;
   font: 13px Kdam Thmor, sans-serif;
@@ -412,6 +408,8 @@ input[type="password"] {
   border: 1px solid rgba(255, 255, 255, 0.617);
   color: rgb(255, 255, 255);
   padding: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
   margin-right: -5vw;
   margin-left: -5vw;
 }
@@ -467,22 +465,17 @@ input[type="password"] {
     margin-top: 2vh;
   }
 
-  .Login-Line1 {
-    background-color: white;
-    margin-top: 1vh;
-  }
-
   .Password {
-    margin-top: 50px;
+    margin-top: 10px;
   }
 
   .LoginButton {
-    padding: 10px 50px;
+    padding: 6px 40px;
     border-radius: 15px;
     border-width: 0;
     align-self: center;
-    margin-left: 13vw;
-    margin-top: 3vh;
+    margin-left: 15vw;
+    margin-top: 7vh;
     width: fit-content;
   }
 
@@ -497,7 +490,7 @@ input[type="password"] {
   }
 
   .Forgot{
-    margin-top: 2rem;
+    margin-top: 0rem;
   }
 
   .SigninWithGoogle {
@@ -531,12 +524,14 @@ input[type="password"] {
   .Signup2 {
     visibility: visible;
     justify-content: center;
-    margin-top: 3vh;
+    margin-top: 1vh;
     text-align: center;
+    font-size: 13px;
   }
 
-  .SignupSpan {
+  .SignupSpan a{
     color: #24ab0d;
+    text-decoration: none;
   }
 }
 
