@@ -55,6 +55,7 @@ function Signup() {
       <div className="signup-section">
         <form className="signup-form" onSubmit={handleSubmit}>
           <h2 className="signup-title">Sign Up</h2>
+          <div className='GSection'>
           <div className="name-container">
             <div className="form-group firstname">
               <input
@@ -66,7 +67,7 @@ function Signup() {
                 onChange={handleInputChange}
                 required
               />
-              <div className="Line1"></div>
+              <div className="Signup-line"></div>
             </div>
             <div className="form-group lastname">
               <input
@@ -78,7 +79,7 @@ function Signup() {
                 onChange={handleInputChange}
                 required
               />
-              <div className="Line1"></div>
+              <div className="Signup-line"></div>
             </div>
           </div>
           <div className="form-group">
@@ -91,7 +92,7 @@ function Signup() {
               onChange={handleInputChange}
               required
             />
-            <div className="Line1"></div>
+            <div className="Signup-line"></div>
           </div>
           <div className="form-group">
             <input
@@ -103,7 +104,7 @@ function Signup() {
               onChange={handleInputChange}
               required
             />
-            <div className="Line1"></div>
+            <div className="Signup-line"></div>
           </div>
           <div className="form-group">
             <input
@@ -115,7 +116,7 @@ function Signup() {
               onChange={handleInputChange}
               required
             />
-            <div className="Line1"></div>
+            <div className="Signup-line"></div>
             {error && (
               <p className="error-message">{error}</p>
             )}
@@ -123,7 +124,13 @@ function Signup() {
           <button type="submit" className="signup-button">
             SIGN UP
           </button>
+          <div className='Login2'>
+          Have an account? 
+          <Link to='/login' className='SignupSpan'>Login here</Link>
+        </div> 
+        </div>
         </form>
+        
       </div>
     </div>
   );

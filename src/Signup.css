@@ -19,6 +19,7 @@
   left: 0;
 }
 
+/* LOGIN TEXT */
 .overlay {
   position: absolute;
   top: 50%;
@@ -35,7 +36,8 @@
 .login-section {
   text-align: center;
 }
-.login-section a{
+
+.login-section a {
   text-decoration: none;
 }
 
@@ -52,21 +54,21 @@
   font-size: 24px;
   margin-bottom: 20px;
   color: #fff;
- margin-right: 5px;
+  margin-right: 5px;
 }
 
 .login-button {
   position: relative;
-    border-radius: 30px;
-    border-color: rgba(255, 255, 255, 1);
-    border-style: solid;
-    border-width: 2px;
-    background-color: rgba(2, 2, 2, 0);
-    margin-top: 35px;
-    justify-content: center;
-    padding: 8px 22px;
-    font: 600 18px Inter, sans-serif;
-    color: white;
+  border-radius: 30px;
+  border-color: rgba(255, 255, 255, 1);
+  border-style: solid;
+  border-width: 2px;
+  background-color: rgba(2, 2, 2, 0);
+  margin-top: 35px;
+  justify-content: center;
+  padding: 8px 22px;
+  font: 600 18px Inter, sans-serif;
+  color: white;
 }
 
 .signup-button {
@@ -82,10 +84,14 @@
   color: #fff;
   font: 400 20px Inter, sans-serif;
 }
+.Login2 {
+  visibility: hidden;
+}
 
 .signup-form {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .signup-title {
@@ -95,14 +101,12 @@
   font: 600 30px Inter, sans-serif;
 }
 
-
 .form-group {
   margin-bottom: 40px;
   margin-left: 15px;
- 
- 
-
+  flex: 1;
 }
+
 .name-container {
   display: flex;
   justify-content: space-between;
@@ -113,31 +117,30 @@
 .form-group.lastname {
   flex: 1;
 }
+
 .form-group.firstname {
   margin-right: 20px;
 }
 
-.Line1 {
+.Signup-line {
   border-color: rgba(0, 0, 0, 1);
   border-style: solid;
   border-width: 0px;
   background-color: #000;
   margin-top: 8px;
-  height: 2px;
+  height: 1px;
   margin-left: 10px;
-
 }
 
 .form-input {
   border: none; /* Remove the border-bottom property */
   font-size: 16px;
   margin: 0;
-  padding: 5px;
+  padding: 10px;
   width: 100%;
   margin-left: 5px;
   outline: none;
-  
-
+  gap: 10px;
 }
 
 .form-input::placeholder {
@@ -146,6 +149,162 @@
   font-size: 16px;
   /* Adjust padding to align with the line */
   padding-left: 1px;
-  
 }
 
+/* Responsiveness */
+@media screen and (max-width: 1200px) {
+  .question {
+    font-size: 20px;
+  }
+
+  .login-button {
+    font-size: 16px;
+    padding: 6px 18px;
+  }
+
+  .signup-button {
+    width: 400px;
+    font-size: 18px;
+    height: 45px;
+  }
+
+  .signup-title {
+    font-size: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    margin-left: -10px;
+  }
+
+  .form-input {
+    font-size: 14px;
+    padding: 8px;
+    color: #fff;
+  }
+
+  .form-input::placeholder {
+    color: white;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .image-container {
+    display: none;
+  }
+
+  .container {
+    flex-direction: column;
+    background: url('Images/Login.jpeg') no-repeat center center;
+    background-size: cover;
+  }
+
+  .signup-section {
+    padding: 20px;
+    background: none;
+  }
+
+  .signup-button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .signup-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff !important;
+  }
+
+  .question {
+    font-size: 18px;
+  }
+
+  .login-button {
+    font-size: 14px;
+    padding: 6px 16px;
+  }
+
+  .signup-button {
+    padding: 10px 50px;
+    border-radius: 15px;
+    border-width: 0;
+    align-self: center;
+    margin-left: 5vw;
+    margin-top: 3vh;
+    width: fit-content;
+  }
+
+  .form-input {
+    font-size: 14px;
+    padding: 6px;
+    background: none;
+  }
+
+  .form-input::placeholder {
+    color: white !important;
+  }
+}
+
+.Signup-line {
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-width: 0px;
+  background-color: #ffffff;
+  margin-top: 8px;
+  height: 1px;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .signup-title {
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: #fff !important;
+    
+  }
+
+  .question {
+    font-size: 16px;
+  }
+
+  .login-button {
+    font-size: 12px;
+    padding: 4px 12px;
+  }
+
+  .signup-button {
+    font-size: 14px;
+    height: 35px;
+  }
+
+  .form-input {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  .form-input::placeholder {
+    color: white;
+  }
+  .Login2{
+    margin-top: 25px;
+    padding-top: 3px;
+  }
+
+  .GSection {
+    background: rgba(11, 0, 0, 0.05);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(141, 141, 141, 0);
+    backdrop-filter: blur(0px);
+    border: 1px solid rgba(255, 255, 255, 0.617);
+    color: rgb(255, 255, 255);
+    padding: 2rem;
+    margin-right: -5vw;
+    margin-left: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 62%;
+    width: 80%;
+  }
+}
