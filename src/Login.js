@@ -40,9 +40,9 @@ function Login() {
     setSuccess(true);
 
     // Redirect to home page after a delay to show success message
-    setTimeout(() => {
-      history.push('/');
-    }, 2000); // 3-second delay
+    // setTimeout(() => {
+    //   history.push('/');
+    // }, 2000); // 2-second delay
   };
 
   return (
@@ -54,7 +54,7 @@ function Login() {
               <div className="Loginimg-1">
               </div>
               <div className="Create">Create An Account</div>
-              <div className="Signup-Btn"><Link to="/Signup">SIGN UP</Link></div>
+              <div className="SignupButton"><Link to="/Signup">SIGN UP</Link></div>
             </div>
           </div>
           <div className="Logincolumn-2">
