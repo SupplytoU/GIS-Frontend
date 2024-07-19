@@ -4,6 +4,7 @@ import './Login.css';
 import google from './Images/Google.png';
 import mark from './Images/mark.png'
 import { Link } from 'react-router-dom';
+import useLocalStorage from 'use-local-storage';
 
 function Login() {
   const emailRef = useRef(null);
@@ -42,19 +43,21 @@ function Login() {
     // Redirect to home page after a delay to show success message
     setTimeout(() => {
       history.push('/');
-    }, 2000); // 3-second delay
+    }, 2000); // 2-second delay
   };
+
+  const [isDark]=useLocalStorage("isDark",false);
 
   return (
     <>
-      <div className="Logindiv">
+      <div className="Logindiv" data-theme={isDark?"dark":"light"}>
         <div className="LoginContainer">
           <div className="Logincolumn">
             <div className="CreateAccount">
               <div className="Loginimg-1">
               </div>
               <div className="Create">Create An Account</div>
-              <div className="Signup"><Link to="/Signup">SIGN UP</Link></div>
+              <div className="SignupButton"><Link to="/Signup">SIGN UP</Link></div>
             </div>
           </div>
           <div className="Logincolumn-2">
@@ -71,6 +74,7 @@ function Login() {
                           id="email"
                           name="email"
                           placeholder="Email Address"
+                          className="form-input"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           ref={emailRef}
@@ -85,6 +89,7 @@ function Login() {
                           id="password"
                           name="password"
                           placeholder="Password"
+                          className="form-input"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
@@ -95,7 +100,7 @@ function Login() {
                       <button type="submit" className="LoginButton">LOG IN</button>
                     </form>
                   </section>
-                  <div className='Signup2'>Don't have an account yet? <span className='SignupSpan'>Register here</span></div>
+                  <div className='Signup2'>Don't have an account yet?<br/> <span className='SignupSpan'><Link to="/Signup">Register here</Link></span></div>
                   </div>
                   <div className="Or">OR</div>
                   <div className="SigninWithGoogle">
