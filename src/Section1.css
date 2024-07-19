@@ -1,11 +1,12 @@
 body, html {
-  background: #000000;
+  background-color: var(--background-color);
   background-size: 400% 400%;
   margin: 0;
   height: 100%;
-  color: white;
+  color: var(--primary-text-color);
   overflow-y: auto;
   animation: gradientAnimation 15s ease infinite;
+  transition: background-color 0.25s ease-in-out;
 }
 
 @keyframes gradientAnimation {
@@ -38,9 +39,11 @@ body, html {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  height: 100vh;
   width: 100%;
   box-sizing: border-box;
   margin-top: -1.4%;
+  background-color: var(--background-color);
 }
 
 .home-column {
@@ -53,7 +56,7 @@ body, html {
 
 .home-image1 {
   width: 190px;
-  background-color: #000000;
+  background-color: var(--background-color);
   position: absolute;
   top: 2%;
   left: 0%;
@@ -83,7 +86,7 @@ body, html {
 }
 
 .dotted-lines {
-  color: white;
+  color: var(--primary-text-color);
   font-size: 18px;
   text-align: center;
   line-height: 0.8;
@@ -93,14 +96,15 @@ body, html {
 .home-vertical-line {
   width: 1px;
   height: 55px;
-  background-color: white;
+  background-color: var(--primary-text-color);
   margin: 32px 0;
 }
 
 .home-image-secondary {
-  width: 21px;
+  font-size: 20px;
   margin: 4px 0;
   transition: transform 0.3s ease, filter 0.3s ease;
+  color: var(--primary-text-color);
 }
 
 .home-image-secondary:hover {
@@ -128,7 +132,6 @@ body, html {
 .home-heading, .home-paragraph {
   position: absolute;
   text-align: center;
-  color: white;
   width: 100%;
   z-index: 2;
   opacity: 0;
@@ -166,7 +169,6 @@ body, html {
   font-weight: 500;
   display: flex;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
   z-index: 2;
   opacity: 0;
   transform: translateY(20px);

@@ -5,7 +5,8 @@
   height: 100vh;
   flex-direction: column;
   position: relative;
-  background-color: white ;
+  background-color: var(--foreground-color) ;
+  color: var(--primary-text-color);
   z-index: 1;
 }
 @media (max-width: 390px) {
@@ -27,7 +28,7 @@
   display: flex;
   max-width: 100%;
   flex-direction: column;
-  color: #000000;
+  /* color: #000000; */
   font-weight: 600;
   white-space: nowrap;
 }
@@ -42,9 +43,8 @@
 }
 
 .Settings {
-  margin-top: 8%;
-  margin-left: 15%;
-  font: 35px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
+  margin-top: 10%;
+  font: 32px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
 }
 @media (max-width: 390px) {
   .Settings {
@@ -69,7 +69,7 @@
 
 .SettingsAccount {
   display: flex;
-  margin-top: 15%;
+  margin-top: 10%;
   gap: 19px;
   font-size: 18px;
   align-items: center;
@@ -91,7 +91,7 @@
   display: flex;
   width: 90%;
   flex-direction: column;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 .Settingsdiv-9 {
@@ -106,13 +106,13 @@
 }
 
 .Settingsdiv-9 :visited{
-  color: #000;
+  color: var(--primary-text-color);
 }
 .SettingsEditProfile {
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  color: #000;
+  /* color: #000; */
   font-weight: 400;
   font-family: Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
 }
@@ -125,8 +125,9 @@
 }
 
 
-.SettingsChangePass {
+.SettingsChangePass, .SettingsChangePass a {
   margin-top: 7%;
+  color: var(--primary-text-color);
 }
 
 .Settingsdiv-13 {
@@ -134,19 +135,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.Settingsimg-2 {
-  aspect-ratio: 1;
-  object-position: center;
-  width: 31%;
+  margin-right: 20px;
 }
 
 .Settingsimg-3 {
   aspect-ratio: 1;
   object-position: center;
-  width: 20%;
-  margin-top: 28%;
+  width: 25px;
+  margin-top: 29%;
+  color: var(--primary-text-color);
+}
+.Settingsimg-3:hover{
+  transform: rotate(-90deg);
+  color: #02570a;
 }
 @media (max-width: 390px) {
   .Settingsimg-2  {
@@ -167,7 +168,7 @@ margin-top: 5px;
   margin-top: 16%;
   gap: 19px;
   font-size: 20px;
-  color: #1e1e1e;
+  color: var(--primary-text-color);
   font-weight: 700;
   white-space: nowrap;
   align-items: center;
@@ -185,7 +186,7 @@ margin-top: 5px;
   flex-basis: auto;
   font-size: 16px;
   margin-top: 4%;
-  color: #000;
+  color: var(--primary-text-color);
 }
 @media (max-width: 390px) {
   .NotificationsTxt{
@@ -196,10 +197,10 @@ margin-top: 5px;
 }
 
 .SettingsLine {
-  border-color: rgba(30, 29, 29, 1);
+  border-color: var(--primary-text-color);
   border-style: solid;
   border-width: 0px;
-  background-color: #1e1d1d;
+  background-color: var(--primary-text-color);
   min-height: 0.2px;
   margin-top: 2%;
   width: 85%;
@@ -228,7 +229,7 @@ margin-top: 5px;
   display: flex;
   gap: 19px;
   font-size: 27px;
-  color: #1e1e1e;
+  color: var(--primary-text-color);
   font-weight: 700;
   white-space: nowrap;
   margin-top: 8%;
@@ -254,7 +255,7 @@ margin-top: 5px;
   z-index: 10;
   display: flex;
   flex-direction: column;
-  color: #000;
+  color: var(--primary-text-color);
   font-weight: 400;
   white-space: nowrap;
 }
@@ -287,15 +288,21 @@ margin-top: 5px;
   align-self: start;
 }
 
-.Settingsdiv-27 {
+.Settingsdiv-27 a{
   display: flex;
-  margin-top: 21.5%;
+  margin-top: 17%;
   gap: 6px;
   font-size: 15px;
-  color: #02570a;
+  color: var(--secondary-text-color);
   font-weight: 600;
   white-space: nowrap;
   margin-left: 65%;
+  text-decoration: none;
+}
+
+.Settingsdiv-27:hover{
+  cursor: pointer;
+  color: var(--primary-text-color);
 }
 @media (max-width: 390px) {
   .Settingsdiv-27  {
@@ -305,12 +312,13 @@ margin-top: 5px;
   }
 }
 
-.Logoutimg {
+.LogoutImg {
   aspect-ratio: 1;
   object-fit: auto;
   object-position: center;
   width: 15px;
   align-self: start;
+  color: var(--primary-text-color);
 }
 @media (max-width: 991px) {
   .Logoutimg {
@@ -326,8 +334,7 @@ margin-top: 5px;
 }
 
 .Settingsdiv-28 {
-  font-family: Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
-  
+  font-family: Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;  
 }
 @media (max-width: 991px) {
   .Settingsdiv-28  {
@@ -336,11 +343,12 @@ margin-top: 5px;
 }
 
 .Settingsdiv-29 {
-  transform: translateY(420%);
+  margin-top: 17vh;
+  position: absolute;
 }
 
 .Settingsdiv-29 a {
-  color: #000;
+  color: var(--primary-text-color);
   width: 10%;
   font: 600 17px KoHo, sans-serif;
   text-decoration: none;
@@ -380,7 +388,7 @@ margin-top: 5px;
   position: absolute;
   content: "";
   height: 11px;
-  width: 12px;
+  width: 11px;
   left: 2px;
   bottom: 2px;
   background-color: rgb(255, 255, 255);
