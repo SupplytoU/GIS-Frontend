@@ -4,6 +4,7 @@ import './Login.css';
 import google from './Images/Google.png';
 import mark from './Images/mark.png'
 import { Link } from 'react-router-dom';
+import useLocalStorage from 'use-local-storage';
 
 function Login() {
   const emailRef = useRef(null);
@@ -40,14 +41,16 @@ function Login() {
     setSuccess(true);
 
     // Redirect to home page after a delay to show success message
-    // setTimeout(() => {
-    //   history.push('/');
-    // }, 2000); // 2-second delay
+    setTimeout(() => {
+      history.push('/');
+    }, 2000); // 2-second delay
   };
+
+  const [isDark]=useLocalStorage("isDark",false);
 
   return (
     <>
-      <div className="Logindiv">
+      <div className="Logindiv" data-theme={isDark?"dark":"light"}>
         <div className="LoginContainer">
           <div className="Logincolumn">
             <div className="CreateAccount">

@@ -4,6 +4,7 @@
     --primary-text-color:rgb(255, 255, 255);
     --secondary-text-color:rgb(255, 255, 255);
     --text-color: black;
+    --color-text:black;
     --toggle-bg: rgb(249, 249, 167);
     --toggle-fg: yellow;
 }
@@ -12,8 +13,9 @@
     --background-color: #2d2d2d;
     --foreground-color:rgb(0, 0, 0);
     --primary-text-color:rgb(179, 178, 178);
-    --secondary-text-color:rgb(13, 160, 0);
+    --secondary-text-color:#136b04;
     --text-color:white;
+    --color-text:rgb(222, 222, 222);
     --toggle-bg: rgba(248, 249, 204, 0.769);
     --toggle-fg: yellow;
 }

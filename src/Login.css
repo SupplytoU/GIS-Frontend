@@ -8,14 +8,12 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
-  /* background: linear-gradient(130deg,#000000, #097d10, #000000); */
-  /* overflow: hidden; */
+  background-color: var(--background-color);
 }
 
 .LoginContainer {
   display: flex;
-  background: #fff;
+  background: var(--foreground-color);
   height: 80vh;
   width: 80vw;
   border-radius: 15px;
@@ -36,7 +34,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: var(--foreground-color);
   background: url("/src/Images/Login.jpeg") no-repeat center center;
   background-size: cover;
   width: 60%;
@@ -50,7 +48,7 @@
   position: relative;
   font: 500 23px 'Inter', sans-serif;
   text-align: center;
-  color: #fff;
+  color: white;
 }
 
 .SignupButton {
@@ -90,7 +88,7 @@
 .Auth {
   display: flex;
   flex-direction: column;
-  color: #000;
+  color: var(--text-color);
 }
 
 .Login-title {
@@ -120,6 +118,14 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
   color: #565656;
   background-color: transparent;
 } */
+
+input[type="email"], input[type="password"] {
+  background: transparent;
+  border-bottom: 1.5px solid var(--text-color); 
+}
+input[type="email"]::placeholder, input[type="password"]::placeholder {
+  color: var(--text-color);
+}
 
 .Forgot {
   text-align:right;
@@ -166,12 +172,12 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
   font-size: 16px;
   align-self: center;
   margin: 0px 0;
-  color: #000000;
+  color: var(--text-color);
 }
 
 .SigninWithGoogle{
   border-radius: 10px;
-  border: 1.5px solid #000000;
+  border: 1.5px solid var(--text-color);
   display: flex;
   gap: 20px;
   padding: 0.2rem;
@@ -200,7 +206,7 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
 }
 
 .Google a{
-  color: #000;
+  color: var(--text-color);
   text-decoration: none;
 }
 
@@ -216,7 +222,7 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
 }
 
 .LoginSuccess{
-  color: black;
+  color: var(--primary-text-color);
   justify-content: center;
   text-align: center;
   align-self: center;
