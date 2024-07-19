@@ -71,6 +71,7 @@ function Login() {
                           id="email"
                           name="email"
                           placeholder="Email Address"
+                          className="form-input"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           ref={emailRef}
@@ -85,6 +86,7 @@ function Login() {
                           id="password"
                           name="password"
                           placeholder="Password"
+                          className="form-input"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
