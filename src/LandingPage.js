@@ -4,7 +4,7 @@ import TrackingIcon from './Images/realtime.png';
 import GeolocationIcon from './Images/GeolocationIcon.png';
 import AnalyticsIcon from './Images/AnalyticsIcon.png';
 import Traceability from './Images/Traceability.jpeg';
-import Realtime from './Images/Realtime.jpeg';
+import Realtime from './Images/Realtime.jpg';
 import SupplyChainOptImage from './Images/SupplyChainOpt.jpg';
 import DataAnalysis from './Images/DataAnalysis.jpg';
 

@@ -23,7 +23,7 @@ const Solutions  = () => {
           onMouseLeave={handleMouseLeave}
         >
           <div className='SolutionsTitle'>Our Solutions</div>
-          <span className="arrow"><FaChevronDown/></span>
+          <span className="solution-arrow"><FaChevronDown/></span>
           {dropdownVisible && (
             <ul className="dropdown">
               <Link to='/Track Order'><li className="dropdown-item">Track An Order</li></Link>
