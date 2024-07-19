@@ -23,6 +23,7 @@ import Section1 from './Section1.js';
 import Inquries from "./Inquiries.js"
 import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
+import SettingsPass from './Password.js'
 
 import Construct from './Construct.js';
 function App() {
@@ -75,7 +76,7 @@ function App() {
           <Route exact path='/Section1'><Section1 /></Route>
           <Route exact path='/LoginIcon'><LoginIcon /></Route>
           <Route exact path='/Footer'><Footer /></Route>
-
+          <Route exact path='/Change Password'><SettingsPass /></Route>
           <Route exact path='/Soon'><Construct /></Route>
           </Switch>
 

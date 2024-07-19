@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Section1.css";
 import logo from './Images/Logo1.png';
-import website from './Images/home-website.png';
-import email from './Images/home-email.png';
-import call from './Images/home-call.png';
 import mainVideo from './Images/video.mp4'; // Ensure this path is correct
 import Solutions from "./Dropdown/Solutions";
 import LoginIcon from "./LoginIcon";
+import { IoIosGlobe } from "react-icons/io";
+import { MdOutlineEmail } from "react-icons/md";
+import { IoCallOutline } from "react-icons/io5";
 
 function Section1() {
   useEffect(() => {
@@ -24,9 +24,11 @@ function Section1() {
       observer.observe(element);
     });
   }, []);
+// LIGHT MODE
+  // const [isLight, setIsLight]=useLocalStorage(false);
 
   return (
-    <div className="home-container">
+  <div className="home-container" /*data-theme={isLight?"light":"dark"}*/>
       <div className="home-column">
         <Link to="/">
           <img
@@ -42,27 +44,17 @@ function Section1() {
             <div className="dotted-lines">.<br />.<br />.<br /><br /><br />.<br />.<br />.<br />.</div>
             <div className="home-vertical-line" />
             <a href="https://supply2u.jhubafrica.com/">
-              <img
-                loading="lazy"
-                src={website}
-                className="home-image-secondary"
-                alt="Website"
-              />
+            <IoIosGlobe className="home-image-secondary"/>
             </a>
-            <img
-              loading="lazy"
-              src={email}
-              className="home-image-secondary"
-              alt="Email"
-            />
+            <MdOutlineEmail className="home-image-secondary"/>
             <Link to="Inquiries">
-              <img
-                loading="lazy"
-                src={call}
-                className="home-image-secondary"
-                alt="Call"
-              />
+            <IoCallOutline className="home-image-secondary"/>
             </Link>
+            {/* LIGHT MODE */}
+        {/* <Toggle 
+            isChecked={isLight}
+            handleChange={() => setIsLight(!isLight)}
+            /> */}
           </div>
         </div>
         {/* Body */}

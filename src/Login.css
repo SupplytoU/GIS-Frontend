@@ -8,14 +8,12 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
-  /* background: linear-gradient(130deg,#000000, #097d10, #000000); */
-  /* overflow: hidden; */
+  background-color: var(--background-color);
 }
 
 .LoginContainer {
   display: flex;
-  background: #fff;
+  background: var(--foreground-color);
   height: 80vh;
   width: 80vw;
   border-radius: 15px;
@@ -36,24 +34,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: var(--foreground-color);
   background: url("/src/Images/Login.jpeg") no-repeat center center;
   background-size: cover;
   width: 60%;
   height: 100vh;
   padding: 2rem;
   border-top-left-radius: 15px;
-  border-bottom-left-radius: 15pxy;
+  border-bottom-left-radius: 15px;
 }
 
 .Create {
   position: relative;
   font: 500 23px 'Inter', sans-serif;
   text-align: center;
-  color: #fff;
+  color: white;
 }
 
-.Signup {
+.SignupButton {
   position: relative;
   border-radius: 30px;
   border: 2px solid #fff;
@@ -64,16 +62,18 @@
   font: 600 15px 'Inter', sans-serif;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-}
-
-.Signup a {
-  text-decoration: none;
   color: white;
 }
 
-.Signup:hover {
+.SignupButton:hover {
   background-color: #ffffff19;
-  color: #136b04;
+}
+.SignupButton a:hover{
+  color:#136b04 ;
+}
+.SignupButton a{
+  color: white;
+  text-decoration: none;
 }
 
 .Logincolumn-2 {
@@ -88,7 +88,7 @@
 .Auth {
   display: flex;
   flex-direction: column;
-  color: #000;
+  color: var(--text-color);
 }
 
 .Login-title {
@@ -97,24 +97,34 @@
   text-align: center;
 }
 
-input[type="email"], input[type="password"] {
-  padding: 6px;
-  width: 23vw;
-  border: 2px solid #000000;
-  border-width: 1.5px;
-  border-radius: 5px;
+/* input[type="email"], input[type="password"] {
+  padding: 5px;
+  width: 100%;
+  border: none; 
+  border-bottom: 1.5px solid #000; 
+  border-radius: 0;
   font-size: 15px;
   outline: none;
-  margin-bottom: 20px;
   transition: border-color 0.3s;
+  margin-bottom: 3vh;
 }
 
 input[type="email"]:focus, input[type="password"]:focus {
   border-color: #136b04;
+  background-color: transparent;
 }
 
 input[type="email"]::placeholder, input[type="password"]::placeholder {
   color: #565656;
+  background-color: transparent;
+} */
+
+input[type="email"], input[type="password"] {
+  background: transparent;
+  border-bottom: 1.5px solid var(--text-color); 
+}
+input[type="email"]::placeholder, input[type="password"]::placeholder {
+  color: var(--text-color);
 }
 
 .Forgot {
@@ -162,12 +172,12 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
   font-size: 16px;
   align-self: center;
   margin: 0px 0;
-  color: #000000;
+  color: var(--text-color);
 }
 
 .SigninWithGoogle{
   border-radius: 10px;
-  border: 1.5px solid #000000;
+  border: 1.5px solid var(--text-color);
   display: flex;
   gap: 20px;
   padding: 0.2rem;
@@ -177,6 +187,7 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
   cursor: pointer;
   transition: border-color 0.3s;
   margin-top: 3vh;
+  text-align: center;
 }
 
 .SigninWithGoogle:hover {
@@ -195,7 +206,7 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
 }
 
 .Google a{
-  color: #000;
+  color: var(--text-color);
   text-decoration: none;
 }
 
@@ -210,6 +221,20 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
   visibility: hidden;
 }
 
+.LoginSuccess{
+  color: var(--primary-text-color);
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+}
+
+.Loginimg-3{
+  width: 100px;
+  height: auto;
+  justify-content: center;
+  margin-left: 5rem;
+}
+
 @media only screen and (max-width: 990px) {
   
 .LoginContainer {
@@ -220,17 +245,9 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
   padding: 2rem;
 }
 
-/* .CreateAccount {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  color: #fff;
-  align-items: center;
-  max-width: 100%;
-  margin-top: 3vh;
-  margin-right: 30vw;
-  padding: 0;
-} */
+.CreateAccount {
+visibility: hidden;
+}
 
 .Loginimg-1 {
   position: absolute;
@@ -296,22 +313,6 @@ input[type="email"]::placeholder, input[type="password"]::placeholder {
   margin-bottom: 7vh;
 } */
 
-input[type="email"],
-input[type="password"] {
-  padding: 4px;
-  border: none;
-  border-radius: 0;
-  font-size: 16px;
-  outline: none;
-  margin-left: 1vw;
-  width: fit-content;
-  color: white;
-}
-
-.Login-Line1 {
-  /* background-color: #000; */
-  height: 2px;
-}
 
 /* .Password {
   margin-top: 70px;
@@ -389,12 +390,12 @@ input[type="password"] {
   font-size: 17px;
 } */
 
-/* .Loginimg-3 {
-  width: 150px;
+.Loginimg-3 {
+  width: 100px;
   height: auto;
-  margin-top: 30%;
-  margin-left: 35%;
-} */
+  margin-left: 6rem;
+
+}
 
 .LoginSuccess {
   font-family: Urbanist, sans-serif;
@@ -402,6 +403,10 @@ input[type="password"] {
   margin-left: 9%;
   font-size: 26px;
   text-align: center;
+  color: white;
+  border-radius: 2rem;
+  border-color: white;
+  border-width: 2px;
 }
 
 .GSect {
@@ -409,9 +414,11 @@ input[type="password"] {
   border-radius: 15px;
   box-shadow: 0 4px 30px rgba(141, 141, 141, 0);
   backdrop-filter: blur(0px);
-  border: 1px solid rgba(255, 255, 255, 0.617);
+  border: 20px solid rgb(255, 255, 255);
   color: rgb(255, 255, 255);
   padding: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
   margin-right: -5vw;
   margin-left: -5vw;
 }
@@ -448,41 +455,50 @@ input[type="password"] {
   .Login-title {
     max-width: 100%;
     /* width: 100vw; */
-    font-size: 50px;
-    margin-bottom: 10vh;
+    font-size: 45px;
+    margin-bottom: 8vh;
     justify-content: center;
     z-index: 2;
     color: white;
     padding-left: 3vw;
   }
 
-  input[type="email"]::placeholder,
-  input[type="password"]::placeholder {
-    color: #ffffff;
-  }
-
-  input[type="email"],
-  input[type="password"] {
+  input[type="email"], input[type="password"] {
+    padding: 5px;
+    width: 100%;
+    border: none; /* Remove other borders */
+    border-bottom: 1.5px solid #000; /* Add bottom border */
+    border-radius: 0; /* Ensure no border radius */
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+    margin-bottom: 3vh;
     background-color: transparent;
-    margin-top: 2vh;
+    color: white;
   }
-
-  .Login-Line1 {
-    background-color: white;
-    margin-top: 1vh;
+  
+  input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #136b04;
+    background-color: transparent;
+  }
+  
+  input[type="email"]::placeholder, input[type="password"]::placeholder {
+    color: #ffffff;
+    
   }
 
   .Password {
-    margin-top: 50px;
+    margin-top: 10px;
   }
 
   .LoginButton {
-    padding: 10px 50px;
+    padding: 6px 20vw;
     border-radius: 15px;
     border-width: 0;
     align-self: center;
-    margin-left: 13vw;
-    margin-top: 3vh;
+    margin-left: 18%;
+    margin-top: 6vh;
+    margin-bottom: 1vh;
     width: fit-content;
   }
 
@@ -497,7 +513,7 @@ input[type="password"] {
   }
 
   .Forgot{
-    margin-top: 2rem;
+    margin-top: 0rem;
   }
 
   .SigninWithGoogle {
@@ -531,12 +547,14 @@ input[type="password"] {
   .Signup2 {
     visibility: visible;
     justify-content: center;
-    margin-top: 3vh;
+    margin-top: 1vh;
     text-align: center;
+    font-size: 13px;
   }
 
-  .SignupSpan {
+  .SignupSpan a{
     color: #24ab0d;
+    text-decoration: none;
   }
 }
 
@@ -544,6 +562,16 @@ input[type="password"] {
   .Forgot {
     text-align: right;
     font-size: 16px;
+  }
+  .LoginButton {
+    padding: 6px 20vw;
+    border-radius: 15px;
+    border-width: 0;
+    align-self: center;
+    margin-left: 12%;
+    margin-top: 6vh;
+    margin-bottom: 1vh;
+    width: fit-content;
   }
 }
 

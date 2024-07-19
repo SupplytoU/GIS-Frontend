@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
+import google from './Images/Google.png'
+import useLocalStorage from 'use-local-storage';
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -39,10 +41,12 @@ function Signup() {
     history.push('/Success');
   };
 
+  const [isDark]=useLocalStorage("isDark",false);
   return (
-    <div className="container">
+    <div className='Logindiv' data-theme={isDark?"dark":"light"}>
+    <div className="LoginContainer">
       <div className="image-container">
-        <img loading="lazy" src={img} alt="img" className="img" />
+        <img loading="lazy" src={img} alt="img" className="Signup-img" />
         <div className="overlay">
           <div className="login-section">
             <div className="question">Have An Account?</div>
@@ -52,10 +56,10 @@ function Signup() {
           </div>
         </div>
       </div>
-      <div className="signup-section">
-        <form className="signup-form" onSubmit={handleSubmit}>
+      <div className="Signupcolumn-2">
+        <form className="Auth" onSubmit={handleSubmit}>
           <h2 className="signup-title">Sign Up</h2>
-          <div className='GSection'>
+          <div className='GSect'>
           <div className="name-container">
             <div className="form-group firstname">
               <input
@@ -67,7 +71,7 @@ function Signup() {
                 onChange={handleInputChange}
                 required
               />
-              <div className="Signup-line"></div>
+              {/* <div className="Signup-Line1"></div> */}
             </div>
             <div className="form-group lastname">
               <input
@@ -79,7 +83,7 @@ function Signup() {
                 onChange={handleInputChange}
                 required
               />
-              <div className="Signup-line"></div>
+              {/* <div className="Signup-Line1"></div> */}
             </div>
           </div>
           <div className="form-group">
@@ -92,7 +96,7 @@ function Signup() {
               onChange={handleInputChange}
               required
             />
-            <div className="Signup-line"></div>
+            {/* <div className="Signup-Line1"></div> */}
           </div>
           <div className="form-group">
             <input
@@ -104,7 +108,7 @@ function Signup() {
               onChange={handleInputChange}
               required
             />
-            <div className="Signup-line"></div>
+            {/* <div className="Signup-Line1"></div> */}
           </div>
           <div className="form-group">
             <input
@@ -116,7 +120,7 @@ function Signup() {
               onChange={handleInputChange}
               required
             />
-            <div className="Signup-line"></div>
+            {/* <div className="Signup-Line1"></div> */}
             {error && (
               <p className="error-message">{error}</p>
             )}
@@ -124,14 +128,16 @@ function Signup() {
           <button type="submit" className="signup-button">
             SIGN UP
           </button>
-          <div className='Login2'>
-          Have an account? 
-          <Link to='/login' className='SignupSpan'>Login here</Link>
-        </div> 
-        </div>
+          </div>
         </form>
-        
+        <div className="OR">OR</div>
+        <div className="SigninWithGoogle">
+          <img loading="lazy" src={google} className="Loginimg-2" alt="Google" />
+          <div className="Google"><Link to="/Soon">Sign up with Google</Link></div>
+        </div>
+        <div className='Signup2'>Have an account?<span className='SignupSpan'><Link to="/Login"> Login here</Link></span></div>
       </div>
+    </div>
     </div>
   );
 }
