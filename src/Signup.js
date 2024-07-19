@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
 import google from './Images/Google.png'
+import useLocalStorage from 'use-local-storage';
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -40,8 +41,9 @@ function Signup() {
     history.push('/Success');
   };
 
+  const [isDark]=useLocalStorage("isDark",false);
   return (
-    <div className='Logindiv'>
+    <div className='Logindiv' data-theme={isDark?"dark":"light"}>
     <div className="LoginContainer">
       <div className="image-container">
         <img loading="lazy" src={img} alt="img" className="Signup-img" />

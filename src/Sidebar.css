@@ -79,6 +79,8 @@
   font-family: Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
   flex-grow: 1;
   flex-basis: auto;
+  color: var(--color-text);
+  font-weight: 200;
 }
 @media (max-width: 390px) {
   .AccountTxt {

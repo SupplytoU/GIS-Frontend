@@ -25,7 +25,7 @@ body, html {
   width: 100%;
   max-width: 1200px;
   margin-bottom: 2em;
-  background-color: var(--background-color);
+  background-color: var(--foreground-color);
   padding: 2em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.151);
 }
@@ -78,7 +78,7 @@ body, html {
 }
 
 .SettingsAccountBody {
-  margin-top: 2vh;
+  margin-top: 6.2vh;
   align-self: center;
   width: 75%;
   background-color: var(--foreground-color);
@@ -149,7 +149,7 @@ body, html {
 }
 
 .AccountSave {
-  background-color: #136b04;
+  background-color: #105a03;
   color: #fff;
   padding: 0.5em 2em;
   border-radius: 5px;
