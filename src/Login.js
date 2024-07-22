@@ -6,6 +6,8 @@ import mark from './Images/mark.png'
 import { Link } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
 import { useJwtCreateMutation } from './redux/features/auth/authApiSlice';
+import { useDispatch } from 'react-redux';
+import { setAuth } from './redux/features/auth/authSlice';
 
 
 function Login() {
@@ -32,6 +34,7 @@ function Login() {
   };
 
   const [login] = useJwtCreateMutation();
+  const dispatch = useDispatch();
  
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,6 +44,7 @@ function Login() {
     }
     login({email, password}).unwrap().then((result) => {
       console.log(result);
+      dispatch(setAuth(true));
       history.push('/');
     }).catch((err) => {
       console.log(error);
