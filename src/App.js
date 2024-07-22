@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React from 'react';
 // import { useMediaQuery } from 'react-responsive';
-
-
+import { CustomProvider } from './redux/provider.js';
 import Login from './Login.js';
 import Reset from './Reset.js';
 import PasswordChanged from "./PasswordChanged.js";
@@ -38,6 +37,7 @@ function App() {
       <Router>
 
       <Switch>
+          <CustomProvider>
           <Route exact path="/reset">
             <Reset />
           </Route>
@@ -78,6 +78,8 @@ function App() {
           <Route exact path='/Footer'><Footer /></Route>
           <Route exact path='/Change Password'><SettingsPass /></Route>
           <Route exact path='/Soon'><Construct /></Route>
+          </CustomProvider>
+          
           </Switch>
 
     </Router>
