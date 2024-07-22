@@ -4,7 +4,7 @@ import './Signup.css';
 import img from './Images/Signup.jpeg';
 import google from './Images/Google.png'
 import useLocalStorage from 'use-local-storage';
-
+import { useUserCreateMutation } from './redux/features/auth/authApiSlice';
 function Signup() {
   const [formData, setFormData] = useState({
     firstname: '',
@@ -24,7 +24,7 @@ function Signup() {
       [id]: value,
     });
   };
-
+  const [userCreate] = useUserCreateMutation();
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
@@ -36,9 +36,14 @@ function Signup() {
 
     // Submit form data
     console.log('Form data submitted:', formData);
+    userCreate({first_name:formData.firstname, last_name:formData.lastname, email:formData.email, password:formData.password, re_password: formData.confirmPassword}).unwrap().then((result) => {
+      history.push('/Success');
+    }).catch((err) => {
+      console.log(err);
+    });
 
     // Navigate to success page
-    history.push('/Success');
+    
   };
 
   const [isDark]=useLocalStorage("isDark",false);

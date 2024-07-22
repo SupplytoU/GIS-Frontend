@@ -5,6 +5,8 @@ import google from './Images/Google.png';
 import mark from './Images/mark.png'
 import { Link } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
+import { useJwtCreateMutation } from './redux/features/auth/authApiSlice';
+
 
 function Login() {
   const emailRef = useRef(null);
@@ -29,21 +31,29 @@ function Login() {
     return emailRegex.test(email);
   };
 
+  const [login] = useJwtCreateMutation();
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isValidEmail(email)) {
       setError('Please enter a valid email address.');
       return;
     }
-    console.log(email, password);
-    setEmail('');
-    setPassword('');
-    setSuccess(true);
-
-    // Redirect to home page after a delay to show success message
-    setTimeout(() => {
+    login({email, password}).unwrap().then((result) => {
+      console.log(result);
       history.push('/');
-    }, 2000); // 2-second delay
+    }).catch((err) => {
+      console.log(error);
+    });;
+    // console.log(email, password);
+    // setEmail('');
+    // setPassword('');
+    // setSuccess(true);
+
+    // // Redirect to home page after a delay to show success message
+    // setTimeout(() => {
+    //   history.push('/');
+    // }, 2000); // 2-second delay
   };
 
   const [isDark]=useLocalStorage("isDark",false);
