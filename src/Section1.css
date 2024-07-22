@@ -198,13 +198,8 @@ body, html {
 
 .HomeServices {
   margin-top: -0.5%;
+  width: 70px;
 }
-
-/* @keyframes moveLeftRight {
-  0% { left: 10%; }
-  50% { left: 13%; }
-  100% { left: 10%; }
-} */
 
 .GetStartedBtn {
   position: absolute;
@@ -214,7 +209,6 @@ body, html {
   bottom: 10%;
   margin-left: 49%;
   transform: translateX(-50%);
-  /* animation: moveLeftRight 4s infinite; */
 }
 
 .GetStartedBtn a, .GetStartedBtn a:visited {
@@ -238,7 +232,6 @@ body, html {
   transform: scale(0.95);
 }
 
-
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -248,4 +241,167 @@ body, html {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Media Queries for Responsive Design */
+
+@media (max-width: 1200px) {
+  .home-heading {
+    font-size: 3em;
+    top: 20%;
+    left: 10%;
+  }
+
+  .home-paragraph {
+    font-size: 0.9em;
+    top: 50%;
+    left: 10%;
+  }
+
+  .HomeNav {
+    font-size: 12px;
+    gap: 15px;
+    top: 5vh;
+    right: 2vw;
+  }
+
+  .home-image1 {
+    width: 150px;
+    top: 2%;
+    left: 5%;
+  }
+
+  .HomeServices {
+    font-size: 12px;
+  }
+
+  .GetStartedBtn {
+    bottom: 8%;
+    margin-left: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .home-column1 {
+    width: 8%;
+  }
+
+  .home-heading {
+    font-size: 2.5em;
+    top: 18%;
+    left: 8%;
+  }
+  
+  .home-paragraph {
+    font-size: 0.8em;
+    top: 48%;
+    left: 8%;
+  }
+
+  .HomeNav {
+    font-size: 11px;
+    gap: 12px;
+    top: 4vh;
+    right: 1vw;
+  }
+
+  .home-image1 {
+    width: 120px;
+    top: 2%;
+    left: 5%;
+  }
+
+  .HomeServices {
+    font-size: 11px;
+  }
+
+  .GetStartedBtn {
+    bottom: 7%;
+    margin-left: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-column1 {
+    width: 7%;
+  }
+
+  .home-heading {
+    font-size: 2em;
+    top: 16%;
+    left: 6%;
+  }
+
+  .home-paragraph {
+    font-size: 0.7em;
+    top: 46%;
+    left: 6%;
+  }
+
+  .HomeNav {
+    font-size: 10px;
+    gap: 10px;
+    top: 3vh;
+    right: 1vw;
+  }
+
+  .home-image1 {
+    width: 100px;
+    top: 2%;
+    left: 5%;
+  }
+
+  .HomeServices {
+    font-size: 10px;
+  }
+
+  .GetStartedBtn {
+    bottom: 6%;
+    margin-left: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .home-column1 {
+    width: 7%;
+    margin-top: 30vh;
+  }
+
+  .home-heading {
+    font-size: 1.5em;
+    top: 24%;
+    left: 5%;
+  }
+
+  .home-paragraph {
+    font-size: 0.9em;
+    top: 45%;
+    left: 1%;
+  }
+
+  .HomeNav {
+    font-size: 9px;
+    gap: 8px;
+    top: 3vh;
+    right: 1vw;
+  }
+
+  .GetStartedBtn {
+    bottom: 5%;
+    margin-left: 50%;
+  }
+
+  .GetStartedBtn a {
+    padding: 8px 16px;
+  }
+
+  .home-image1 {
+    width: 80px;
+    top: 2%;
+    left: 5%;
+  }
+
+  .HomeServices {
+    font-size: 9px;
+  }
 }
