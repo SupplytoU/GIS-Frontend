@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Account from "./Images/Account.png";
 import HelpImg from "./Images/Help.png";
 import Notifications from "./Images/Notifications.png";
@@ -7,20 +7,20 @@ import { Toggle } from "./Toggle/Toggle";
 import useLocalStorage from "use-local-storage";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
-import { useState } from 'react';
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosLogOut } from "react-icons/io";
+import { IoIosArrowForward, IoIosLogOut, IoIosMenu } from "react-icons/io";
 
 function Sidebar() {
-  const [ShowNav,setShowNav]=useState(true);
-  onclick=()=>setShowNav(!ShowNav)
+  const [showNav, setShowNav] = useState(true);
+  const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
-
-const [isDark, setIsDark]=useLocalStorage("isDark",false);
+  const handleToggleClick = () => setShowNav(!showNav);
 
   return (
     <>
-      <div className="Settingsdiv" data-theme={isDark?"dark":"light"}>
+      <div className={`Settingsdiv ${showNav ? '' : 'collapsed'}`} data-theme={isDark ? "dark" : "light"}>
+        <div className="sidebar-toggle" onClick={handleToggleClick}>
+          <IoIosMenu />
+        </div>
         <div className="vertical-line"></div>
         <div className="Settingsdiv-2">
           <div className="Settingsdiv-3">
@@ -38,12 +38,11 @@ const [isDark, setIsDark]=useLocalStorage("isDark",false);
                 <div className="SettingsChangePass"><Link to='/Change Password'>Change Password</Link></div>
               </div>
               <div className="Settingsdiv-13">
-              <Link to='/Account'><IoIosArrowForward className='Settingsimg-3'/></Link>
-              <Link to='/Change Password'><IoIosArrowForward className='Settingsimg-3'/></Link>
-              </div>            
+                <Link to='/Account'><IoIosArrowForward className='Settingsimg-3'/></Link>
+                <Link to='/Change Password'><IoIosArrowForward className='Settingsimg-3'/></Link>
+              </div>
             </div>
           </div>
-
           <div className="Settingsdiv-3">
             <div className="SettingsAccount">
               <img loading="lazy" src={Notifications} className="Settingsimg-1" />
@@ -54,13 +53,12 @@ const [isDark, setIsDark]=useLocalStorage("isDark",false);
           <div className="Settingsdiv-9">
             <div className="NotificationsTxt">Notifications</div>
             <div className="ToggleSwitch">
-            <label className='Switch'>
+              <label className='Switch'>
                 <input type="checkbox"/>
                 <span className='Slider'/>
               </label>
             </div>
           </div>
-
           <div className="Settingsdiv-3">
             <div className="SettingsAccount">
               <img loading="lazy" src={Theme} className="Settingsimg-1" />
@@ -70,13 +68,11 @@ const [isDark, setIsDark]=useLocalStorage("isDark",false);
           <div className="SettingsLine" />
           <div className="Settingsdiv-9">
             <div className="NotificationsTxt">Theme</div>
-                {/* DARK MODE */}
-              <Toggle 
-                isChecked={isDark}
-                handleChange={() => setIsDark(!isDark)}
-              />
+            <Toggle 
+              isChecked={isDark}
+              handleChange={() => setIsDark(!isDark)}
+            />
           </div>
-
           <div className="Settingsdiv-3">
             <div className="SettingsAccount">
               <img loading="lazy" src={HelpImg} className="Settingsimg-1" />
@@ -96,12 +92,11 @@ const [isDark, setIsDark]=useLocalStorage("isDark",false);
               </div>
             </div>
             <div className="Settingsdiv-29"><Link to="/">SUPPLY2U</Link></div>
-              <div className='Settingsdiv-27'><Link to="/Soon">
+            <div className='Settingsdiv-27'><Link to="/Soon">
               <IoIosLogOut className='LogoutImg'/>
-                <div className="Settingsdiv-28">Logout</div></Link>
-              </div>
+              <div className="Settingsdiv-28">Logout</div></Link>
+            </div>
           </div>
-          
         </div>
       </div>
     </>
