@@ -139,7 +139,7 @@
   margin-top: 5vh;
   font-size: 22px;
   z-index: 1;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 .sidebar-toggle:hover {

@@ -55,24 +55,24 @@
   position: relative;
   border-radius: 30px;
   border: 2px solid #fff;
-  background-color: rgba(17, 89, 5, 0);
+  background-color: rgba(251, 252, 251, 0);
   margin-top: 30px;
   justify-content: center;
   padding: 6px 18px;
   font: 600 15px 'Inter', sans-serif;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  color: white;
+  color: white !important;
 }
 
 .SignupButton:hover {
   background-color: #ffffff19;
 }
 .SignupButton a:hover{
-  color:#136b04 ;
+  color:#136b04 !important ;
 }
 .SignupButton a{
-  color: white;
+  color: white !important;
   text-decoration: none;
 }
 
