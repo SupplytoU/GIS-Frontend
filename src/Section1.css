@@ -1,0 +1,407 @@
+body, html {
+  background-color: var(--background-color);
+  background-size: 400% 400%;
+  margin: 0;
+  height: 100%;
+  color: var(--primary-text-color);
+  overflow-y: auto;
+  animation: gradientAnimation 15s ease infinite;
+  transition: background-color 0.25s ease-in-out;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: -1.4%;
+  background-color: var(--background-color);
+}
+
+.home-column {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+}
+
+.home-image1 {
+  width: 190px;
+  background-color: var(--background-color);
+  position: absolute;
+  top: 2%;
+  left: 0%;
+  transform: translateX(-50%);
+  z-index: 2;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.home-image1:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+.home-column1 {
+  display: flex;
+  flex-direction: column;
+  width: 9%;
+  margin-top: 35vh;
+  align-items: center;
+  z-index: 1;
+}
+
+.vertical-line-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dotted-lines {
+  color: var(--primary-text-color);
+  font-size: 18px;
+  text-align: center;
+  line-height: 0.8;
+  margin-top: 1vh;
+}
+
+.home-vertical-line {
+  width: 1px;
+  height: 55px;
+  background-color: var(--primary-text-color);
+  margin: 32px 0;
+}
+
+.home-image-secondary {
+  font-size: 20px;
+  margin: 4px 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  color: var(--primary-text-color);
+}
+
+.home-image-secondary:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+.home-content-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.home-main-video {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: relative;
+  opacity: 92%;
+}
+
+.home-heading, .home-paragraph {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.home-heading.visible, .home-paragraph.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.home-heading {
+  font-size: 4em;
+  top: 26%;
+  left: 20%;
+  text-align: justify;
+}
+
+.home-paragraph {
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0;
+  top: 63%;
+  left: 20%;
+  text-align: justify;
+}
+
+.HomeNav {
+  position: absolute;
+  top: 8vh;
+  right: 3vw;
+  gap: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.HomeNav.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.HomeNav a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.1s ease, transform 0.2s ease, filter 0.2s ease;
+}
+
+.HomeNav a:visited {
+  color: #ffffff;
+}
+
+.HomeNav a:hover {
+  color: #000000;
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.HomeServices {
+  margin-top: -0.5%;
+  width: 70px;
+}
+
+.GetStartedBtn {
+  position: absolute;
+  text-align: center;
+  color: white;
+  z-index: 2;
+  bottom: 10%;
+  margin-left: 49%;
+  transform: translateX(-50%);
+}
+
+.GetStartedBtn a, .GetStartedBtn a:visited {
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  border-radius: 30px;
+  padding: 10px 20px;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.368);
+  transition: all 0.4s ease-in-out;
+}
+
+.GetStartedBtn a:hover {
+  background-color: white;
+  color: #262626;
+  transform: scale(1.1);
+}
+
+.GetStartedBtn a:active {
+  transform: scale(0.95);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Media Queries for Responsive Design */
+
+@media (max-width: 1200px) {
+  .home-heading {
+    font-size: 3em;
+    top: 20%;
+    left: 10%;
+  }
+
+  .home-paragraph {
+    font-size: 0.9em;
+    top: 50%;
+    left: 10%;
+  }
+
+  .HomeNav {
+    font-size: 12px;
+    gap: 15px;
+    top: 5vh;
+    right: 2vw;
+  }
+
+  .home-image1 {
+    width: 150px;
+    top: 2%;
+    left: 5%;
+  }
+
+  .HomeServices {
+    font-size: 12px;
+  }
+
+  .GetStartedBtn {
+    bottom: 8%;
+    margin-left: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .home-column1 {
+    width: 8%;
+  }
+
+  .home-heading {
+    font-size: 2.5em;
+    top: 18%;
+    left: 8%;
+  }
+  
+  .home-paragraph {
+    font-size: 0.8em;
+    top: 48%;
+    left: 8%;
+  }
+
+  .HomeNav {
+    font-size: 11px;
+    gap: 12px;
+    top: 4vh;
+    right: 1vw;
+  }
+
+  .home-image1 {
+    width: 120px;
+    top: 2%;
+    left: 5%;
+  }
+
+  .HomeServices {
+    font-size: 11px;
+  }
+
+  .GetStartedBtn {
+    bottom: 7%;
+    margin-left: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-column1 {
+    width: 7%;
+  }
+
+  .home-heading {
+    font-size: 2em;
+    top: 16%;
+    left: 6%;
+  }
+
+  .home-paragraph {
+    font-size: 0.7em;
+    top: 46%;
+    left: 6%;
+  }
+
+  .HomeNav {
+    font-size: 10px;
+    gap: 10px;
+    top: 3vh;
+    right: 1vw;
+  }
+
+  .home-image1 {
+    width: 100px;
+    top: 2%;
+    left: 5%;
+  }
+
+  .HomeServices {
+    font-size: 10px;
+  }
+
+  .GetStartedBtn {
+    bottom: 6%;
+    margin-left: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .home-column1 {
+    width: 7%;
+    margin-top: 30vh;
+  }
+
+  .home-heading {
+    font-size: 1.5em;
+    top: 24%;
+    left: 5%;
+  }
+
+  .home-paragraph {
+    font-size: 0.9em;
+    top: 45%;
+    left: 1%;
+  }
+
+  .HomeNav {
+    font-size: 9px;
+    gap: 8px;
+    top: 3vh;
+    right: 1vw;
+  }
+
+  .GetStartedBtn {
+    bottom: 5%;
+    margin-left: 50%;
+  }
+
+  .GetStartedBtn a {
+    padding: 8px 16px;
+  }
+
+  .home-image1 {
+    width: 80px;
+    top: 2%;
+    left: 5%;
+  }
+
+  .HomeServices {
+    font-size: 9px;
+  }
+}

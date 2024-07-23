@@ -1,0 +1,31 @@
+
+.LoginImage {
+    width: 27px;
+    height: auto;
+    margin-left: 40px;
+  }
+  
+  @media (max-width: 991px) {
+    .LoginImage {
+      width: 22px;
+      margin-left: 20px;
+      margin-bottom: 180px;
+    }
+    .arrow-login{
+        margin-bottom: 170px;   
+    }
+
+  }
+  
+  @media (max-width: 600px) {
+    .LoginImage {
+      width: 16px;
+      margin-left: 10px;
+     margin-bottom: 120px;
+    }
+    .arrow-login{
+        margin-bottom: 110px;   
+    }
+    
+  }
+  

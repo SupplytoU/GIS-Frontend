@@ -1,0 +1,583 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Kdam+Thmor&display=swap');
+
+.Logindiv {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--background-color);
+}
+
+.LoginContainer {
+  display: flex;
+  background: var(--foreground-color);
+  height: 80vh;
+  width: 80vw;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.557);
+  /* overflow: hidden; */
+}
+
+.Logincolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  /* padding: 40px; */
+}
+
+.CreateAccount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--foreground-color);
+  background: url("/src/Images/Login.jpeg") no-repeat center center;
+  background-size: cover;
+  width: 60%;
+  height: 100vh;
+  padding: 2rem;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.Create {
+  position: relative;
+  font: 500 23px 'Inter', sans-serif;
+  text-align: center;
+  color: white;
+}
+
+.SignupButton {
+  position: relative;
+  border-radius: 30px;
+  border: 2px solid #fff;
+  background-color: rgba(251, 252, 251, 0);
+  margin-top: 30px;
+  justify-content: center;
+  padding: 6px 18px;
+  font: 600 15px 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  color: white !important;
+}
+
+.SignupButton:hover {
+  background-color: #ffffff19;
+}
+.SignupButton a:hover{
+  color:#136b04 !important ;
+}
+.SignupButton a{
+  color: white !important;
+  text-decoration: none;
+}
+
+.Logincolumn-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  z-index: 2;
+  align-self: center;
+}
+
+.Auth {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+.Login-title {
+  font: 600 30px 'Inter', sans-serif;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* input[type="email"], input[type="password"] {
+  padding: 5px;
+  width: 100%;
+  border: none; 
+  border-bottom: 1.5px solid #000; 
+  border-radius: 0;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s;
+  margin-bottom: 3vh;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+  border-color: #136b04;
+  background-color: transparent;
+}
+
+input[type="email"]::placeholder, input[type="password"]::placeholder {
+  color: #565656;
+  background-color: transparent;
+} */
+
+input[type="email"], input[type="password"] {
+  background: transparent;
+  border-bottom: 1.5px solid var(--text-color); 
+}
+input[type="email"]::placeholder, input[type="password"]::placeholder {
+  color: var(--text-color);
+}
+
+.Forgot {
+  text-align:right;
+  margin-top: -10px;
+}
+
+.Forgot a {
+  text-decoration: none;
+  color: #136b04;
+  font-size: 12px;
+}
+
+.Forgot a:hover{
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.LoginButton {
+  font-family: 'Inter', sans-serif;
+  border-radius: 10px;
+  border: 1px solid;
+  background-color: #136b04;
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 5px;
+  width: 23vw;
+  margin-left: 1vw;
+  margin-top: 8vh;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.LoginButton:hover {
+  background-color: #7ac06d;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.Or {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  align-self: center;
+  margin: 0px 0;
+  color: var(--text-color);
+}
+
+.SigninWithGoogle{
+  border-radius: 10px;
+  border: 1.5px solid var(--text-color);
+  display: flex;
+  gap: 20px;
+  padding: 0.2rem;
+  width: 20vw;
+  align-self: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  margin-top: 3vh;
+  text-align: center;
+}
+
+.SigninWithGoogle:hover {
+  border-color: #136b04;
+}
+
+.Loginimg-2 {
+  width: 20px;
+  object-position: center;
+}
+
+.Google {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.Google a{
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.LoginSuccess {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 26px;
+  text-align: center;
+  color: #136b04;
+}
+
+.Signup2 {
+  visibility: hidden;
+}
+
+.LoginSuccess{
+  color: var(--primary-text-color);
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+}
+
+.Loginimg-3{
+  width: 100px;
+  height: auto;
+  justify-content: center;
+  margin-left: 5rem;
+}
+
+@media only screen and (max-width: 990px) {
+  
+.LoginContainer {
+  display: flex;
+  gap: 100px;
+  background-color: #fff;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.CreateAccount {
+visibility: hidden;
+}
+
+.Loginimg-1 {
+  position: absolute;
+  inset: 0;
+  height: 100vh;
+  object-fit: fill;
+  object-position: center;
+  background: url("/src/Images/Login.jpeg") no-repeat;
+  background-size: cover;
+  z-index: 0;
+}
+/* 
+.Create {
+  position: relative;
+  margin-top: 50%;
+  font: 500 25px Inter, sans-serif;
+}
+
+.Signup {
+  position: relative;
+  border-radius: 30px;
+  border: 2px solid #fff;
+  background-color: rgba(17, 89, 5, 0);
+  margin-top: 30px;
+  justify-content: center;
+  padding: 8px 22px;
+  font: 600 18px Inter, sans-serif;
+}
+
+.Signup a {
+  text-decoration: none;
+  color: white;
+}
+
+.Signup a:hover,
+.Signup a:visited:hover {
+  color: #136b04;
+}
+
+.Signup a:visited {
+  color: white;
+} */
+
+/* .Logincolumn-2 {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-right: 3vw;
+  height: auto;
+  z-index: 2;
+} */
+
+/* .Auth {
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  margin-top: 8vh;
+  padding: 0 100px;
+} */
+
+/* .Login-title {
+  font: 600 30px Inter, sans-serif;
+  margin-bottom: 7vh;
+} */
+
+
+/* .Password {
+  margin-top: 70px;
+  font: 13px Kdam Thmor, sans-serif;
+} */
+
+/* .Forgot a {
+  text-decoration: none;
+  color: #0c3e03;
+  letter-spacing: -0.72px;
+  align-self: end;
+  margin-top: 3vh;
+  margin-left: 73.5%;
+  font: 24px Kdam Thmor, sans-serif;
+  font-size: 15px;
+} */
+
+/* .LoginButton {
+  font-family: Inter, sans-serif;
+  border-radius: 30px;
+  border: 1px solid;
+  background-color: #136b04;
+  align-items: center;
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  justify-content: center;
+  margin-top: 45px;
+  padding: 6px 175px;
+  cursor: pointer;
+  text-decoration: none;
+} */
+
+/* .LoginButton a {
+  text-decoration: none;
+}
+
+.LoginButton:visited {
+  color: white;
+} */
+
+.Or {
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  align-self: center;
+  margin: 8% 40%;
+}
+
+/* .SigninWithGoogle {
+  border-radius: 10px;
+  border: 1.5px solid #000;
+  display: flex;
+  gap: 20px;
+  padding: 3px;
+  width: 30vw;
+  align-self: center;
+  cursor: pointer;
+} */
+/* 
+.Loginimg-2 {
+  aspect-ratio: 2;
+  object-position: center;
+  width: 20px;
+  margin-left: 20%;
+  margin-top: 2px;
+} */
+
+/* .Google {
+  font-family: Inter, sans-serif;
+  align-self: start;
+  margin-top: 2.5px;
+  flex-grow: 1;
+  font-weight: 500;
+  font-size: 17px;
+} */
+
+.Loginimg-3 {
+  width: 100px;
+  height: auto;
+  margin-left: 6rem;
+
+}
+
+.LoginSuccess {
+  font-family: Urbanist, sans-serif;
+  margin-top: 30px;
+  margin-left: 9%;
+  font-size: 26px;
+  text-align: center;
+  color: white;
+  border-radius: 2rem;
+  border-color: white;
+  border-width: 2px;
+}
+
+.GSect {
+  background: rgba(11, 0, 0, 0.05);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(141, 141, 141, 0);
+  backdrop-filter: blur(0px);
+  border: 20px solid rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  padding: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  margin-right: -5vw;
+  margin-left: -5vw;
+}
+
+  .LoginContainer {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .Logincolumn {
+    width: 100%;
+  }
+
+  .Loginimg-1 {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .Logincolumn-2 {
+    width: 100%;
+    margin-top: -100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 0%;
+    padding-bottom: 10vh;
+  }
+
+  .Auth {
+    width: 85%;
+  }
+
+  .Login-title {
+    max-width: 100%;
+    /* width: 100vw; */
+    font-size: 45px;
+    margin-bottom: 8vh;
+    justify-content: center;
+    z-index: 2;
+    color: white;
+    padding-left: 3vw;
+  }
+
+  input[type="email"], input[type="password"] {
+    padding: 5px;
+    width: 100%;
+    border: none; /* Remove other borders */
+    border-bottom: 1.5px solid #000; /* Add bottom border */
+    border-radius: 0; /* Ensure no border radius */
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+    margin-bottom: 3vh;
+    background-color: transparent;
+    color: white;
+  }
+  
+  input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #136b04;
+    background-color: transparent;
+  }
+  
+  input[type="email"]::placeholder, input[type="password"]::placeholder {
+    color: #ffffff;
+    
+  }
+
+  .Password {
+    margin-top: 10px;
+  }
+
+  .LoginButton {
+    padding: 6px 20vw;
+    border-radius: 15px;
+    border-width: 0;
+    align-self: center;
+    margin-left: 18%;
+    margin-top: 6vh;
+    margin-bottom: 1vh;
+    width: fit-content;
+  }
+
+  .Or {
+    margin-top: 40px;
+    /* margin-left: 31vw; */
+    color: white;
+  }
+
+  .Forgot a{
+    color: white;
+  }
+
+  .Forgot{
+    margin-top: 0rem;
+  }
+
+  .SigninWithGoogle {
+    width: fit-content;
+    border: 2px solid #ffffff;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 17px;
+  }
+
+  .Loginimg-2 {
+    margin-left: 0;
+  }
+
+  .Google {
+    margin: 0;
+  }
+
+  .Google a{
+    color: white;
+  }
+
+  .Signup {
+    visibility: hidden;
+  }
+
+  .Create {
+    visibility: hidden;
+  }
+
+  .Signup2 {
+    visibility: visible;
+    justify-content: center;
+    margin-top: 1vh;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .SignupSpan a{
+    color: #24ab0d;
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .Forgot {
+    text-align: right;
+    font-size: 16px;
+  }
+  .LoginButton {
+    padding: 6px 20vw;
+    border-radius: 15px;
+    border-width: 0;
+    align-self: center;
+    margin-left: 12%;
+    margin-top: 6vh;
+    margin-bottom: 1vh;
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .Forgot {
+    text-align: right;
+    font-size: 16px;
+  }
+}

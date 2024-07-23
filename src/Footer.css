@@ -1,0 +1,145 @@
+.Footer-container {
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  padding-left: 44px;
+  padding-right: 44px;
+  background-color: #000000;
+  padding-bottom: 10vh;
+  padding-top: 3vh;
+}
+
+.Footerheader {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  color: #fff;
+  letter-spacing: 0.3px;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+@media (max-width: 991px) {
+  .Footerheader {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.Footer-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  font-size: 30px;
+}
+
+.Footer-logo {
+  width: 30%;
+  margin-bottom: -5%;
+}
+
+@media (max-width: 991px) {
+  .Footer-logo {
+    width: 50%;
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+}
+
+.nav-links {
+  align-self: end;
+  display: flex;
+  margin-bottom: 1vh;
+  gap: 20px;
+  font-size: 14px;
+  padding: 0 20px;
+}
+
+@media (max-width: 991px) {
+  .nav-links {
+    flex-wrap: wrap;
+    margin-top: 40px;
+    justify-content: center;
+  }
+}
+
+.nav-item {
+  font-family: Jost, sans-serif;
+  flex-grow: 1;
+}
+
+.nav-item a, .nav-item a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-item a:hover {
+  color: #2a571b;
+  transform: scale(2.1);
+}
+
+.footer {
+  display: flex;
+  margin-top: 10px;
+  max-width: 100vw;
+  flex-direction: column;
+  font-size: 13px;
+  color: #92989f;
+  letter-spacing: 0.26px;
+  line-height: 1.5;
+}
+
+@media (max-width: 991px) {
+  .footer {
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.footer a, .footer a:visited {
+  color: #92989f;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: white;
+}
+
+.footer-content {
+  display: flex;
+  margin-top: 25px;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+@media (max-width: 991px) {
+  .footer-content {
+    flex-wrap: wrap;
+    margin-top: 40px;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.footer-links {
+  font-family: Jost, sans-serif;
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+.footer-text {
+  text-align: right;
+  font-family: Jost, sans-serif;
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+@media (max-width: 991px) {
+  .footer-links, .footer-text {
+    flex-basis: 100%;
+    text-align: center;
+  }
+}
