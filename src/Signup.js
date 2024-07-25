@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
 import google from './Images/Google.png'
@@ -15,7 +15,7 @@ function Signup() {
   });
 
   const [error, setError] = useState('');
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;

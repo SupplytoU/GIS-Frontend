@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import './Login.css';
 import google from './Images/Google.png';
 import mark from './Images/mark.png'
@@ -10,7 +10,7 @@ import { useJwtCreateMutation } from './redux/features/auth/authApiSlice';
 
 function Login() {
   const emailRef = useRef(null);
-  const history = useHistory();
+  const history = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
