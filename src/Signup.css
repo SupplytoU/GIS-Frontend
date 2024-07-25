@@ -13,7 +13,7 @@
   flex: 1;
   position: relative;
 }
-.Signupcolumn-2{
+.Signupcolumn-2 {
   justify-content: center;
   align-self: center;
   margin-right: 17%;
@@ -39,7 +39,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: rgba(0, 0, 0, 0.5); */
   border-radius: 15px;
 }
 
@@ -89,7 +88,7 @@
   background-color: #ffffff19;
   color: #136b04;
 }
-.OR{
+.OR {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 16px;
@@ -113,7 +112,7 @@
   font: 400 15px Inter, sans-serif;
 }
 
-.signup-button:hover{
+.signup-button:hover {
   background-color: #7ac06d;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   color: black;
@@ -149,15 +148,15 @@
 }
 
 .name-container {
-  /* display: flex;
+  display: flex;
   justify-content: space-between;
-  width: 100%; */
+  width: 100%;
+  flex-direction: column;
 }
 
 .form-group.firstname,
 .form-group.lastname {
   flex: 1;
-  /* margin-left: 1vw; */
   margin-bottom: 0vh;
 }
 
@@ -165,28 +164,43 @@
   padding: 5px;
   width: 100%;
   border: none; /* Remove other borders */
-  border-bottom: 1.5px solid #000; /* Add bottom border */
+  border-bottom: 1.5px solid #000 !important; /* Add bottom border */
   border-radius: 0; /* Ensure no border radius */
   font-size: 14px;
   outline: none;
   transition: border-color 0.3s;
   margin-bottom: 3vh;
+  background-color: transparent;
+  color: #000 !important;
 }
 
 .form-input::placeholder {
-  color: var(--text-color);
+  /* color: var(--text-color); */
+  color: #000 !important;
 }
 
 .form-input:focus {
   border-color: #136b04;
 }
 
-input[type="message"],input[type="email"], input[type='Password']{
+input[type="message"], input[type="email"], input[type="password"] {
   font-size: 14px;
-  color: var(--text-color);
+  /* color: var(--text-color); */
   margin-bottom: 3vh;
   background-color: transparent;
   border-bottom: 1.5px solid var(--text-color); 
+  color: #000 !important;
+
+}
+
+.show-password-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.show-password-container input {
+  margin-right: 0.5em;
 }
 
 @media screen and (max-width: 990px) {
@@ -201,10 +215,8 @@ input[type="message"],input[type="email"], input[type='Password']{
     padding: 0;
     border-radius: 0px;
     overflow: hidden;
-    /* padding-right: 0.5rem; */
-    border: 0;
     align-content: center;
-    justify-content: center; /* Center items horizontally */
+    justify-content: center;
   }
 
   .image-container {
@@ -214,8 +226,8 @@ input[type="message"],input[type="email"], input[type='Password']{
   .Signupcolumn-2 {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center items vertically */
-    align-items: center; /* Center items horizontally */
+    justify-content: center;
+    align-items: center;
     margin: 0;
     width: 100%;
   }
@@ -238,8 +250,8 @@ input[type="message"],input[type="email"], input[type='Password']{
     padding: 0px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center items vertically */
-    align-items: center; /* Center items horizontally */
+    justify-content: center;
+    align-items: center;
     background-color: rgba(255, 255, 255, 0.9);
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -248,7 +260,7 @@ input[type="message"],input[type="email"], input[type='Password']{
   .OR {
     color: #ffffff;
     margin-top: -25vh;
-    margin-right:0rem;
+    margin-right: 0rem;
   }
 
   .signup-button {
@@ -277,7 +289,7 @@ input[type="message"],input[type="email"], input[type='Password']{
   .signup-form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center items horizontally */
+    align-items: center;
   }
 
   .signup-title {
@@ -285,14 +297,14 @@ input[type="message"],input[type="email"], input[type='Password']{
     margin-bottom: 7vh;
     font: 600 50px 'Inter', sans-serif;
     color: #ffffff;
-    text-align: center; /* Center text horizontally */
+    text-align: center;
   }
 
   .form-group {
     margin-bottom: 0px;
     width: 100%;
     display: flex;
-    justify-content: center; /* Center items horizontally */
+    justify-content: center;
   }
 
   .form-group.firstname,
@@ -305,9 +317,9 @@ input[type="message"],input[type="email"], input[type='Password']{
   input[type="password"] {
     padding: 5px;
     width: 100%;
-    border: none; /* Remove other borders */
-    border-bottom: 1.5px solid #ffffff; /* Add bottom border */
-    border-radius: 0; /* Ensure no border radius */
+    border: none;
+    border-bottom: 1.5px solid #ffffff;
+    border-radius: 0;
     font-size: 15px;
     outline: none;
     transition: border-color 0.3s;
