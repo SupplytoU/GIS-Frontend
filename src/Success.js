@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import tickImg from './Images/Tick.jpeg';
 import './Success.css';
 
 function Success() {
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
