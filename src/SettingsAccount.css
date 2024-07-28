@@ -3,6 +3,20 @@ body, html {
   margin: 0;
 }
 
+.settings-account-container {
+  height: 100vh;
+  transition: width 0.3s ease;
+}
+
+.settings-account-container.collapsed .content {
+  width: 100%; /* Full width when sidebar is collapsed */
+}
+
+.settings-account-container:not(.collapsed) .content {
+  width: 75%; /* 75% width when sidebar is expanded */
+}
+
+/* Account Container */
 .Accountdiv {
   font-family: 'Inter', sans-serif;
   padding-top: 0;
@@ -11,22 +25,26 @@ body, html {
   align-items: center;
   background-color: var(--background-color);
   height: 100vh;
-  width: 75vw;
-  margin-top: -47.2%;
-  margin-left: 25%;
-  overflow: hidden;
-  position: absolute;
+  transition: width 0.3s ease;
+  width: 100% !important; /* Default to 100% */
+  margin-top: -47.56%;
+  position: relative;
 }
 
+.settings-account-container:not(.collapsed) .Accountdiv {
+  width: 75%; /* 75% when sidebar is expanded */
+}
+
+/* Account Body */
 .AccountBody {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75vw;
+  width: 100vw;
   margin-bottom: 2em;
   background-color: var(--foreground-color);
   padding-top: 2em;
-  padding-bottom: 2em ;
+  padding-bottom: 2em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.151);
 }
 
@@ -84,7 +102,7 @@ body, html {
   background-color: var(--foreground-color);
   padding-top: 2em;
   padding-bottom: 3em;
-  padding-left:3.5em ;
+  padding-left: 3.5em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   justify-content: center;
@@ -167,6 +185,9 @@ body, html {
   background-color: #0f5b03a0;
   color: var(--text-color);
 }
+
+/* Media Queries */
+
 /* For tablets and smaller screens */
 @media (max-width: 1110px) {
   .AccountBody, .SettingsAccountBody {

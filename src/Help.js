@@ -4,7 +4,12 @@ import faq from "./Images/Faq.jpeg";
 import Sidebar from './Sidebar';
 
 function Help() {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
+  };
 
   const toggleAnswer = (index) => {
     setOpenIndex((prevOpenIndex) => (prevOpenIndex === index ? null : index));
@@ -20,38 +25,38 @@ function Help() {
 
   return (
     <div className="help-container">
-      <Sidebar />
-    <div className="faq-container">
-      <div className="faq-header">
-        <div className="header-content">
-          <div className="header-image">
-            <img loading="lazy" src={faq} className="faq-img" alt="faq" />
-          </div>
-          <div className="header-title">
-            <div className="title-text">Frequently Asked Questions</div>
+      <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
+      <div className="faq-container">
+        <div className="faq-header">
+          <div className="header-content">
+            <div className="header-image">
+              <img loading="lazy" src={faq} className="faq-img" alt="faq" />
+            </div>
+            <div className="header-title">
+              <div className="title-text">Frequently Asked Questions</div>
+            </div>
           </div>
         </div>
+        {faqData.map((item, index) => (
+          <React.Fragment key={index}>
+            <div className="faq-item" onClick={() => toggleAnswer(index)}>
+              <div className="question1">{item.question}</div>
+              <svg
+                className={`drop-down ${openIndex === index ? 'open' : ''}`}
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+            {openIndex === index && (
+              <div className="answer">{item.answer}</div>
+            )}
+            <div className="separator" />
+          </React.Fragment>
+        ))}
       </div>
-      {faqData.map((item, index) => (
-        <React.Fragment key={index}>
-          <div className="faq-item" onClick={() => toggleAnswer(index)}>
-            <div className="question1">{item.question}</div>
-            <svg
-              className={`drop-down ${openIndex === index ? 'open' : ''}`}
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
-          </div>
-          {openIndex === index && (
-            <div className="answer">{item.answer}</div>
-          )}
-          <div className="separator" />
-        </React.Fragment>
-      ))}
-    </div>
     </div>
   );
 }

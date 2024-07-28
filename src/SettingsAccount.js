@@ -5,7 +5,7 @@ import { CiEdit } from "react-icons/ci";
 import { VscAccount } from "react-icons/vsc";
 import useLocalStorage from "use-local-storage";
 
-const SettingsAccount = () => {
+const SettingsAccount = ({ page }) => { // Add page prop to determine which page is active
   const [isEditable, setIsEditable] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -13,6 +13,12 @@ const SettingsAccount = () => {
     email: '',
     phoneNumber: ''
   });
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isDark] = useLocalStorage("isDark", false);
+
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
+  };
 
   const handleEditClick = () => {
     setIsEditable(!isEditable);
@@ -22,16 +28,20 @@ const SettingsAccount = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const [isDark]=useLocalStorage("isDark",false);
 
   return (
-    <>
-      <Sidebar />
-      <div className="Accountdiv" data-theme={isDark?"dark":"light"}>
+    <div className={`settings-account-container ${sidebarCollapsed ? 'collapsed' : ''}`}>
+      <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
+      {(page === 'ChangePassword') && (
+        <div className="sidebar-toggle" onClick={toggleSidebar}>
+          {sidebarCollapsed ? 'Open Sidebar' : 'Close Sidebar'}
+        </div>
+      )}
+      <div className="Accountdiv" data-theme={isDark ? "dark" : "light"}>
         <div className="AccountBody">
           <div className="Accountdiv-3">
             <div className="Accountcolumn">
-            <VscAccount className='Profile'/>
+              <VscAccount className='Profile' />
             </div>
             <div className="Accountcolumn-2">
               <div className="Account">Account</div>
@@ -47,7 +57,7 @@ const SettingsAccount = () => {
               <div className="AccountFirstName">Firstname</div>
               {isEditable ? (
                 <input
-                  type="message"
+                  type="text" // Updated type
                   className="Accountdiv-9"
                   name="firstName"
                   value={formData.firstName}
@@ -61,7 +71,7 @@ const SettingsAccount = () => {
               <div className="AccountFirstName">Lastname</div>
               {isEditable ? (
                 <input
-                  type="message"
+                  type="text" // Updated type
                   className="Accountdiv-9"
                   name="lastName"
                   value={formData.lastName}
@@ -87,27 +97,13 @@ const SettingsAccount = () => {
                 <div className="Accountdiv-9">{formData.email}</div>
               )}
             </div>
-            <div className="Accountdiv-7">
-              {/* <div className="AccountFirstName">Phone Number</div>
-              {isEditable ? (
-                <input
-                  type="text"
-                  className="Accountdiv-9"
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  onChange={handleChange}
-                />
-              ) : (
-                <div className="Accountdiv-9">{formData.phoneNumber}</div>
-              )} */}
-            </div>
           </div>
           <div className="Accountdiv-23">
             <div className="AccountSave">Save Changes</div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

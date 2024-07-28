@@ -17,6 +17,8 @@ function Inquiries() {
     message: "",
   });
 
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData({
@@ -31,9 +33,13 @@ function Inquiries() {
     console.log("Form data submitted:", formData);
   };
 
+  const handleSidebarToggle = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  };
+
   return (
-    <div className="container1">
-      <Sidebar />
+    <div className={`container1 ${isSidebarCollapsed ? 'collapsed' : ''}`}>
+      <Sidebar onToggle={handleSidebarToggle} />
       <div className="inquiries-container">
         <img src={inquiriesImg} alt="Inquiries" className="inquiries-img" />
         <div className="form-container">

@@ -1,29 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.help-container {
+  display: flex;
+}
 .faq-container {
   background-color: #d5e7fb;
   display: flex;
   flex-direction: column;
   position: relative;
-  width:75%;
-  height: 100vh;
-  left: 25%;
-  margin-top: -47.56%;
+  width: 100%;
+  height: 110vh;
+  /* left: 25%; */
+  /* margin-top: -47.56%; */
   align-items: center;
-  padding-bottom: 4px;
+  /* padding-bottom: 4px; */
+  
 }
+.help-container.collapsed .faq-container {
+  width: 100%;
+}
+
 
 @media (max-width: 991px) {
   .faq-container {
-    width: 75%;
-    left: 25%;
-    margin-top: -1030px;
+    margin-top: 0;
+    height: auto;
+    padding: 0;
+  
   }
 }
 
 @media (max-width: 390px) {
   .faq-container {
-    width: 100%;
-    height: 1100px;
-    left: 0;
+    height: auto;
   }
 }
 
@@ -73,15 +85,16 @@
   max-height: 100%;
   flex-grow: 1;
   margin-right: 200px;
-  /* margin-bottom: -6vh; */
 }
 
 @media (max-width: 991px) {
-  .img {
+  .faq-img {
     width: 100%;
     margin-right: 0;
+ 
   }
 }
+
 @media (max-width: 390px) {
   .faq-img {
     width: 100%;
@@ -169,13 +182,14 @@
   margin-left: 60px;
   font-weight: bold;
 }
+
 @media (max-width: 991px) {
   .question1 {
      margin-right: 5px;
   }
 }
 
-.drop-down{
+.drop-down {
   object-fit: cover;
   object-position: center;
   width: 20px;
@@ -199,21 +213,67 @@
   font-family: Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
   border-radius: 5px;
   margin: 5px auto;
-/* }
-::-webkit-scrollbar {
-  width: 14px; /* Width of the scrollbar */
 }
-
-::-webkit-scrollbar-track {
-  background: #5a5959; /* Background color of the scrollbar track */
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #888; /* Color of the scrollbar thumb */
-  border-radius: 10px; /* Rounded corners for the scrollbar thumb */
-  border: 2px solid #333; /* Padding around the thumb */
-} */
 
 ::-webkit-scrollbar-thumb:hover {
   background: #949393; /* Color of the scrollbar thumb when hovered */
+}
+
+/* Sidebar and Toggle Button */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 25%;
+  height: 100vh;
+  background-color: var(--foreground-color);
+  color: var(--primary-text-color);
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+  z-index: 10;
+}
+
+.sidebar.visible {
+  transform: translateX(0);
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    transform: translateX(0);
+  }
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+  z-index: 11;
+  display: none;
+}
+
+.sidebar-toggle:hover {
+  color: #3B6727;
+}
+
+@media (max-width: 991px) {
+  .sidebar-toggle {
+    display: block;
+  }
+}
+
+/* Content Styles */
+.content {
+  width: 100%;
+  transition: margin-left 0.3s ease;
+}
+
+@media (min-width: 992px) {
+  .content {
+    margin-left: 25%;
+  }
 }
