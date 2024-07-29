@@ -57,7 +57,7 @@ const SettingsAccount = ({ page }) => { // Add page prop to determine which page
               <div className="AccountFirstName">Firstname</div>
               {isEditable ? (
                 <input
-                  type="text" // Updated type
+                  type="message" 
                   className="Accountdiv-9"
                   name="firstName"
                   value={formData.firstName}
@@ -71,7 +71,7 @@ const SettingsAccount = ({ page }) => { // Add page prop to determine which page
               <div className="AccountFirstName">Lastname</div>
               {isEditable ? (
                 <input
-                  type="text" // Updated type
+                  type="message" 
                   className="Accountdiv-9"
                   name="lastName"
                   value={formData.lastName}

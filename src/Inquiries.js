@@ -7,6 +7,7 @@ import email from "./Images/Email.png";
 import web from "./Images/Web.png";
 import location from "./Images/Location.png";
 import Sidebar from './Sidebar';
+import useLocalStorage from "use-local-storage";
 
 function Inquiries() {
   const [formData, setFormData] = useState({
@@ -36,6 +37,7 @@ function Inquiries() {
   const handleSidebarToggle = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
+  const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
   return (
     <div className={`container1 ${isSidebarCollapsed ? 'collapsed' : ''}`}>

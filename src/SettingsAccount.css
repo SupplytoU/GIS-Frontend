@@ -193,7 +193,14 @@ body, html {
   .AccountBody, .SettingsAccountBody {
     flex-direction: column;
     padding: 1em;
+    margin-top: 0;
   }
+ 
+  .Accountdiv {
+    margin-top: -120% !important;
+    height: 120vh;
+  }
+
 
   .Account {
     font-size: 1.5em;
@@ -222,6 +229,10 @@ body, html {
   .Profile {
     width: 75px;
     height: 75px;
+  }
+  .Accountdiv {
+    margin-top: -150% !important;
+    height: 120vh;
   }
 
   .Account {
