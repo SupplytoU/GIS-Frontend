@@ -1,10 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './PasswordChanged.css';
 import tickImg from "./Images/Tick.jpeg";
 
 function PasswordChanged() {
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleBackToLogin = () => {
     history.push("/login"); // Adjust the path to your login page
