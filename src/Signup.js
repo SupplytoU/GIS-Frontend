@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
 import google from './Images/Google.png';
@@ -15,8 +15,9 @@ function Signup() {
     confirmPassword: '',
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-  const history = useHistory();
+  const [error, setError] = useState('');
+  const history = useNavigate();
+
 
   const validatePassword = (password, confirmPassword) => {
     if (password !== confirmPassword) {

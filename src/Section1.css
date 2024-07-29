@@ -15,6 +15,20 @@ body, html {
   100% { background-position: 0% 50%; }
 }
 
+.typing-container {
+  display: inline;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.1em solid rgb(255, 255, 255);
+  font-size: 0.9em;
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: rgb(255, 255, 255); }
+}
+
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 12px;
