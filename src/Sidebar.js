@@ -2,23 +2,25 @@ import React, { useState } from 'react';
 import Account from "./Images/Account.png";
 import HelpImg from "./Images/Help.png";
 import Notifications from "./Images/Notifications.png";
-import Theme from './Images/theme.png'
+import Theme from './Images/theme.png';
 import { Toggle } from "./Toggle/Toggle";
 import useLocalStorage from "use-local-storage";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward, IoIosLogOut, IoIosMenu } from "react-icons/io";
 
-function Sidebar() {
-  const [showNav, setShowNav] = useState(true);
+const Sidebar = () => {
+  const [collapsed, setCollapsed] = useState(false);
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
-  const handleToggleClick = () => setShowNav(!showNav);
+  const toggleSidebar = () => {
+    setCollapsed(!collapsed);
+  };
 
   return (
     <>
-      <div className={`Settingsdiv ${showNav ? '' : 'collapsed'}`} data-theme={isDark ? "dark" : "light"}>
-        <div className="sidebar-toggle" onClick={handleToggleClick}>
+      <div className={`Settingsdiv ${collapsed ? 'collapsed' : ''}`} data-theme={isDark ? "dark" : "light"}>
+        <div className="sidebar-toggle" onClick={toggleSidebar}>
           <IoIosMenu />
         </div>
         <div className="vertical-line"></div>
@@ -35,11 +37,12 @@ function Sidebar() {
             <div className="Settingsdiv-9">
               <div className="SettingsEditProfile">
                 <div className="SettingsEdit"><Link to='/Account'>Edit Profile</Link></div>
-                <div className="SettingsChangePass"><Link to='/Change Password'>Change Password</Link></div>
+                <div className="SettingsChangePass"><Link to='/ChangePassword'>Change Password</Link></div>
+
               </div>
               <div className="Settingsdiv-13">
                 <Link to='/Account'><IoIosArrowForward className='Settingsimg-3'/></Link>
-                <Link to='/Change Password'><IoIosArrowForward className='Settingsimg-3'/></Link>
+                <Link to='/ChangePassword'><IoIosArrowForward className='Settingsimg-3'/></Link>
               </div>
             </div>
           </div>
@@ -84,17 +87,19 @@ function Sidebar() {
             <div className="Settingsdiv-9">
               <div className="SettingsEditProfile">
                 <div className="SettingsEdit"><Link to='/Help'>FAQs</Link></div>
-                <div className="SettingsChangePass"><Link to='Inquiries'>Inquiries</Link></div>
+                <div className="SettingsChangePass"><Link to='/Inquiries'>Inquiries</Link></div>
               </div>
               <div className="Settingsdiv-13">
                 <Link to='/Help'><IoIosArrowForward className='Settingsimg-3'/></Link>
-                <Link to='Inquiries'><IoIosArrowForward className='Settingsimg-3'/></Link>
+                <Link to='/Inquiries'><IoIosArrowForward className='Settingsimg-3'/></Link>
               </div>
             </div>
             <div className="Settingsdiv-29"><Link to="/">SUPPLY2U</Link></div>
-            <div className='Settingsdiv-27'><Link to="/Soon">
-              <IoIosLogOut className='LogoutImg'/>
-              <div className="Settingsdiv-28">Logout</div></Link>
+            <div className='Settingsdiv-27'>
+              <Link to="/Soon">
+                <IoIosLogOut className='LogoutImg'/>
+                <div className="Settingsdiv-28">Logout</div>
+              </Link>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { CiEdit } from "react-icons/ci";
 import { useState } from 'react';
 import useLocalStorage from "use-local-storage"
 
+
 const SettingsPass = () => {
   const [isEditable, setIsEditable] = useState(false);
   const [formData, setFormData] = useState({
@@ -103,4 +104,4 @@ const SettingsPass = () => {
   )
 }
 
-export default SettingsPass;
+export default SettingsPass; 
