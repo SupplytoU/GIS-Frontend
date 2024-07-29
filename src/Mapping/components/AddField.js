@@ -88,7 +88,7 @@ const AddField = ({ onAddField}) => {
     <div className="add-location-container">
     <div className="form-sidebar-container">
     <form className="add-field-form" onSubmit={handleFieldAddition}>
-      <h2>Add Field Drawing</h2>
+      <h2 className='LocationTitle'>Add Field Drawing</h2>
       {notification && <div className="notification">{notification}</div>}
       <div className="form-control">
         <label>Field Name</label>
@@ -141,6 +141,7 @@ const AddField = ({ onAddField}) => {
         ))}
         <button
           type='button'
+          className='btn'
           onClick={() => setProduce([...produce, { produce_type: '', variety: '' }])}
         >
           Add Produce
