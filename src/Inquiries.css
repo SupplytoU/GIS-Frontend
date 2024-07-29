@@ -1,292 +1,307 @@
+.container1 {
+  display: flex;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.container1.collapsed .inquiries-container {
+  width: 100%;
+}
+
 .inquiries-container {
-    display: flex;
-    overflow: hidden;
-    margin-left: 25%;
-    position: relative;
-    width: 75%;
-    height: 100vh;
-    margin-top: -48%;
-}
-
-@media (max-width: 991px) {
-    .inquiries-container {
-        padding: 0 20px;
-    }
-}
-
-.inquiries-img {
-    position: absolute;
-    inset: 0;
-    height: 100vh;
-    width: 100%;
-    object-fit: fill;
-    object-position: center;
+  overflow-y: auto;
+  width: 75%;
+  transition: width 0.3s;
+  height: 100%;
 }
 
 .form-container {
-    position: relative;
-    z-index: 10;
-    margin-top: 10%;
+  left: 4%;
 }
 
 @media (max-width: 991px) {
-    .form-container {
-        max-width: 100%;
-        margin-top: 40px;
-    }
+  .inquiries-container {
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.inquiries-img {
+  position: absolute;
+  inset: 0;
+  height: 100vh;
+  width: 100%;
+  object-fit: fill;
+  object-position: center;
+}
+
+.form-container {
+  position: relative;
+  z-index: 10;
+  margin-top: 10%;
+}
+
+@media (max-width: 991px) {
+  .form-container {
+    max-width: 100%;
+    margin-top: 40px;
+  }
 }
 
 .form-layout {
-    gap: 20px;
-    display: flex;
+  gap: 20px;
+  display: flex;
 }
 
 @media (max-width: 991px) {
-    .form-layout {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0px;
-    }
+  .form-layout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0px;
+  }
 }
 
 .message-column {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 65%;
-    margin-left: 70px;
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 65%;
+  margin-left: 70px;
 }
 
 @media (max-width: 991px) {
-    .message-column {
-        width: 100%;
-    }
+  .message-column {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 .message-box {
-    border: none !important;
-    background-color: #ffffff;
-    position: relative;
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    font-weight: 400;
-    width: 100%;
-    padding: 0px 26px 0px;
-    gap: 15px;
+  border: none !important;
+  background-color: #ffffff;
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  font-weight: 400;
+  width: 100%;
+  padding: 0px 26px 0px;
+  gap: 5px;
+  /* overflow-y: auto; */
 }
 
 @media (max-width: 991px) {
-    .message-box {
-        max-width: 100%;
-        padding: 0 20px;
-    }
+  .message-box {
+    max-width: 100%;
+    padding: 0 20px;
+  }
 }
 
 .send-message-header {
-    display: flex;
-    gap: 2px;
-    font-size: 27px;
-    color: #000;
-    margin-top: 3%;
+  display: flex;
+  gap: 2px;
+  font-size: 27px;
+  color: #000;
+  margin-top: 3%;
 }
 
 @media (max-width: 991px) {
-    .send-message-header {
-        max-width: 100%;
-        flex-wrap: wrap;
-    }
+  .send-message-header {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
 }
 
 .send-message-title {
-    font-family: Kdam Thmor, sans-serif;
-    flex-grow: 1;
-    flex-basis: auto;
-    margin: auto 0;
+  font-family: Kdam Thmor, sans-serif;
+  flex-grow: 1;
+  flex-basis: auto;
+  margin: auto 0;
 }
-/* HIDDEN */
+
 .icon-mail {
-    aspect-ratio: 1;
-    object-fit: auto;
-    object-position: center;
-    width: 40px;
-    visibility: hidden;
+  aspect-ratio: 1;
+  object-fit: auto;
+  object-position: center;
+  width: 40px;
+  visibility: hidden;
 }
 
 .name-fields {
-    display: flex;
-    /* margin-top: 0px; */
-    align-items: start;
-    gap: 10px;
-    text-align: justify;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  text-align: justify;
 }
 
 @media (max-width: 991px) {
-    .name-fields {
-        max-width: 100%;
-        flex-wrap: wrap;
-    }
+  .name-fields {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
 }
 
 .field-container {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-basis: 0;
-    width: fit-content;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 0;
+  width: fit-content;
 }
 
 .field-label {
-    font-family: Kdam Thmor, sans-serif;
+  font-family: Kdam Thmor, sans-serif;
 }
 
 .form-fields {
-    text-align: justify;
-    font-family: 'Kdam Thmor', sans-serif;
-    border: none !important;
-    margin-top: 35px;
-    font-size: 16px;
-    /* padding: 5px 0; */
-    width: 100%;
-    margin-left: 7px;
-    outline: none;
-    /* border-bottom: 2px solid black; */
-    color: #000 !important;
+  text-align: justify;
+  font-family: 'Kdam Thmor', sans-serif;
+  border: none !important;
+  margin-top: 35px;
+  font-size: 16px;
+  width: 100%;
+  margin-left: 7px;
+  outline: none;
+  color: #000 !important;
 }
 
 .form-fields::placeholder {
-    color: black !important;
-    opacity: 1;
-    font-size: 15px;
-    padding-left: 3px;
+  /* color: black !important; */
+  opacity: 1;
+  font-size: 15px;
+  padding-left: 3px;
+  color: var(--text-color);
+  
 }
 
 .send-button {
-    border: none;
-    border-radius: 30px;
-    background-color: #105a03;
-    align-self: end;
-    width: 110px;
-    max-width: 100%;
-    align-items: start;
-    color: #fff;
-    justify-content: center;
-    margin: 20px 90px 30px 0;
-    padding: 7Px 0px;
-    font: 500 17px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
+  border: none;
+  border-radius: 30px;
+  background-color: #105a03;
+  align-self: end;
+  width: 110px;
+  max-width: 100%;
+  height: 50px;
+  align-items: left;
+  color: #fff;
+  justify-content: center;
+  padding-bottom: -20px;
+  /* margin: 20px 90px 30px 0;
+  padding: 7px 0px; */
+  font: 500 17px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
-.send-button:hover{
-    background-color: #082b01;
-    cursor: pointer;
+.send-button:hover {
+  background-color: #082b01;
+  cursor: pointer;
 }
 
 @media (max-width: 991px) {
-    .send-button {
-        margin-right: 10px;
-        padding: 14px 20px;
-    }
+  .send-button {
+    margin-right: 10px;
+    padding: 14px 20px;
+  }
 }
 
 .contact-column {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 35%;
-    margin-left: 0px;
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 35%;
+  margin-left: 0px;
+  /* overflow-y: auto; */
 }
 
 @media (max-width: 991px) {
-    .contact-column {
-        width: 100%;
-    }
+  .contact-column {
+    width: 100%;
+  }
 }
 
 .contact-box {
-    background-color: #2b2a2a;
-    position: relative;
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    width: 100%;
-    padding-left: 15px;
-    /* padding: 70px 0; */
+  background-color: #2b2a2a;
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px;
+  /* overflow-y: auto; */
 }
 
 .contact-header {
-    color: #fff;
-    align-self: start;
-    margin-top: 6vh;
-    width: 70%;
-    font: 700 27px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
+  color: #fff;
+  align-self: start;
+  margin-top: 6vh;
+  width: 70%;
+  font: 700 27px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .Line2, .Line3, .Line4, .Line5, .Line6 {
-    border-color: rgba(0, 0, 0, 1);
-    border-style: solid;
-    border-width: 0px;
-    background-color: #000;
-    margin-top: 6px;
-    height: 2px;
-    margin-left: 10px;
+  border-color: rgba(0, 0, 0, 1);
+  border-style: solid;
+  border-width: 0px;
+  background-color: #000;
+  margin-top: 6px;
+  height: 2px;
+  margin-left: 10px;
 }
 
 .Line2 {
-    width: 80%;
+  width: 80%;
 }
 
 .Line3 {
-    width: 200%;
+  width: 218%;
 }
 
 .Line4 {
-    width: 230%;
+  width: 230%;
+  margin-bottom: 20px;
 }
 
 .Line5 {
-    width: 80%;
-    margin-right: 230px;
+  width: 80%;
+  margin-right: 230px;
 }
 
 .Line6 {
-    width: 210%;
+  width: 200%;
 }
 
 .contact-details {
-    display: flex;
-    margin-top: 65px;
-    flex-direction: column;
-    /* padding: 0 8px; */
-    padding-left: 10px;
-    padding-right: 10px;    
+  display: flex;
+  margin-top: 65px;
+  flex-direction: column;
+  padding: 10px;
 }
 
 @media (max-width: 991px) {
-    .contact-details {
-        margin-top: 40px;
-    }
+  .contact-details {
+    margin-top: 40px;
+  }
 }
 
 .contact-info {
-    display: flex;
-    gap: 17px;
-    font-size: 16.5px;
-    color: #fff;
-    font-weight: 400;
-    white-space: nowrap;
-    margin-top: 20px;
-    font-family: 'Kdam Thmor', sans-serif;
+  display: flex;
+  gap: 17px;
+  font-size: 16.5px;
+  color: #fff;
+  font-weight: 400;
+  white-space: nowrap;
+  margin-top: 20px;
+  font-family: 'Kdam Thmor', sans-serif;
 }
 
 @media (max-width: 991px) {
-    .contact-info {
-        white-space: initial;
-    }
+  .contact-info {
+    white-space: initial;
+  }
 }
 
 .contact-icon {
-    aspect-ratio: 1;
-    object-fit: auto;
-    object-position: center;
-    width: 30px;
+  aspect-ratio: 1;
+  object-fit: auto;
+  object-position: center;
+  width: 30px;
 }

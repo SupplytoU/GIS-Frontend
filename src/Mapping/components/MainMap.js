@@ -7,6 +7,7 @@ import Geocoder from './Geocoder';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './MainMap.css'; // Import the CSS file for button styling
+import MapLoading from './MapLoading'; // Import the renamed MapLoading component
 
 const { BaseLayer, Overlay } = LayersControl;
 
@@ -28,6 +29,7 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
   const [selectedProduce, setSelectedProduce] = useState('');
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const [filteredFarms, setFilteredFarms] = useState(farms);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
   const mapRef = useRef();
@@ -36,6 +38,13 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
     setFilteredLocations(locations);
     setFilteredFarms(farms);
   }, [locations, farms]);
+
+  useEffect(() => {
+    // Simulate a loading delay for demonstration purposes
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // Adjust the timeout duration as needed
+  }, []);
 
   const handleDelete = async (id, type) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this item?");
@@ -145,6 +154,10 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
     setFilteredFarms(farms);
     mapRef.current.setView([0, 38], 7);
   };
+
+  if (isLoading) {
+    return <MapLoading onLoadComplete={() => setIsLoading(false)} />;
+  }
 
   return (
     <>

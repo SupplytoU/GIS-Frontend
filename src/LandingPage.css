@@ -1,7 +1,7 @@
 /* Body and Landing Page */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Nunito';
   animation: gradientAnimation 15s ease infinite;
 }
 
@@ -10,6 +10,7 @@ body {
   text-align: center;
   padding: 20px;
   min-height: 100vh;
+  font-family: 'Nunito';
 }
 
 /* Header */

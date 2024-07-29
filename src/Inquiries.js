@@ -7,6 +7,7 @@ import email from "./Images/Email.png";
 import web from "./Images/Web.png";
 import location from "./Images/Location.png";
 import Sidebar from './Sidebar';
+import useLocalStorage from "use-local-storage";
 
 function Inquiries() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,8 @@ function Inquiries() {
     phone: "",
     message: "",
   });
+
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -31,9 +34,14 @@ function Inquiries() {
     console.log("Form data submitted:", formData);
   };
 
+  const handleSidebarToggle = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  };
+  const [isDark, setIsDark] = useLocalStorage("isDark", false);
+
   return (
-    <div className="container1">
-      <Sidebar />
+    <div className={`container1 ${isSidebarCollapsed ? 'collapsed' : ''}`}>
+      <Sidebar onToggle={handleSidebarToggle} />
       <div className="inquiries-container">
         <img src={inquiriesImg} alt="Inquiries" className="inquiries-img" />
         <div className="form-container">
