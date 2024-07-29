@@ -18,7 +18,7 @@ function Inquiries() {
     message: "",
   });
 
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -34,14 +34,14 @@ function Inquiries() {
     console.log("Form data submitted:", formData);
   };
 
-  const handleSidebarToggle = () => {
-    setIsSidebarCollapsed(!isSidebarCollapsed);
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
   };
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
   return (
-    <div className={`container1 ${isSidebarCollapsed ? 'collapsed' : ''}`}>
-      <Sidebar onToggle={handleSidebarToggle} />
+    <div className={`container1 ${sidebarCollapsed ? 'collapsed' : ''}`}>
+       <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
       <div className="inquiries-container">
         <img src={inquiriesImg} alt="Inquiries" className="inquiries-img" />
         <div className="form-container">
@@ -126,8 +126,10 @@ function Inquiries() {
                     supply2u@outlook.com
                   </div>
                   <div className="contact-info">
-                    <img src={web} alt="Web" className="contact-icon" />
-                    supply2u.jhubafrica.com
+                  <img src={web} alt="Web" className="contact-icon" />
+                 <a href="https://supply2u.jhubafrica.com" target="_blank" rel="noopener noreferrer">
+                  supply2u.jhubafrica.com
+                 </a>
                   </div>
                   <div className="contact-info">
                     <img src={location} alt="Location" className="contact-icon" />
