@@ -7,12 +7,27 @@ body, html {
   overflow-y: auto;
   animation: gradientAnimation 15s ease infinite;
   transition: background-color 0.25s ease-in-out;
+  font-family: "Public Sans", sans-serif;
 }
 
 @keyframes gradientAnimation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+.typing-container {
+  display: inline;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.1em solid rgb(255, 255, 255);
+  font-size: 0.9em;
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: rgb(255, 255, 255); }
 }
 
 /* Custom Scrollbar Styles */
@@ -136,6 +151,7 @@ body, html {
   z-index: 2;
   opacity: 0;
   transform: translateY(20px);
+  font-family: "Public Sans", sans-serif;
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
@@ -145,7 +161,8 @@ body, html {
 }
 
 .home-heading {
-  font-size: 4em;
+  font-size: 4.3em;
+  font-weight: 800;
   top: 26%;
   left: 20%;
   text-align: justify;
@@ -155,7 +172,7 @@ body, html {
   font-size: 1em;
   line-height: 1.5;
   margin: 0;
-  top: 63%;
+  top: 67%;
   left: 20%;
   text-align: justify;
 }
@@ -168,7 +185,7 @@ body, html {
   font-size: 15px;
   font-weight: 500;
   display: flex;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Public Sans", sans-serif;
   z-index: 2;
   opacity: 0;
   transform: translateY(20px);
@@ -197,8 +214,8 @@ body, html {
 }
 
 .HomeServices {
-  margin-top: -0.5%;
-  width: 70px;
+  /* margin-top: -0.5%; */
+  /* width: 70px; */
 }
 
 .GetStartedBtn {

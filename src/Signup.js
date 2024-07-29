@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
 import google from './Images/Google.png';
@@ -15,8 +15,9 @@ function Signup() {
     confirmPassword: '',
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-  const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false); 
+  const [error, setError] = useState('');
+  const navigate = useNavigate(); // Updated to navigate
 
   const validatePassword = (password, confirmPassword) => {
     if (password !== confirmPassword) {
@@ -25,9 +26,6 @@ function Signup() {
     if (password.length < 8) {
       return 'Password must be at least 8 characters long.';
     }
-    // if (!/[A-Z]/.test(password)) {
-    //   return 'Password must contain at least one uppercase letter.';
-    // }
     if (!/[0-9]/.test(password)) {
       return 'Password must contain at least one digit.';
     }
@@ -71,7 +69,6 @@ function Signup() {
     document.getElementById('confirmPassword').setCustomValidity('');
 
     // Submit form data
-    console.log('Form data submitted:', formData);
     userCreate({
       first_name: formData.firstname,
       last_name: formData.lastname,
@@ -79,9 +76,9 @@ function Signup() {
       password: formData.password,
       re_password: formData.confirmPassword
     }).unwrap().then((result) => {
-      history.push('/Success');
+      navigate('/Success');
     }).catch((err) => {
-      console.log(err);
+      setError(err.message || 'An error occurred');
     });
   };
 
@@ -91,7 +88,7 @@ function Signup() {
     <div className='Logindiv' data-theme={isDark ? "dark" : "light"}>
       <div className="LoginContainer">
         <div className="image-container">
-          <img loading="lazy" src={img} alt="img" className="Signup-img" />
+          <img loading="lazy" src={img} alt="Signup" className="Signup-img" />
           <div className="overlay">
             <div className="login-section">
               <div className="question">Have An Account?</div>
@@ -107,7 +104,7 @@ function Signup() {
             <div className='GSect'>
               <div className="form-group">
                 <input
-                  type="message"
+                  type="text"
                   placeholder="First Name"
                   id="firstname"
                   className="form-input"
@@ -118,7 +115,7 @@ function Signup() {
               </div>
               <div className="form-group">
                 <input
-                  type="message"
+                  type="text"
                   placeholder="Last Name"
                   id="lastname"
                   className="form-input"
@@ -165,7 +162,7 @@ function Signup() {
                   type="checkbox"
                   id="showPassword"
                   checked={showPassword}
-                  onChange={() => setShowPassword(!showPassword)}
+                  onChange={() => setShowPassword(prev => !prev)}
                 />
                 <label htmlFor="showPassword">Show Password</label>
               </div>

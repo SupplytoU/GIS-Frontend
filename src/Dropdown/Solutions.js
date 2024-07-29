@@ -27,7 +27,7 @@ const Solutions  = () => {
           {dropdownVisible && (
             <ul className="dropdown">
               <Link to='/Track Order'><li className="dropdown-item">Track An Order</li></Link>
-              <Link to='/Locations'><li className="dropdown-item">View Locations</li></Link>
+              <Link to='/View Locations'><li className="dropdown-item">View Locations</li></Link>
               <Link to='/Analytics'><li className="dropdown-item">View Analytics</li></Link>
             </ul>
           )}

@@ -1,10 +1,10 @@
 import React from "react";
 import './Reset.css';
 import resetImg from "./Images/Reset.jpeg";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Reset() {
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleSetPassword = () => {
     history.push("/password-changed"); // Navigate to the password change confirmation page

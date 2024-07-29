@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Section1.css";
 import logo from './Images/Logo1.png';
-import mainVideo from './Images/video.mp4'; // Ensure this path is correct
+import mainVideo from './Images/video.mp4';
 import Solutions from "./Dropdown/Solutions";
 import LoginIcon from "./LoginIcon";
 import { IoIosGlobe } from "react-icons/io";
@@ -15,20 +15,48 @@ function Section1() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // Stop observing once it's visible
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 }); // Trigger when 10% of the element is in view
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(element => {
       observer.observe(element);
     });
   }, []);
-// LIGHT MODE
-  // const [isLight, setIsLight]=useLocalStorage(false);
+
+  const words = ["Insights.", "Mapping.", "Tracking."];
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentWord = words[currentWordIndex];
+      if (isDeleting) {
+        setDisplayedText(prev => prev.slice(0, -1));
+        setTypingSpeed(110);
+      } else {
+        setDisplayedText(prev => currentWord.slice(0, prev.length + 1));
+        setTypingSpeed(150);
+      }
+
+      if (!isDeleting && displayedText === currentWord) {
+        setTimeout(() => setIsDeleting(true), 1000);
+      } else if (isDeleting && displayedText === '') {
+        setIsDeleting(false);
+        setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, typingSpeed, currentWordIndex, words]);
 
   return (
-  <div className="home-container" /*data-theme={isLight?"light":"dark"}*/>
+    <div className="home-container">
       <div className="home-column">
         <Link to="/">
           <img
@@ -38,26 +66,19 @@ function Section1() {
             alt="Logo"
           />
         </Link>
-        {/* Sidebar */}
         <div className="home-column1 fade-in">
           <div className="vertical-line-wrapper">
             <div className="dotted-lines">.<br />.<br />.<br /><br /><br />.<br />.<br />.<br />.</div>
             <div className="home-vertical-line" />
             <a href="https://supply2u.jhubafrica.com/">
-            <IoIosGlobe className="home-image-secondary"/>
+              <IoIosGlobe className="home-image-secondary"/>
             </a>
             <MdOutlineEmail className="home-image-secondary"/>
             <Link to="Inquiries">
-            <IoCallOutline className="home-image-secondary"/>
+              <IoCallOutline className="home-image-secondary"/>
             </Link>
-            {/* LIGHT MODE */}
-        {/* <Toggle 
-            isChecked={isLight}
-            handleChange={() => setIsLight(!isLight)}
-            /> */}
           </div>
         </div>
-        {/* Body */}
         <div className="home-content-section fade-in">
           <div className="HomeNav fade-in">
             <Link to="/">Home</Link>
@@ -79,7 +100,8 @@ function Section1() {
             Your browser does not support the video tag.
           </video>
           <h1 className="home-heading fade-in">
-            Smart Agriculture with<br /> Geo Insights
+            Smart Agriculture with<br /> Geo 
+            <span className="typing-container"> {displayedText}</span>
           </h1>
           <p className="home-paragraph fade-in">
             Transforming agriculture supply chains through precise integration of farm geolocation data,<br /> real-time analytics,

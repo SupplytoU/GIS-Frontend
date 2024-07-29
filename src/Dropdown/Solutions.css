@@ -11,22 +11,22 @@
   font-size: 15px;
   display: flex;
   align-items: center;
-  transition: color 0.1s ease; /* Smooth transition for color change */
+  transition: color 0.1s ease; 
 }
 
 .menu-item:hover {
-  color: rgb(0, 0, 0); /* Change color on hover */
+  color: rgb(0, 0, 0);
 }
 
 .menu-item .arrow {
   margin-top: 7px;
   margin-left: 5px;
   font-size: 15px;
-  transition: transform 0.1s ease; /* Smooth transition for arrow rotation */
+  transition: transform 0.1s ease; 
 }
 
 .menu-item:hover .arrow {
-  transform: rotate(180deg); /* Rotate arrow on hover */
+  transform: rotate(180deg);
 }
 
 .dropdown {
@@ -34,9 +34,9 @@
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%); /* Center align the dropdown */
+  transform: translateX(-50%); 
   min-width: 140px;
-  list-style-type: none; /* Remove bullets from the dropdown menu */
+  list-style-type: none; 
   margin-left: 2%;
   padding: 10px 0;
   padding-top: 0px;
@@ -45,6 +45,12 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition for visibility */
+}
+
+.solution-arrow{
+  font-size: 15px;
+  margin-left: 5px;
+  margin-top: 3px;
 }
 
 .menu-item:hover .dropdown {
@@ -71,6 +77,10 @@
 .dropdown-item a :visited{
   color: white;
 }
+.SolutionsTitle{
+  margin-top: -2px;
+}
+
 @media (max-width: 600px) {
   .SolutionsTitle {
     font-size: 10px;
@@ -105,7 +115,7 @@
 /* Large devices (laptops/desktops, 900px and up) */
 @media (min-width: 900px) {
   .SolutionsTitle {
-    font-size: 13px;
+    /* font-size: 14px; */
     margin-left: 13px;
   }
   .dropdown {
