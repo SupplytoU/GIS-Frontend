@@ -85,7 +85,7 @@ const AddLocation = ({ onAdd }) => {
       <div className="add-location-container">
         <div className="form-sidebar-container">
           <form className="add-location-form" onSubmit={onSubmit}>
-            <h2>Enter Location Details</h2>
+            <h2 className='LocationTitle'>Enter Location Details</h2>
             {notification && <div className="notification">{notification}</div>}
             <div className="form-control">
               <label>Location Name</label>

@@ -36,7 +36,7 @@ function Section1() {
       const currentWord = words[currentWordIndex];
       if (isDeleting) {
         setDisplayedText(prev => prev.slice(0, -1));
-        setTypingSpeed(50);
+        setTypingSpeed(110);
       } else {
         setDisplayedText(prev => currentWord.slice(0, prev.length + 1));
         setTypingSpeed(150);

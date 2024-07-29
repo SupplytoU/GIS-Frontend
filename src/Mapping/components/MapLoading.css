@@ -9,12 +9,10 @@
 
 .Supplytxt {
     color: rgb(255, 255, 255);
-    font-size: 50px;
 }
 
 .txt {
     color: green;
-    font-size: 50px;
 }
 
 .lottie-container {
@@ -26,7 +24,7 @@
 }
 
 .website-name {
-    font-size: 50px;
+    font-size: 2rem;
     opacity: 0;
     animation: fadeIn 3s forwards, bounce 1s 1s;
 }

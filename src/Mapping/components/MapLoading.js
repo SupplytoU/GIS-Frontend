@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Lottie from 'react-lottie';
 import animationData from './EF2RxrLVRn.json'; // Adjust path as needed
-import './Loading.css'; // Ensure you create and link this CSS file
+import './MapLoading.css'; // Ensure you create and link this CSS file
 
-const Loading = ({ onLoadComplete = () => {} }) => { // Default value to no-op function
+const MapLoading = ({ onLoadComplete = () => {} }) => { // Default value to no-op function
     const [showText, setShowText] = useState(false);
 
     useEffect(() => {
@@ -34,16 +34,17 @@ const Loading = ({ onLoadComplete = () => {} }) => { // Default value to no-op f
         <div className="loader-container">
             {!showText ? (
                 <div className="lottie-container">
-                    <Lottie options={defaultOptions} height={400} width={400} />
+                    <Lottie options={defaultOptions} height={300} width={300} />
+                    <h1>Loading<br /> map data...</h1>
                 </div>
             ) : (
                 <h1 className="website-name">
-                    <span className="Supplytxt">Supply</span>
-                    <span className="txt">2U</span>
+                    {/* <span className="Supplytxt">Supply</span>
+                    <span className="txt">2U</span> */}
                 </h1>
             )}
         </div>
     );
 };
 
-export default Loading;
+export default MapLoading;

@@ -14,6 +14,7 @@
     border-radius: 0px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     max-width: 300px;
+    padding-top: 30px;
 }
 
 .filtered-results h4{
@@ -40,9 +41,9 @@ input[type="text"], input[type="text"]::placeholder{
 }
 
 .search-bar button {
-    padding: 10px 15px;
+    padding: 8px 15px;
     border: none;
-    background: #27ae60; /* Green button */
+    background: #068727; /* Green button */
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -70,7 +71,7 @@ input[type="text"], input[type="text"]::placeholder{
 .filter-group h3 {
     margin: 0;
     font-size: 18px;
-    color: #27ae60; /* Green heading */
+    color: #068727; /* Green heading */
 }
 
 .select-group {
@@ -98,12 +99,12 @@ select {
 }
 
 .delete-button {
-    background-color: #e74c3c;
+    background-color: #ff1900;
     color: white;
 }
 
 .update-button {
-    background-color: #3498db;
+    background-color: #068727;
     color: white;
 }
 
@@ -121,14 +122,14 @@ select {
 .mainSideBar-button {
     flex: 1;
     display: block;
-    padding: 10px;
-    background: #2ecc71; /* Green button */
+    padding: 5px;
+    background: #068727; /* Green button */
     color: white;
     border: none;
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
-    width: 100px;
+    width: 80px;
 }
 
 .mainSideBar-button a {

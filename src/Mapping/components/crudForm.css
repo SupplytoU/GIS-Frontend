@@ -4,28 +4,37 @@
     height: 100vh;
     width: 100vw;
     color: black;
+    font-family: 'Nunito';
+    
 }
-
+.LocationTitle{
+    color: #068727;
+}
 .form-sidebar-container {
     width: 400px;
-    /* Adjust width as needed */
-    background: #f4f4f4;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); */
     overflow-y: auto;
+    background: #e9f7ef;
 }
-
+.produce-inputs{
+    
+}
 .add-location-form,
 .add-field-form,
 .update-location-form {
-    background: #f4f4f4;
-    padding: 20px;
-    margin: 20px auto;
+    background: #e9f7ef;
+    padding-left: 10px;
+    padding-right: 20px;
+    /* margin: 20px auto; */
     border-radius: 8px;
     max-width: 400px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
+input{
+    font-family: 'Nunito';
+}
 .form-control {
     margin-bottom: 15px;
 }
@@ -41,14 +50,21 @@
 .form-control textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #a5a5a5;
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 0.8rem;
+    background: #ffffff;
+}
+
+.form-control input:focus,
+.form-control select:focus,
+.form-control textarea:focus {
+    background: #fff;
 }
 
 .btn {
     display: inline-block;
-    background: #28a745;
+    background: #068727;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -59,7 +75,8 @@
 }
 
 .btn:hover {
-    background: #7fe07f;
+    background: #7fe07fc6;
+    color: black;
 }
 
 .notification {
@@ -74,6 +91,7 @@
 .map-container {
     flex: 1;
     position: relative;
+    height: 100vh;
 }
 
 .leaflet-container {
