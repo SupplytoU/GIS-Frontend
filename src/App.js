@@ -20,6 +20,7 @@ import LandingPage from './LandingPage.js';
 import SettingsAccount from './SettingsAccount.js';
 import Solutions from './Dropdown/Solutions.js';
 import Track from './OurSolutions/Track.js';
+
 import Analytics from './OurSolutions/Analytics.js';
 import SideBar from './Sidebar.js';
 import Section1 from './Section1.js';
@@ -28,7 +29,6 @@ import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
-// import Locations from './OurSolutions/Locations.js'
 // MAPPING
 import AddLocation from './Mapping/components/AddLocation';
 import AddField from './Mapping/components/AddField';
@@ -144,9 +144,11 @@ function App() {
     }
   };
 
+function App() {
   return (
     <Router>
       <CustomProvider>
+
         <Routes>
           <Route path="/reset" element={<Reset />} />
           <Route path="/password-changed" element={<PasswordChanged />} />
