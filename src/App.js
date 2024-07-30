@@ -30,7 +30,7 @@ import SettingsPass from './Password.js';
 import Construct from './Construct.js';
 
 // MAPPING
-import AddLocation from './Mapping/components/AddLocation';
+import AddLocation from './Mapping/components/AddLocation.js';
 import AddField from './Mapping/components/AddField';
 import MainMap from './Mapping/components/MainMap';
 import UpdateLocation from './Mapping/components/UpdateLocation';

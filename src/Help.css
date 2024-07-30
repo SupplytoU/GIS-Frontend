@@ -14,8 +14,9 @@ body {
   flex-direction: column;
   position: relative;
   width: 100%;
-  height: 110vh;
+  height: auto;
   align-items: center;
+  
 }
 
 .help-container.collapsed .faq-container {
@@ -25,7 +26,7 @@ body {
 @media (max-width: 991px) {
   .faq-container {
     margin-top: -80%;
-    height: auto;
+    height: 100vh;
     padding: 0;
   }
 }

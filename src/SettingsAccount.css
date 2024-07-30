@@ -1,38 +1,62 @@
 body, html {
-  height: 100%;
+  height: 100vh;
   margin: 0;
 }
 
-.settings-account-container {
+.Account-container {
+  display: flex;
+}
+
+.help-container.collapsed .Accountdiv {
+  width: 100%;
+}
+
+/* .help-container:not(.collapsed) .Accountdiv {
+  width: 75%;
+} */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 25%;
   height: 100vh;
-  transition: width 0.3s ease;
+  background-color: var(--foreground-color);
+  color: var(--primary-text-color);
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+  z-index: 10;
 }
 
-.settings-account-container.collapsed .content {
-  width: 100%; /* Full width when sidebar is collapsed */
+.sidebar.visible {
+  transform: translateX(0);
+}.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 25%;
+  height: 100vh;
+  background-color: var(--foreground-color);
+  color: var(--primary-text-color);
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+  z-index: 10;
 }
 
-.settings-account-container:not(.collapsed) .content {
-  width: 75%; /* 75% width when sidebar is expanded */
+.sidebar.visible {
+  transform: translateX(0);
 }
-
 /* Account Container */
 .Accountdiv {
   font-family: 'Inter', sans-serif;
-  padding-top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: var(--background-color);
   height: 100vh;
   transition: width 0.3s ease;
-  width: 100% !important; /* Default to 100% */
-  margin-top: -47.56%;
+  width: 100%;
   position: relative;
-}
-
-.settings-account-container:not(.collapsed) .Accountdiv {
-  width: 75%; /* 75% when sidebar is expanded */
+  padding-top: 0;
 }
 
 /* Account Body */
@@ -41,7 +65,6 @@ body, html {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  margin-bottom: 2em;
   background-color: var(--foreground-color);
   padding-top: 2em;
   padding-bottom: 2em;
@@ -52,7 +75,6 @@ body, html {
   display: flex;
   align-items: center;
   width: 100%;
-  gap: 15vw;
   margin-left: 2vw;
 }
 
@@ -63,9 +85,9 @@ body, html {
 }
 
 .Profile {
-  width: 50px;
-  height: 50px;
-  padding: 0.3rem;
+  width: 55px;
+  height: 55px;
+  padding: 7px;
   border-radius: 50%;
   object-fit: fill;
   border: 3px solid var(--secondary-text-color);
@@ -90,19 +112,16 @@ body, html {
 }
 
 .Account {
-  font-size: 2.5em;
+  font-size: 45px;
   font-weight: 600;
   color: var(--text-color);
 }
 
 .SettingsAccountBody {
-  margin-top: 6.2vh;
+  margin-top: 7vh;
   align-self: center;
-  width: 75%;
   background-color: var(--foreground-color);
-  padding-top: 2em;
-  padding-bottom: 3em;
-  padding-left: 3.5em;
+  padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   justify-content: center;
@@ -112,7 +131,7 @@ body, html {
   font-size: 25px;
   font-weight: 500;
   color: var(--secondary-text-color);
-  margin-bottom: 1.2em;
+  margin-bottom: 30px;
   margin-top: 2vh;
 }
 
@@ -120,25 +139,26 @@ body, html {
   font-size: 25px;
   font-weight: 500;
   color: var(--secondary-text-color);
-  margin-bottom: 1.2em;
+  margin-bottom: 30px;
   margin-top: 2vh;
 }
 
 .Accountdiv-6 {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5em;
+  margin-bottom: 30px;
+  gap: 50px;
 }
 
 .Accountdiv-7, .Accountdiv-10 {
   flex: 1;
-  margin-right: 1em;
+  align-items: center;
 }
 
 .AccountFirstName {
   font-size: 16px;
   color: var(--text-color);
-  margin-bottom: 0.5em;
+  margin-bottom: 15px;
 }
 
 .Accountdiv-9 {
@@ -150,8 +170,8 @@ body, html {
 
 .EditIcon {
   color: var(--text-color);
-  margin-left: 40vw;
   width: 25px;
+  margin-left: 490px;
 }
 
 .EditIcon2 {
@@ -177,8 +197,8 @@ body, html {
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 83%;
-  margin-top: 7vh;
+  width: 50vw;
+  margin-top: 0vh;
 }
 
 .AccountSave:hover {
@@ -215,44 +235,46 @@ body, html {
   }
 
   .Accountdiv-6 {
-    flex-direction: column;
+    gap: 10px;
   }
 
-  .Accountdiv-7, .Accountdiv-10 {
-    margin-right: 0;
-    margin-bottom: 1em;
+  .Accountdiv-9 {
+    width: 30vw;
+    padding: 1.5vh;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+  }
+
+  .EditIcon {
+    margin-left: 350px;
   }
 }
 
-/* For mobile phones and very small screens */
-@media (max-width: 480px) {
-  .Profile {
-    width: 75px;
-    height: 75px;
-  }
-  .Accountdiv {
-    margin-top: -150% !important;
-    height: 120vh;
-  }
-
+@media screen and (max-width: 681px) {
   .Account {
-    font-size: 1.2em;
+    font-size: 8vw;
   }
 
-  .EditProfile, .EditProfile2 {
-    font-size: 1em;
+  .Accountdiv-9 {
+    width: 30vw;
+    padding: 1.5vh;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
   }
 
-  .AccountFirstName {
-    font-size: 0.9em;
+  .EditIcon {
+    margin-left: 260px;
   }
+}
 
-  .AccountSave {
-    font-size: 0.9em;
-    padding: 0.5em 1.5em;
+@media screen and (max-width: 561px) {
+  .EditIcon {
+    margin-left: 100px;
   }
+}
 
-  .EditIcon, .EditIcon2 {
-    margin-left: 0;
+@media screen and (max-width: 350px) {
+  .EditIcon {
+    margin-left: 90px;
   }
 }
