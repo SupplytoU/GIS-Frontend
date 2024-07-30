@@ -13,7 +13,7 @@ const SettingsAccount = ({ page }) => { // Add page prop to determine which page
     email: '',
     phoneNumber: ''
   });
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true); // Set default to true (collapsed)
   const [isDark] = useLocalStorage("isDark", false);
 
   const toggleSidebar = () => {
@@ -57,7 +57,7 @@ const SettingsAccount = ({ page }) => { // Add page prop to determine which page
               <div className="AccountFirstName">Firstname</div>
               {isEditable ? (
                 <input
-                  type="message" 
+                  type="text" // Changed from "message" to "text"
                   className="Accountdiv-9"
                   name="firstName"
                   value={formData.firstName}
@@ -71,7 +71,7 @@ const SettingsAccount = ({ page }) => { // Add page prop to determine which page
               <div className="AccountFirstName">Lastname</div>
               {isEditable ? (
                 <input
-                  type="message" 
+                  type="text" // Changed from "message" to "text"
                   className="Accountdiv-9"
                   name="lastName"
                   value={formData.lastName}
