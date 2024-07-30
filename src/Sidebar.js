@@ -9,13 +9,8 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward, IoIosLogOut, IoIosMenu } from "react-icons/io";
 
-const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const Sidebar = ({ collapsed, toggleSidebar }) => {
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
-
-  const toggleSidebar = () => {
-    setCollapsed(!collapsed);
-  };
 
   return (
     <>

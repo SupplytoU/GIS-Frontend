@@ -7,10 +7,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CustomProvider } from './redux/provider.js';
 import { Icon, divIcon, point } from 'leaflet';
 
+
 import Login from './Login.js';
 import Reset from './Reset.js';
-import PasswordChanged from "./PasswordChanged.js";
-import Help from "./Help.js";
+import PasswordChanged from './PasswordChanged.js';
+import Help from './Help.js';
 import Signup from './Signup.js';
 import Forgot from './Forgot.js';
 import Success from './Success.js';
@@ -22,11 +23,12 @@ import Track from './OurSolutions/Track.js';
 import Analytics from './OurSolutions/Analytics.js';
 import SideBar from './Sidebar.js';
 import Section1 from './Section1.js';
-import Inquries from "./Inquiries.js";
+import Inquries from './Inquiries.js';
 import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
+
 // MAPPING
 import AddLocation from './Mapping/components/AddLocation.js';
 import AddField from './Mapping/components/AddField';
@@ -156,7 +158,6 @@ function App() {
           <Route path="/Success" element={<Success />} />
           <Route path="/Reset Password" element={<Forgot />} />
           <Route path="/Track Order" element={<Track />} />
-          {/* <Route path="/View Locations" element={<Locations/>} /> */}
           <Route path="/Analytics" element={<Analytics />} />
           <Route path="/Account" element={<SettingsAccount />} />
           <Route path="/SideBar" element={<SideBar />} />
@@ -172,10 +173,10 @@ function App() {
                 parsePolygon={parsePolygon}
                 customIcon={customIcon}
                 createCustomClusterIcon={createCustomClusterIcon}
-                farmers={farmers} // Pass farmers data here
+                farmers={farmers}
               />} />
-          <Route path="/add-location" element={<AddLocation onAdd={addLocation} />}/>
-          <Route path="/add-field" element={<AddField onAdd={addField}/>}/>
+          <Route path="/add-location" element={<AddLocation onAdd={addLocation} />} />
+          <Route path="/add-field" element={<AddField onAdd={addField} />} />
           <Route path="/update-location/:id" element={<UpdateLocation locations={locations} farms={farms} onUpdate={handleUpdateLocation} />} />
           <Route path='/update-farm/:id' element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />} />
         </Routes>

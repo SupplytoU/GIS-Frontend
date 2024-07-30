@@ -24,7 +24,7 @@ function Help() {
   ];
 
   return (
-    <div className="help-container">
+    <div className={`help-container ${sidebarCollapsed ? 'collapsed' : ''}`}>
       <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
       <div className="faq-container">
         <div className="faq-header">

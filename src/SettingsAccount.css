@@ -206,29 +206,32 @@ body, html {
   color: var(--text-color);
 }
 
-@media (max-width: 800px) {
+/* Media Queries */
+
+/* For tablets and smaller screens */
+@media (max-width: 1110px) {
+  .AccountBody, .SettingsAccountBody {
+    flex-direction: column;
+    padding: 1em;
+    margin-top: 0;
+  }
+ 
+  .Accountdiv {
+    margin-top: -120% !important;
+    height: 20vh;
+  }
+
+
   .Account {
-    font-size: 6vw;
+    font-size: 1.5em;
   }
 
-  .SettingsAccountBody {
-    width: 75vw;
+  .EditProfile, .EditProfile2 {
+    font-size: 1.2em;
   }
 
-  .EditProfile {
-    font-size: 25px;
-    font-weight: 500;
-    color: var(--secondary-text-color);
-    margin-bottom: 30px;
-    margin-top: 2vh;
-  }
-
-  .EditProfile2 {
-    font-size: 25px;
-    font-weight: 500;
-    color: var(--secondary-text-color);
-    margin-bottom: 30px;
-    margin-top: 2vh;
+  .AccountFirstName {
+    font-size: 1em;
   }
 
   .Accountdiv-6 {
