@@ -189,8 +189,6 @@ input[type="message"], input[type="email"], input[type="password"] {
   margin-bottom: 3vh;
   background-color: transparent;
   border-bottom: 1.5px solid var(--text-color); 
-  /* color: #000 !important; */
-
 }
 
 .show-password-container {
