@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './Inquiries.css';
-import inquiriesImg from "./Images/pexels-834934396-20818843.jpg";
+import inquiriesImg from "./Images/a.jpg";
 import mail from "./Images/Mail.png";
 import phone from "./Images/Phone.png";
 import email from "./Images/Email.png";
@@ -44,10 +44,7 @@ function Inquiries() {
       <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
       <div className="inquiries-container">
       <img src={inquiriesImg} alt="Background" className="inquiries-img" />
-        <div className="header-container">
-          <h1>Contact Us</h1>
-          <h2>Feel free to send us a message. We will get<br/>back to you as soon as we can!</h2>
-        </div>
+        
         <div className="form-container">
       
           <div className="form-layout">
@@ -115,7 +112,7 @@ function Inquiries() {
                       className="form-fields"
                       value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="Your message"
+                      placeholder="Message"
                     />
                         <div className="Line4"></div>
                   </div>
