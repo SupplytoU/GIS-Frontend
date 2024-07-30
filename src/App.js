@@ -1,5 +1,4 @@
-import './App.css'
-
+import './App.css';
 import React, { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
@@ -20,7 +19,6 @@ import LandingPage from './LandingPage.js';
 import SettingsAccount from './SettingsAccount.js';
 import Solutions from './Dropdown/Solutions.js';
 import Track from './OurSolutions/Track.js';
-
 import Analytics from './OurSolutions/Analytics.js';
 import SideBar from './Sidebar.js';
 import Section1 from './Section1.js';
@@ -30,14 +28,13 @@ import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
 // MAPPING
-import AddLocation from './Mapping/components/AddLocation';
+import AddLocation from './Mapping/components/AddLocation.js';
 import AddField from './Mapping/components/AddField';
 import MainMap from './Mapping/components/MainMap';
 import UpdateLocation from './Mapping/components/UpdateLocation';
 import UpdateFarm from './Mapping/components/UpdateFarm';
 
 function App() {
-
   const [locations, setLocations] = useState([]);
   const [farms, setFarms] = useState([]);
   const [farmers, setFarmers] = useState([]);
@@ -59,7 +56,7 @@ function App() {
         console.error("There was an error fetching the farm data!", error);
       });
 
-      axios.get('http://localhost:5000/farmers')
+    axios.get('http://localhost:5000/farmers')
       .then(response => {
         setFarmers(response.data);
       })
@@ -120,7 +117,6 @@ function App() {
     }
   };
 
-
   const handleUpdateLocation = async (id, updatedLocation) => {
     const res = await fetch(`http://localhost:5000/locations/${id}`, {
       method: 'PUT',
@@ -135,7 +131,7 @@ function App() {
     }
   };
 
-   const updateFarm = async (id, updatedFarm) => {
+  const updateFarm = async (id, updatedFarm) => {
     try {
       await axios.put(`http://localhost:5000/farms/${id}`, updatedFarm);
       setFarms(farms.map((farm) => (farm.id === id ? updatedFarm : farm)));
@@ -144,11 +140,9 @@ function App() {
     }
   };
 
-function App() {
   return (
     <Router>
       <CustomProvider>
-
         <Routes>
           <Route path="/reset" element={<Reset />} />
           <Route path="/password-changed" element={<PasswordChanged />} />
@@ -171,7 +165,6 @@ function App() {
           <Route path="/Footer" element={<Footer />} />
           <Route path="/Change Password" element={<SettingsPass />} />
           <Route path="/Soon" element={<Construct />} />
-
           <Route path="/View Locations" element={<MainMap 
                 locations={locations}
                 farms={farms}
@@ -183,7 +176,7 @@ function App() {
               />} />
           <Route path="/add-location" element={<AddLocation onAdd={addLocation} />}/>
           <Route path="/add-field" element={<AddField onAdd={addField}/>}/>
-           <Route path="/update-location/:id" element={<UpdateLocation locations={locations} farms={farms} onUpdate={handleUpdateLocation} />} />
+          <Route path="/update-location/:id" element={<UpdateLocation locations={locations} farms={farms} onUpdate={handleUpdateLocation} />} />
           <Route path='/update-farm/:id' element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />} />
         </Routes>
       </CustomProvider>

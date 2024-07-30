@@ -4,7 +4,7 @@ import faq from "./Images/Faq.jpeg";
 import Sidebar from './Sidebar';
 
 function Help() {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleSidebar = () => {

@@ -37,7 +37,7 @@ const Sidebar = () => {
             <div className="Settingsdiv-9">
               <div className="SettingsEditProfile">
                 <div className="SettingsEdit"><Link to='/Account'>Edit Profile</Link></div>
-                <div className="SettingsChangePass"><Link to='/ChangePassword'>Change Password</Link></div>
+                <div className="SettingsChangePass"><Link to='/Change Password'>Change Password</Link></div>
 
               </div>
               <div className="Settingsdiv-13">
@@ -46,7 +46,7 @@ const Sidebar = () => {
               </div>
             </div>
           </div>
-          <div className="Settingsdiv-3">
+          {/* <div className="Settingsdiv-3">
             <div className="SettingsAccount">
               <img loading="lazy" src={Notifications} className="Settingsimg-1" />
               <div className="AccountTxt">Notifications</div>
@@ -61,7 +61,7 @@ const Sidebar = () => {
                 <span className='Slider'/>
               </label>
             </div>
-          </div>
+          </div> */}
           <div className="Settingsdiv-3">
             <div className="SettingsAccount">
               <img loading="lazy" src={Theme} className="Settingsimg-1" />
