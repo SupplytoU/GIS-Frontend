@@ -12,7 +12,7 @@ const SettingsPass = ({ page }) => { // Add page prop to determine which page is
     newPassword: '',
     confirmPassword: ''
   });
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [isDark] = useLocalStorage("isDark", false);
 
   const toggleSidebar = () => {
@@ -36,12 +36,7 @@ const SettingsPass = ({ page }) => { // Add page prop to determine which page is
 
   return (
     <div className={`settings-account-container ${sidebarCollapsed ? 'collapsed' : ''}`}>
-      <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
-      {(page === 'ChangePassword') && (
-        <div className="sidebar-toggle" onClick={toggleSidebar}>
-          {sidebarCollapsed ? 'Open Sidebar' : 'Close Sidebar'}
-        </div>
-      )}
+        <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
       <div className="Accountdiv" data-theme={isDark ? "dark" : "light"}>
         <div className="AccountBody">
           <div className="Accountdiv-3">
