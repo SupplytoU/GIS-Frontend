@@ -9,13 +9,8 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward, IoIosLogOut, IoIosMenu } from "react-icons/io";
 
-const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const Sidebar = ({ collapsed, toggleSidebar }) => {
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
-
-  const toggleSidebar = () => {
-    setCollapsed(!collapsed);
-  };
 
   return (
     <>
@@ -38,7 +33,6 @@ const Sidebar = () => {
               <div className="SettingsEditProfile">
                 <div className="SettingsEdit"><Link to='/Account'>Edit Profile</Link></div>
                 <div className="SettingsChangePass"><Link to='/ChangePassword'>Change Password</Link></div>
-
               </div>
               <div className="Settingsdiv-13">
                 <Link to='/Account'><IoIosArrowForward className='Settingsimg-3'/></Link>

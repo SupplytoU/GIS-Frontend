@@ -4,7 +4,7 @@ import faq from "./Images/Faq.jpeg";
 import Sidebar from './Sidebar';
 
 function Help() {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleSidebar = () => {
@@ -24,7 +24,7 @@ function Help() {
   ];
 
   return (
-    <div className="help-container">
+    <div className={`help-container ${sidebarCollapsed ? 'collapsed' : ''}`}>
       <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
       <div className="faq-container">
         <div className="faq-header">
