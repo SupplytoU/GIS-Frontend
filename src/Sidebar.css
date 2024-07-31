@@ -94,7 +94,7 @@ body, html {
     margin-left: -21px;
   }
 
-  .Settingsdiv-27 a {
+  .Settingsdiv-27 {
     margin-left: 50px;
   }
 
@@ -380,10 +380,9 @@ a:visited {
   width: 25px;
   align-self: start;
 }
-.Settingsdiv-27{
+
+.Settingsdiv-27  {
   margin-left: 170px;
-}
-.Settingsdiv-27 a {
   display: flex;
   justify-content: end;
   padding-right: 20px;

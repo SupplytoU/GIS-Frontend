@@ -152,14 +152,13 @@ body, html {
   width: 25px;
   margin-left: 490px;
 }
-
-.EditIcon2 {
+.EditIcon2{
   color: var(--text-color);
-  margin-left: 400px;
   width: 25px;
+  margin-left: 380px;
 }
 
-.EditIcon:hover, .EditIcon2:hover {
+.EditIcon:hover,.EditIcon2 :hover{
   color: var(--secondary-text-color);
   cursor: pointer;
 }
@@ -180,7 +179,12 @@ body, html {
   background-color: #0f5b03a0;
   color: var(--text-color);
 }
-
+@media screen and (min-width:803px) {
+  .SettingsAccountBody {
+    width: fit-content;
+  }
+  
+}
 @media (max-width: 800px) {  
   .Account {
     font-size: 6vw;
@@ -217,12 +221,15 @@ body, html {
     border-radius: 5px;
   }
   
-  .EditIcon {
-    margin-left: 350px;
+  .EditIcon  {
+    margin-left: 300px;
+  }
+  .EditIcon2{
+    margin-left: 230px;
   }
 }
 
-@media screen and (max-width:681px) {
+@media screen and (max-width:641px) {
   .Account {
     font-size: 8vw;
   }
@@ -234,8 +241,11 @@ body, html {
     border-radius: 5px;
   }
   
-  .EditIcon {
+  .EditIcon,.EditIcon2  {
     margin-left: 260px;
+  }
+  .EditIcon2{
+    margin-left: 180px;
   }
 }
 
@@ -243,10 +253,13 @@ body, html {
   .EditIcon {
     margin-left: 100px;
   }
+  .EditIcon2{
+    margin-left: 0px;
+  }
 }
 
-@media screen and (max-width:350px) {
-  .EditIcon {
-    margin-left: 90px;
+@media screen and (max-width:345px) {
+  .EditIcon,.EditIcon2  {
+    margin-left: 0px;
   }
 }
