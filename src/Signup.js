@@ -4,10 +4,10 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
 import useLocalStorage from 'use-local-storage';
+import { useUserCreateMutation } from './redux/features/auth/authApiSlice';
+import Modal from './Modal'; // Import Modal componen
 import { useUserCreateMutation } from '../src/redux/features/auth/authApiSlice';
 import { ContinueWithGoogle } from './components/ContinueWithGoogle';
-
-const CLIENT_ID = '599325683287-m0dvd4mm77na25p7qfoldped6opvek4q.apps.googleusercontent.com';
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -20,7 +20,8 @@ function Signup() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
+  const navigate = useNavigate(); // Updated to navigate
 
   const validatePassword = (password, confirmPassword) => {
     if (password !== confirmPassword) {
@@ -69,6 +70,11 @@ function Signup() {
     document.getElementById('password').setCustomValidity('');
     document.getElementById('confirmPassword').setCustomValidity('');
 
+
+    setIsModalOpen(true); // Show modal when form is submitted
+
+    // Uncomment and adjust the following lines once sign-up logic is ready
+    /*
     userCreate({
       first_name: formData.firstname,
       last_name: formData.lastname,
@@ -80,6 +86,11 @@ function Signup() {
     }).catch((err) => {
       setError(err.message || 'An error occurred');
     });
+    */
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close modal function
   };
 
   const [isDark] = useLocalStorage("isDark", false);
@@ -181,6 +192,8 @@ function Signup() {
           </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} /> {/* Add Modal component */}
+    </div>
     </GoogleOAuthProvider>
   );
 }
