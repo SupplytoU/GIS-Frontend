@@ -4,6 +4,7 @@ import './SettingsAccount.css';
 import { MdOutlinePassword } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import useLocalStorage from "use-local-storage";
+import Modal from './Modal'; // Import Modal component
 
 const SettingsPass = ({ page }) => { // Add page prop to determine which page is active
   const [isEditable, setIsEditable] = useState(false);
@@ -14,6 +15,7 @@ const SettingsPass = ({ page }) => { // Add page prop to determine which page is
   });
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [isDark] = useLocalStorage("isDark", false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
@@ -29,14 +31,17 @@ const SettingsPass = ({ page }) => { // Add page prop to determine which page is
   };
 
   const handleSaveChanges = () => {
-    // Save changes logic here
-    console.log("Password changed:", formData);
+    setIsModalOpen(true); // Show modal when saving changes
     setIsEditable(false);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close modal function
   };
 
   return (
     <div className={`settings-account-container ${sidebarCollapsed ? 'collapsed' : ''}`}>
-        <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
+      <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
       <div className="Accountdiv" data-theme={isDark ? "dark" : "light"}>
         <div className="AccountBody">
           <div className="Accountdiv-3">
@@ -49,7 +54,7 @@ const SettingsPass = ({ page }) => { // Add page prop to determine which page is
           </div>
         </div>
         <div className='SettingsAccountBody'>
-          <div className="EditProfile2" onClick={handleEditClick}>
+          <div className="EditProfile" onClick={handleEditClick}>
             Change Password <CiEdit className="EditIcon2" />
           </div>
           <div className="Accountdiv-6">
@@ -84,7 +89,7 @@ const SettingsPass = ({ page }) => { // Add page prop to determine which page is
                 <div className="Accountdiv-9">{formData.newPassword}</div>
               )}
             </div>
-            <div className="Accountdiv-7">
+            <div className="Accountdiv-10">
               <div className="AccountFirstName">
                 Confirm Password
               </div>
@@ -110,6 +115,7 @@ const SettingsPass = ({ page }) => { // Add page prop to determine which page is
           )}
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} /> {/* Add Modal component */}
     </div>
   );
 };

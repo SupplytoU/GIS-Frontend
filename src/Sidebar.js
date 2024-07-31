@@ -8,9 +8,19 @@ import useLocalStorage from "use-local-storage";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward, IoIosLogOut, IoIosMenu } from "react-icons/io";
+import Modal from './Modal'; // Import Modal component
 
 const Sidebar = ({ collapsed, toggleSidebar }) => {
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
+
+  const handleLogoutClick = () => {
+    setIsModalOpen(true); // Show modal when logout is clicked
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close modal function
+  };
 
   return (
     <>
@@ -32,7 +42,6 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
               <div className="SettingsEditProfile">
                 <div className="SettingsEdit"><Link to='/Account'>Edit Profile</Link></div>
                 <div className="SettingsChangePass"><Link to='/Change Password'>Change Password</Link></div>
-
               </div>
               <div className="Settingsdiv-13">
                 <Link to='/Account'><IoIosArrowForward className='Settingsimg-3'/></Link>
@@ -78,14 +87,13 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
         </div>
         <div className='Settingsdiv-30'>
           <div className="Settingsdiv-29"><Link to="/">SUPPLY2U</Link></div>
-          <div className='Settingsdiv-27'>
-            <Link to="/Soon">
-              <IoIosLogOut className='LogoutImg'/>
-              <div className="Settingsdiv-28">Logout</div>
-            </Link>
+          <div className='Settingsdiv-27' onClick={handleLogoutClick}> {/* Change Link to div with onClick */}
+            <IoIosLogOut className='LogoutImg'/>
+            <div className="Settingsdiv-28">Logout</div>
           </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} /> {/* Add Modal component */}
     </>
   );
 }

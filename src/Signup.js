@@ -59,7 +59,6 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const passwordError = validatePassword(formData.password, formData.confirmPassword);
     if (passwordError) {
       document.getElementById('password').setCustomValidity(passwordError);
