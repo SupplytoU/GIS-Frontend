@@ -3,7 +3,21 @@ body, html {
   margin: 0;
 }
 
-.Account-container {
+.settings-account-container {
+  display: flex;
+  height: 100vh;
+  transition: width 0.3s ease;
+}
+
+.settings-account-container.collapsed .Accountdiv {
+  width: 100vw; /* Full width when sidebar is collapsed */
+}
+
+.settings-account-container:not(.collapsed) .Accountdiv {
+  width: 80vw; /* 75% width when sidebar is expanded */
+}
+
+.help-container {
   display: flex;
 }
 
@@ -11,41 +25,6 @@ body, html {
   width: 100%;
 }
 
-/* .help-container:not(.collapsed) .Accountdiv {
-  width: 75%;
-} */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  width: 25%;
-  height: 100vh;
-  background-color: var(--foreground-color);
-  color: var(--primary-text-color);
-  transition: transform 0.3s ease;
-  transform: translateX(-100%);
-  z-index: 10;
-}
-
-.sidebar.visible {
-  transform: translateX(0);
-}.sidebar {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  width: 25%;
-  height: 100vh;
-  background-color: var(--foreground-color);
-  color: var(--primary-text-color);
-  transition: transform 0.3s ease;
-  transform: translateX(-100%);
-  z-index: 10;
-}
-
-.sidebar.visible {
-  transform: translateX(0);
-}
-/* Account Container */
 .Accountdiv {
   font-family: 'Inter', sans-serif;
   display: flex;
@@ -54,12 +33,11 @@ body, html {
   background-color: var(--background-color);
   height: 100vh;
   transition: width 0.3s ease;
-  width: 100%;
   position: relative;
   padding-top: 0;
+  width: 75vw; /* Adjust width for non-collapsed state */
 }
 
-/* Account Body */
 .AccountBody {
   display: flex;
   justify-content: center;
@@ -161,32 +139,28 @@ body, html {
   margin-bottom: 15px;
 }
 
-.Accountdiv-9 {
+.Accountdiv-9, input[name="mail"], .input[name="firstName"], .input[name="lastName"] {
   width: 18rem;
   padding: 1.5vh;
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--text-color)!important;
   border-radius: 5px;
 }
+
 
 .EditIcon {
   color: var(--text-color);
   width: 25px;
   margin-left: 490px;
 }
-
-.EditIcon2 {
+.EditIcon2{
   color: var(--text-color);
-  margin-left: 400px;
   width: 25px;
+  margin-left: 380px;
 }
 
-.EditIcon:hover, .EditIcon2:hover {
+.EditIcon:hover,.EditIcon2 :hover{
   color: var(--secondary-text-color);
   cursor: pointer;
-}
-
-.input [classname='email'] {
-  color: var(--text-color);
 }
 
 .AccountSave {
@@ -205,76 +179,87 @@ body, html {
   background-color: #0f5b03a0;
   color: var(--text-color);
 }
-
-/* Media Queries */
-
-/* For tablets and smaller screens */
-@media (max-width: 1110px) {
-  .AccountBody, .SettingsAccountBody {
-    flex-direction: column;
-    padding: 1em;
-    margin-top: 0;
+@media screen and (min-width:803px) {
+  .SettingsAccountBody {
+    width: fit-content;
   }
- 
-  .Accountdiv {
-    margin-top: -120% !important;
-    height: 20vh;
-  }
-
-
+  
+}
+@media (max-width: 800px) {  
   .Account {
-    font-size: 1.5em;
+    font-size: 6vw;
   }
-
-  .EditProfile, .EditProfile2 {
-    font-size: 1.2em;
+  
+  .SettingsAccountBody {
+    width: 75vw;
   }
-
-  .AccountFirstName {
-    font-size: 1em;
+  
+  .EditProfile {
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--secondary-text-color);
+    margin-bottom: 30px;
+    margin-top: 2vh;
   }
-
+  
+  .EditProfile2 {
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--secondary-text-color);
+    margin-bottom: 30px;
+    margin-top: 2vh;
+  }
+  
   .Accountdiv-6 {
     gap: 10px;
   }
-
+  
   .Accountdiv-9 {
-    width: 30vw;
+    width:30vw;
     padding: 1.5vh;
     border: 1px solid var(--text-color);
     border-radius: 5px;
   }
-
-  .EditIcon {
-    margin-left: 350px;
+  
+  .EditIcon  {
+    margin-left: 300px;
+  }
+  .EditIcon2{
+    margin-left: 230px;
   }
 }
 
-@media screen and (max-width: 681px) {
+@media screen and (max-width:641px) {
   .Account {
     font-size: 8vw;
   }
-
+  
   .Accountdiv-9 {
-    width: 30vw;
+    width:30vw;
     padding: 1.5vh;
     border: 1px solid var(--text-color);
     border-radius: 5px;
   }
-
-  .EditIcon {
+  
+  .EditIcon,.EditIcon2  {
     margin-left: 260px;
+  }
+  .EditIcon2{
+    margin-left: 180px;
   }
 }
 
-@media screen and (max-width: 561px) {
+@media screen and (max-width:561px) {
   .EditIcon {
     margin-left: 100px;
   }
+  .EditIcon2{
+    margin-left: 0px;
+  }
 }
 
-@media screen and (max-width: 350px) {
-  .EditIcon {
-    margin-left: 90px;
+@media screen and (max-width:345px) {
+  .EditIcon,.EditIcon2  {
+    margin-left: 0px;
   }
 }

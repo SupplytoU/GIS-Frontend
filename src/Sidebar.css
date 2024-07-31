@@ -1,6 +1,11 @@
+body, html {
+  height: 100vh;
+  margin: 0;
+}
+
 .Settingsdiv {
   display: flex;
-  width: 25%;
+  width: 20%;
   height: 100vh;
   flex-direction: column;
   position: relative;
@@ -15,9 +20,10 @@
   overflow: hidden;
   background: transparent;
 }
+
 @media (max-width: 1100px){
-  .Settings{
-    margin-left: 13px ;
+  .Settings {
+    margin-left: 13px;
   }
 }
 
@@ -31,9 +37,29 @@
   }
 }
 
+@media (max-width: 768px) {
+  .Settingsdiv {
+    width: 50%;
+  }
+
+  .Settingsdiv.collapsed {
+    width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .Settingsdiv {
+    width: 70%;
+  }
+
+  .Settingsdiv.collapsed {
+    width: 0;
+  }
+}
+
 @media (max-width: 390px) {
   .Settingsdiv {
-    width: 36.5%;
+    width: 100%;
     left: 0;
     position: relative;
   }
@@ -68,7 +94,7 @@
     margin-left: -21px;
   }
 
-  .Settingsdiv-27 a {
+  .Settingsdiv-27 {
     margin-left: 50px;
   }
 
@@ -114,7 +140,7 @@
 }
 
 .Settings {
-  margin-top: 3%;
+  margin-top: 2vh;
   margin-bottom: 1.5vh;
   margin-left: 30px;
   font: 32px Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
@@ -135,36 +161,6 @@
   align-items: center;
 }
 
-/* .sidebar-toggle {
-  color: var(--primary-text-color);
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  font-size: 22px;
-  z-index: 4;
-  cursor: pointer;
-  background-color: var(--foreground-color);
-  border: none;
-  padding: 10px;
-}
-
-.sidebar-toggle:hover {
-  color: #673927;
-} */
-
-/* .sidebar {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  width: 25%;
-  height: 100vh;
-  background-color: var(--foreground-color);
-  color: var(--primary-text-color);
-  transition: transform 0.3s ease;
-  transform: translateX(-100%);
-  z-index: 10;
-} */
-
 .sidebar.visible {
   transform: translateX(0);
 }
@@ -179,7 +175,7 @@
 .sidebar-toggle {
   position: fixed;
   top: 15px;
-  left:20px;
+  left: 20px;
   font-size: 22px;
   color: rgb(117, 112, 112);
   cursor: pointer;
@@ -191,7 +187,6 @@
   color: #3B6727;
 }
 
-
 .SettingsAccount .AccountTxt {
   font-family: Koh Santepheap, -apple-system, Roboto, Helvetica, sans-serif;
   flex-grow: 1;
@@ -199,7 +194,7 @@
   font-weight: 300;
 }
 
-.SettingsAccount{
+.SettingsAccount {
   margin-top: 50px;
 }
 
@@ -255,6 +250,10 @@ a:visited {
   width: 25px;
   margin-top: 29%;
   color: var(--primary-text-color);
+}
+.Settings-toggle{
+  margin-right: 80px;
+  margin-top: -50px;
 }
 
 .Settingsimg-3:hover {
@@ -382,15 +381,16 @@ a:visited {
   align-self: start;
 }
 
-.Settingsdiv-27 a {
+.Settingsdiv-27  {
+  margin-left: 170px;
   display: flex;
-  margin-top: 33%;
-  gap: 6px;
+  justify-content: end;
+  padding-right: 20px;
+  gap: 5px;
   font-size: 15px;
   color: var(--secondary-text-color);
   font-weight: 600;
   white-space: nowrap;
-  margin-left: 65%;
   text-decoration: none;
 }
 
@@ -408,16 +408,18 @@ a:visited {
   color: var(--text-color);
 }
 
-.Settingsdiv-29 {
-  margin-top: 25vh;
+.Settingsdiv-29,.Settingsdiv-27 {
   position: absolute;
+  bottom: 0;
+  padding-bottom: 20px;
 }
 
 .Settingsdiv-29 a {
   color: var(--text-color);
   width: 10%;
-  font: 600 17px KoHo, sans-serif;
+  font: 600 16px KoHo, sans-serif;
   text-decoration: none;
+  margin-left: 15px;
 }
 
 .Switch {
@@ -425,7 +427,6 @@ a:visited {
   display: inline-block;
   width: 34px;
   height: 20px;
-
 }
 
 .Switch input {
