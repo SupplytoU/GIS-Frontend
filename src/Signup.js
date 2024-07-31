@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
-import google from './Images/Google.png';
 import useLocalStorage from 'use-local-storage';
-import { useUserCreateMutation } from './redux/features/auth/authApiSlice';
+import { useUserCreateMutation } from '../src/redux/features/auth/authApiSlice';
+
+const CLIENT_ID = '599325683287-m0dvd4mm77na25p7qfoldped6opvek4q.apps.googleusercontent.com';
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -15,9 +17,9 @@ function Signup() {
     confirmPassword: '',
   });
 
-  const [showPassword, setShowPassword] = useState(false); 
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Updated to navigate
+  const navigate = useNavigate();
 
   const validatePassword = (password, confirmPassword) => {
     if (password !== confirmPassword) {
@@ -64,11 +66,9 @@ function Signup() {
       return;
     }
 
-    // Clear custom validity before form submission
     document.getElementById('password').setCustomValidity('');
     document.getElementById('confirmPassword').setCustomValidity('');
 
-    // Submit form data
     userCreate({
       first_name: formData.firstname,
       last_name: formData.lastname,
@@ -82,104 +82,175 @@ function Signup() {
     });
   };
 
+  const generateState = () => {
+    return btoa(crypto.getRandomValues(new Uint32Array(1)).toString());
+  };
+
+  const handleGoogleSuccess = async ({ code, state, navigate }) => {
+    try {
+      const storedState = sessionStorage.getItem('oauth_state');
+  
+      if (!code || !state) {
+        throw new Error('Authorization code or state not found');
+      }
+  
+      if (state !== storedState) {
+        throw new Error('State parameter does not match');
+      }
+  
+      const url = 'http://localhost:8000/api/o/google-oauth2/';
+  
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ code, state }) // Send the authorization code and state to your backend
+      });
+  
+      const data = await res.json();
+      console.log('Backend response:', data);
+  
+      if (data.success) {
+        navigate('/');
+      } else {
+        // Handle error response from backend
+        setError(data.message || 'An error occurred');
+      }
+    } catch (error) {
+      console.error('Error during Google Sign-In:', error);
+      // Handle client-side error
+      setError('An error occurred during Google Sign-In');
+    }
+  };
+  
+  
+
+  const handleGoogleFailure = (error) => {
+    console.error('Google Sign-In Error:', error);
+    setError('Google Sign-In failed. Please try again.');
+  };
+
   const [isDark] = useLocalStorage("isDark", false);
 
+  const initiateGoogleSignIn = () => {
+    const state = generateState();
+    sessionStorage.setItem('oauth_state', state);
+  
+    const clientId = {CLIENT_ID};
+    const redirectUri = 'http://localhost:3000/auth/google'; 
+    const scope = 'profile email';
+    const responseType = 'code';
+  
+    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&state=${state}`;
+  
+    window.location.href = googleAuthUrl; 
+  };
+
   return (
-    <div className='Logindiv' data-theme={isDark ? "dark" : "light"}>
-      <div className="LoginContainer">
-        <div className="image-container">
-          <img loading="lazy" src={img} alt="Signup" className="Signup-img" />
-          <div className="overlay">
-            <div className="login-section">
-              <div className="question">Have An Account?</div>
-              <Link to="/login" className="login-button">
-                LOG IN
-              </Link>
+    <GoogleOAuthProvider clientId={CLIENT_ID}>
+      <div className='Logindiv' data-theme={isDark ? "dark" : "light"}>
+        <div className="LoginContainer">
+          <div className="image-container">
+            <img loading="lazy" src={img} alt="Signup" className="Signup-img" />
+            <div className="overlay">
+              <div className="login-section">
+                <div className="question">Have An Account?</div>
+                <Link to="/login" className="login-button">
+                  LOG IN
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="Signupcolumn-2">
-          <form className="Auth" onSubmit={handleSubmit}>
-            <h2 className="signup-title">Sign Up</h2>
-            <div className='GSect'>
-              <div className="form-group">
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  id="firstname"
-                  className="form-input"
-                  value={formData.firstname}
-                  onChange={handleInputChange}
-                  required
-                />
+          <div className="Signupcolumn-2">
+            <form className="Auth" onSubmit={handleSubmit}>
+              <h2 className="signup-title">Sign Up</h2>
+              <div className='GSect'>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    id="firstname"
+                    className="form-input"
+                    value={formData.firstname}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    id="lastname"
+                    className="form-input"
+                    value={formData.lastname}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    id="email"
+                    className="form-input"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    id="password"
+                    className="form-input"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Confirm Password"
+                    id="confirmPassword"
+                    className="form-input"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="show-password-container">
+                  <input
+                    type="checkbox"
+                    id="showPassword"
+                    checked={showPassword}
+                    onChange={() => setShowPassword(prev => !prev)}
+                  />
+                  <label htmlFor="showPassword">Show Password</label>
+                </div>
+                <button type="submit" className="signup-button">
+                  SIGN UP
+                </button>
               </div>
-              <div className="form-group">
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  id="lastname"
-                  className="form-input"
-                  value={formData.lastname}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  id="email"
-                  className="form-input"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  id="password"
-                  className="form-input"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Confirm Password"
-                  id="confirmPassword"
-                  className="form-input"
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="show-password-container">
-                <input
-                  type="checkbox"
-                  id="showPassword"
-                  checked={showPassword}
-                  onChange={() => setShowPassword(prev => !prev)}
-                />
-                <label htmlFor="showPassword">Show Password</label>
-              </div>
-              <button type="submit" className="signup-button">
-                SIGN UP
-              </button>
+            </form>
+            <div className="OR">OR</div>
+            <div className="SigninWithGoogle">
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onFailure={handleGoogleFailure}
+                useOneTap
+                flow="auth-code"
+                cookiePolicy={'single_host_origin'}
+                onClick={initiateGoogleSignIn} // Set the state when the Google Sign-In button is clicked
+              />
             </div>
-          </form>
-          <div className="OR">OR</div>
-          <div className="SigninWithGoogle">
-            <img loading="lazy" src={google} className="Loginimg-2" alt="Google" />
-            <div className="Google"><Link to="/Soon">Sign up with Google</Link></div>
+            <div className='Signup2'>Have an account?<span className='SignupSpan'><Link to="/Login"> Login here</Link></span></div>
           </div>
-          <div className='Signup2'>Have an account?<span className='SignupSpan'><Link to="/Login"> Login here</Link></span></div>
         </div>
       </div>
-    </div>
+    </GoogleOAuthProvider>
   );
 }
 
