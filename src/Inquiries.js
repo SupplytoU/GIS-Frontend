@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './Inquiries.css';
-import inquiriesImg from "./Images/Inquiries.png";
+import inquiriesImg from "./Images/a.jpg";
 import mail from "./Images/Mail.png";
 import phone from "./Images/Phone.png";
 import email from "./Images/Email.png";
@@ -18,7 +18,7 @@ function Inquiries() {
     message: "",
   });
 
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -34,88 +34,96 @@ function Inquiries() {
     console.log("Form data submitted:", formData);
   };
 
-  const handleSidebarToggle = () => {
-    setIsSidebarCollapsed(!isSidebarCollapsed);
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
   };
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
   return (
-    <div className={`container1 ${isSidebarCollapsed ? 'collapsed' : ''}`}>
-      <Sidebar onToggle={handleSidebarToggle} />
+    <div className={`container1 ${sidebarCollapsed ? 'collapsed' : ''}`}>
+      <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
       <div className="inquiries-container">
-        <img src={inquiriesImg} alt="Inquiries" className="inquiries-img" />
+      <img src={inquiriesImg} alt="Background" className="inquiries-img" />
+        
         <div className="form-container">
+      
           <div className="form-layout">
             <div className="message-column">
               <div className="message-box">
                 <div className="send-message-header">
-                  <div className="send-message-title">Send Us A Message</div>
-                  <img src={mail} alt="Mail" className="icon-mail" />
+                  <span className="send-message-title">Send us a message</span>
+                  <img src={mail} alt="Mail icon" className="icon-mail" />
                 </div>
-                <div className="name-fields">
-                  <div className="field-container">
-                    <input
-                      id="firstName"
-                      className="form-fields"
-                      type="message"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      placeholder="First name"
-                    />
-                    <div className="Line2"></div>
+                <form onSubmit={handleSubmit}>
+                  <div className="name-fields">
+                    <div className="field-container">
+                      <label className="field-label" htmlFor="firstName">First Name</label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        className="form-fields"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        placeholder="First Name"
+                      />
+                      <div className="Line2"></div>
+                    </div>
+                    <div className="field-container">
+                      <label className="field-label" htmlFor="lastName">Last Name</label>
+                      <input
+                        type="text"
+                        id="lastName"
+                        className="form-fields"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        placeholder="Last Name"
+                      />
+                         <div className="Line5"></div>
+                    </div>
                   </div>
                   <div className="field-container">
+                    <label className="field-label" htmlFor="email">Email</label>
                     <input
-                      id="lastName"
+                      type="email"
+                      id="email"
                       className="form-fields"
-                      type="message"
-                      value={formData.lastName}
+                      value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="Last Name"
+                      placeholder="Email"
                     />
-                    <div className="Line5"></div>
+                        <div className="Line3"></div>
                   </div>
-                </div>
-                <div className="field-container">
-                  <input
-                    id="email"
-                    className="form-fields"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="Email"
-                  />
-                  <div className="Line3"></div>
-                </div>
-                <div className="field-container">
-                  <input
-                    id="phone"
-                    className="form-fields"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="Phone Number"
-                  />
-                  <div className="Line6"></div>
-                </div>
-                <div className="field-container">
-                  <textarea
-                    id="message"
-                    className="form-fields"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Message"
-                  />
-                  <div className="Line4"></div>
-                </div>
-                <button className="send-button" onClick={handleSubmit}>
-                  Send
-                </button>
+                  <div className="field-container">
+                    <label className="field-label" htmlFor="phone">Phone</label>
+                    <input
+                      type="text"
+                      id="phone"
+                      className="form-fields"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="Phone"
+                    />
+                    <div className="Line6"></div>
+                  </div>
+                  <div className="field-container">
+                    <label className="field-label" htmlFor="message">Message</label>
+                    <textarea
+                      id="message"
+                      className="form-fields"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Message"
+                    />
+                        <div className="Line4"></div>
+                  </div>
+                  <button type="submit" className="send-button">Send</button>
+                </form>
               </div>
             </div>
             <div className="contact-column">
               <div className="contact-box">
-                <div className="contact-header">Get Connected with Us</div>
+                <div className="contact-header">Contact Information</div>
+                <div className="Line2"></div>
                 <div className="contact-details">
                   <div className="contact-info">
                     <img src={phone} alt="Phone" className="contact-icon" />
@@ -126,8 +134,10 @@ function Inquiries() {
                     supply2u@outlook.com
                   </div>
                   <div className="contact-info">
-                    <img src={web} alt="Web" className="contact-icon" />
-                    supply2u.jhubafrica.com
+                  <img src={web} alt="Web" className="contact-icon" />
+                 <a href="https://supply2u.jhubafrica.com" target="_blank" rel="noopener noreferrer">
+                  supply2u.jhubafrica.com
+                 </a>
                   </div>
                   <div className="contact-info">
                     <img src={location} alt="Location" className="contact-icon" />
