@@ -4,6 +4,7 @@ import './SettingsAccount.css';
 import { CiEdit } from "react-icons/ci";
 import { VscAccount } from "react-icons/vsc";
 import useLocalStorage from "use-local-storage";
+import Modal from './Modal';
 
 const SettingsAccount = ({ page }) => {
   const [isEditable, setIsEditable] = useState(false);
@@ -14,6 +15,7 @@ const SettingsAccount = ({ page }) => {
   });
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [isDark] = useLocalStorage("isDark", false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
@@ -29,8 +31,12 @@ const SettingsAccount = ({ page }) => {
   };
 
   const handleSaveChanges = () => {
-    console.log("Changes saved:", formData);
+    setIsModalOpen(true);
     setIsEditable(false);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -88,7 +94,7 @@ const SettingsAccount = ({ page }) => {
                 <input
                   type="email"
                   className="Accountdiv-9"
-                  name="mail"
+                  name="email"
                   value={formData.email}
                   onChange={handleChange}
                 />
@@ -106,6 +112,7 @@ const SettingsAccount = ({ page }) => {
           )}
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
