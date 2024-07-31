@@ -8,11 +8,12 @@ import useLocalStorage from 'use-local-storage';
 import { useJwtCreateMutation } from './redux/features/auth/authApiSlice';
 import { useDispatch } from 'react-redux';
 import { setAuth } from './redux/features/auth/authSlice';
+import { ContinueWithGoogle } from './components/ContinueWithGoogle';
 
 
 function Login() {
   const emailRef = useRef(null);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,7 +46,7 @@ function Login() {
     login({email, password}).unwrap().then((result) => {
       console.log(result);
       dispatch(setAuth(true));
-      history.push('/');
+      navigate('/');
     }).catch((err) => {
       console.log(error);
     });;
@@ -119,7 +120,7 @@ function Login() {
                   <div className="Or">OR</div>
                   <div className="SigninWithGoogle">
                     <img loading="lazy" src={google} className="Loginimg-2" alt="Google" />
-                    <div className="Google"><Link to="/Soon">Sign in with Google</Link></div>
+                    <div className="Google"><ContinueWithGoogle/></div>
                   </div>
                   
                 </>
