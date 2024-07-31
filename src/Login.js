@@ -8,11 +8,13 @@ import useLocalStorage from 'use-local-storage';
 import { useJwtCreateMutation } from './redux/features/auth/authApiSlice';
 import { useDispatch } from 'react-redux';
 import { setAuth } from './redux/features/auth/authSlice';
-import Modal from './Modal'; // Import Modal component
+import { ContinueWithGoogle } from './components/ContinueWithGoogle';
+import Modal from './Modal'; 
+
 
 function Login() {
   const emailRef = useRef(null);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,7 +52,7 @@ function Login() {
     login({email, password}).unwrap().then((result) => {
       console.log(result);
       dispatch(setAuth(true));
-      history.push('/');
+      navigate('/');
     }).catch((err) => {
       console.log(error);
     });
@@ -119,7 +121,7 @@ function Login() {
                   <div className="Or">OR</div>
                   <div className="SigninWithGoogle" onClick={() => setIsModalOpen(true)}> {/* Show modal when clicked */}
                     <img loading="lazy" src={google} className="Loginimg-2" alt="Google" />
-                    <div className="Google">Sign in with Google</div>
+                    <div className="Google"><ContinueWithGoogle/></div>
                   </div>
                 </>
               ) : (
