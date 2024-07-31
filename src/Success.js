@@ -4,15 +4,15 @@ import tickImg from './Images/Tick.jpeg';
 import './Success.css';
 
 function Success() {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      history.push('/login');
+      navigate('/login');
     }, 1500); // 2-second delay
 
     return () => clearTimeout(timer);
-  }, [history]);
+  }, [navigate]);
 
   return (
     <div className="success-container">
