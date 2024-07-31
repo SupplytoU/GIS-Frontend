@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, FeatureGroup, LayersControl } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
 import Geocoder from './Geocoder';
-import './crudForm.css'
+import Modal from './Modal'; // Import your Modal component
+import './crudForm.css';
 
 const { BaseLayer } = LayersControl;
 
@@ -14,10 +15,9 @@ const AddLocation = ({ onAdd }) => {
   const [longitude, setLongitude] = useState('');
   const [region, setRegion] = useState('');
   const [description, setDescription] = useState('');
-  const [farms, setFarms] = useState([]);
   const [farmName, setFarmName] = useState('');
-  const [notification, setNotification] = useState('');
-  
+  const [farms, setFarms] = useState([]); // Define farms state
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const mapRef = useRef();
   const markerRef = useRef();
 
@@ -25,7 +25,7 @@ const AddLocation = ({ onAdd }) => {
     const fetchFarms = async () => {
       const res = await fetch('http://localhost:5000/farms');
       const data = await res.json();
-      setFarms(data);
+      setFarms(data); // Update farms state
     };
 
     fetchFarms();
@@ -60,6 +60,7 @@ const AddLocation = ({ onAdd }) => {
       farmName: label === 'Farm' ? farmName : undefined,
     });
 
+    // Reset form fields
     setId('');
     setName('');
     setLabel('');
@@ -68,10 +69,10 @@ const AddLocation = ({ onAdd }) => {
     setRegion('');
     setDescription('');
     setFarmName('');
-    setNotification('Location details saved successfully!');
     
-    setTimeout(() => setNotification(''), 5000); // Clear the notification after 5 seconds
-
+    // Open modal to show success message
+    setIsModalOpen(true);
+    
     if (markerRef.current) {
       markerRef.current.remove(); // Remove the marker from the map
       markerRef.current = null;
@@ -86,7 +87,6 @@ const AddLocation = ({ onAdd }) => {
         <div className="form-sidebar-container">
           <form className="add-location-form" onSubmit={onSubmit}>
             <h2 className='LocationTitle'>Enter Location Details</h2>
-            {notification && <div className="notification">{notification}</div>}
             <div className="form-control">
               <label>Location Name</label>
               <input
@@ -217,6 +217,9 @@ const AddLocation = ({ onAdd }) => {
           </FeatureGroup>
         </MapContainer>
       </div>
+
+      {/* Modal to show success message */}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };
