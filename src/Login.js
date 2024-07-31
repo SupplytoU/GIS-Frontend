@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import google from './Images/Google.png';
 import mark from './Images/mark.png'
@@ -8,7 +8,7 @@ import useLocalStorage from 'use-local-storage';
 import { useJwtCreateMutation } from './redux/features/auth/authApiSlice';
 import { useDispatch } from 'react-redux';
 import { setAuth } from './redux/features/auth/authSlice';
-
+import Modal from './Modal'; // Import Modal component
 
 function Login() {
   const emailRef = useRef(null);
@@ -16,7 +16,9 @@ function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');  
+  const [success, setSuccess] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
 
   useEffect(() => {
     if (emailRef.current) {
@@ -42,29 +44,28 @@ function Login() {
       setError('Please enter a valid email address.');
       return;
     }
+    setIsModalOpen(true); // Show modal when form is submitted
+    // Uncomment and adjust the following lines once login logic is ready
+    /*
     login({email, password}).unwrap().then((result) => {
       console.log(result);
       dispatch(setAuth(true));
       history.push('/');
     }).catch((err) => {
       console.log(error);
-    });;
-    // console.log(email, password);
-    // setEmail('');
-    // setPassword('');
-    // setSuccess(true);
-
-    // // Redirect to home page after a delay to show success message
-    // setTimeout(() => {
-    //   history.push('/');
-    // }, 2000); // 2-second delay
+    });
+    */
   };
 
-  const [isDark]=useLocalStorage("isDark",false);
+  const closeModal = () => {
+    setIsModalOpen(false); // Close modal function
+  };
+
+  const [isDark] = useLocalStorage("isDark", false);
 
   return (
     <>
-      <div className="Logindiv" data-theme={isDark?"dark":"light"}>
+      <div className="Logindiv" data-theme={isDark ? "dark" : "light"}>
         <div className="LoginContainer">
           <div className="Logincolumn">
             <div className="CreateAccount">
@@ -137,7 +138,9 @@ function Login() {
           </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} /> {/* Add Modal component */}
     </>
   );
 }
+
 export default Login;

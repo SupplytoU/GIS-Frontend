@@ -5,6 +5,7 @@ import img from './Images/Signup.jpeg';
 import google from './Images/Google.png';
 import useLocalStorage from 'use-local-storage';
 import { useUserCreateMutation } from './redux/features/auth/authApiSlice';
+import Modal from './Modal'; // Import Modal component
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ function Signup() {
 
   const [showPassword, setShowPassword] = useState(false); 
   const [error, setError] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
   const navigate = useNavigate(); // Updated to navigate
 
   const validatePassword = (password, confirmPassword) => {
@@ -68,7 +70,10 @@ function Signup() {
     document.getElementById('password').setCustomValidity('');
     document.getElementById('confirmPassword').setCustomValidity('');
 
-    // Submit form data
+    setIsModalOpen(true); // Show modal when form is submitted
+
+    // Uncomment and adjust the following lines once sign-up logic is ready
+    /*
     userCreate({
       first_name: formData.firstname,
       last_name: formData.lastname,
@@ -80,6 +85,11 @@ function Signup() {
     }).catch((err) => {
       setError(err.message || 'An error occurred');
     });
+    */
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close modal function
   };
 
   const [isDark] = useLocalStorage("isDark", false);
@@ -179,6 +189,7 @@ function Signup() {
           <div className='Signup2'>Have an account?<span className='SignupSpan'><Link to="/Login"> Login here</Link></span></div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} /> {/* Add Modal component */}
     </div>
   );
 }
