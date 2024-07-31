@@ -1,6 +1,7 @@
 import React from 'react';
 import './Modal.css';
 import useLocalStorage from 'use-local-storage';
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 const Modal = ({ isOpen, onClose }) => {
   // Move the hook call to the top level of the component
@@ -12,8 +13,8 @@ const Modal = ({ isOpen, onClose }) => {
   return (
     <div className="modal-overlay" data-theme={isDark ? "dark" : "light"}>
       <div className="modal-content">
-        <h2>Feature in Development</h2>
-        <p>This functionality is still in progress. Stay tuned for updates!</p>
+        <div className='checkmark'><IoIosCheckmarkCircleOutline /></div>
+        <p>Location details saved successfully!</p>
         <button onClick={onClose}>Close</button>
       </div>
     </div>
