@@ -3,33 +3,35 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
 .help-container {
   display: flex;
 }
+
 .faq-container {
   background-color: #d5e7fb;
   display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
-  height: 110vh;
-  /* left: 25%; */
-  /* margin-top: -47.56%; */
+  height: auto;
   align-items: center;
-  /* padding-bottom: 4px; */
   
 }
+
 .help-container.collapsed .faq-container {
   width: 100%;
 }
 
+.help-container:not(.collapsed) .faq-container {
+  width: 80vw;
+}
 
 @media (max-width: 991px) {
   .faq-container {
     margin-top: -80%;
-    height: auto;
+    height: 100vh;
     padding: 0;
-  
   }
 }
 
@@ -47,7 +49,6 @@ body {
 @media (max-width: 991px) {
   .faq-header {
     max-width: 100%;
-    
   }
 }
 
@@ -90,15 +91,21 @@ body {
 
 @media (max-width: 991px) {
   .faq-img {
-    width: 100%;
+    width: 50%;
     margin-right: 0;
- 
+    margin-top: 640px;
   }
+}
+@media (max-width: 430px) {
+.faq-img{
+  width: 30%;
+  margin-top: 380px;
+}
 }
 
 @media (max-width: 390px) {
   .faq-img {
-    width: 100%;
+    width: 40%;
     left: 0;
     position: relative;
     object-fit: fill;
@@ -166,10 +173,17 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 760px) {
   .faq-item {
     max-width: 100%;
-    flex-wrap: wrap;
+    /* flex-wrap: nowrap;  */
+  }
+  .question1 {
+    margin: 0; /* Remove margins for proper alignment */
+    flex: 1;
+  }
+  .drop-down{
+    visibility: hidden;
   }
 }
 
@@ -186,7 +200,7 @@ body {
 
 @media (max-width: 991px) {
   .question1 {
-     margin-right: 5px;
+    margin-right: 5px;
   }
 }
 
@@ -220,51 +234,8 @@ body {
   background: #949393; /* Color of the scrollbar thumb when hovered */
 }
 
-/* Sidebar and Toggle Button */
-
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  width: 25%;
-  height: 100vh;
-  background-color: var(--foreground-color);
-  color: var(--primary-text-color);
-  transition: transform 0.3s ease;
-  transform: translateX(-100%);
-  z-index: 10;
-}
-
-.sidebar.visible {
-  transform: translateX(0);
-}
-
-@media (min-width: 992px) {
-  .sidebar {
-    transform: translateX(0);
-  }
-}
-
-/* Sidebar Toggle Button */
-.sidebar-toggle {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-size: 22px;
-  color: white;
-  cursor: pointer;
-  z-index: 11;
-  display: none;
-}
-
-.sidebar-toggle:hover {
-  color: #3B6727;
-}
-
 @media (max-width: 991px) {
-  .sidebar-toggle {
-    display: block;
-  }
+
 }
 
 /* Content Styles */
@@ -274,7 +245,5 @@ body {
 }
 
 @media (min-width: 992px) {
-  .content {
-    margin-left: 25%;
-  }
+
 }

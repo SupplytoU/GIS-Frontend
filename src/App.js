@@ -8,10 +8,11 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { CustomProvider } from './redux/provider.js';
 import { Icon, divIcon, point } from 'leaflet';
 
+
 import Login from './Login.js';
 import Reset from './Reset.js';
-import PasswordChanged from "./PasswordChanged.js";
-import Help from "./Help.js";
+import PasswordChanged from './PasswordChanged.js';
+import Help from './Help.js';
 import Signup from './Signup.js';
 import Forgot from './Forgot.js';
 import Success from './Success.js';
@@ -23,20 +24,20 @@ import Track from './OurSolutions/Track.js';
 import Analytics from './OurSolutions/Analytics.js';
 import SideBar from './Sidebar.js';
 import Section1 from './Section1.js';
-import Inquries from "./Inquiries.js";
+import Inquries from './Inquiries.js';
 import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
+
 // MAPPING
-import AddLocation from './Mapping/components/AddLocation';
+import AddLocation from './Mapping/components/AddLocation.js';
 import AddField from './Mapping/components/AddField';
 import MainMap from './Mapping/components/MainMap';
 import UpdateLocation from './Mapping/components/UpdateLocation';
 import UpdateFarm from './Mapping/components/UpdateFarm';
 import ActivationPage from './ActivationPage';
 import GoogleRedirect from '../src/components/GoogleRedirect.js'; // Import the GoogleRedirect component
-
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -61,6 +62,7 @@ function App() {
       });
 
     axios.get('http://localhost:8000/api/fieldmapping/farmers')
+
       .then(response => {
         setFarmers(response.data);
       })
