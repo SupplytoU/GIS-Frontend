@@ -178,6 +178,7 @@ function App() {
           <Route path="/add-location" element={<AddLocation onAdd={addLocation} />} />
           <Route path="/add-field" element={<AddField onAdd={addField} />} />
           <Route path="/update-location/:id" element={<UpdateLocation locations={locations} farms={farms} onUpdate={handleUpdateLocation} />} />
+          {/* <Route path="/activate" element={<Success />} /> */}
           <Route path='/update-farm/:id' element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />} />
         </Routes>
       </CustomProvider>

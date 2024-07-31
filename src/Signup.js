@@ -17,7 +17,7 @@ function Signup() {
 
   const [showPassword, setShowPassword] = useState(false); 
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Updated to navigate
+  const navigate = useNavigate(); // Correct use of navigate
 
   const validatePassword = (password, confirmPassword) => {
     if (password !== confirmPassword) {
@@ -56,7 +56,6 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const passwordError = validatePassword(formData.password, formData.confirmPassword);
     if (passwordError) {
       document.getElementById('password').setCustomValidity(passwordError);
