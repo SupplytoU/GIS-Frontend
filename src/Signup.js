@@ -5,8 +5,7 @@ import './Signup.css';
 import img from './Images/Signup.jpeg';
 import useLocalStorage from 'use-local-storage';
 import { useUserCreateMutation } from './redux/features/auth/authApiSlice';
-import Modal from './Modal'; // Import Modal componen
-import { useUserCreateMutation } from '../src/redux/features/auth/authApiSlice';
+import Modal from './Modal'; // Import Modal component
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -57,7 +56,7 @@ function Signup() {
 
   const [userCreate] = useUserCreateMutation();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const passwordError = validatePassword(formData.password, formData.confirmPassword);
     if (passwordError) {
@@ -69,23 +68,20 @@ function Signup() {
     document.getElementById('password').setCustomValidity('');
     document.getElementById('confirmPassword').setCustomValidity('');
 
-
     setIsModalOpen(true); // Show modal when form is submitted
 
-    // Uncomment and adjust the following lines once sign-up logic is ready
-    /*
-    userCreate({
-      first_name: formData.firstname,
-      last_name: formData.lastname,
-      email: formData.email,
-      password: formData.password,
-      re_password: formData.confirmPassword
-    }).unwrap().then((result) => {
+    try {
+      await userCreate({
+        first_name: formData.firstname,
+        last_name: formData.lastname,
+        email: formData.email,
+        password: formData.password,
+        re_password: formData.confirmPassword
+      }).unwrap();
       navigate('/Success');
-    }).catch((err) => {
+    } catch (err) {
       setError(err.message || 'An error occurred');
-    });
-    */
+    }
   };
 
   const closeModal = () => {
@@ -96,7 +92,7 @@ function Signup() {
     return btoa(crypto.getRandomValues(new Uint32Array(1)).toString());
   };
 
-  const handleGoogleSuccess = async ({ code, state, navigate }) => {
+  const handleGoogleSuccess = async ({ code, state }) => {
     try {
       const storedState = sessionStorage.getItem('oauth_state');
   
@@ -133,8 +129,6 @@ function Signup() {
       setError('An error occurred during Google Sign-In');
     }
   };
-  
-  
 
   const handleGoogleFailure = (error) => {
     console.error('Google Sign-In Error:', error);
@@ -147,7 +141,7 @@ function Signup() {
     const state = generateState();
     sessionStorage.setItem('oauth_state', state);
   
-    const clientId = {CLIENT_ID};
+    const clientId = 'YOUR_CLIENT_ID'; // Replace with your actual client ID
     const redirectUri = 'http://localhost:3000/auth/google'; 
     const scope = 'profile email';
     const responseType = 'code';
@@ -158,7 +152,7 @@ function Signup() {
   };
 
   return (
-    <GoogleOAuthProvider clientId={CLIENT_ID}>
+    <GoogleOAuthProvider clientId='YOUR_CLIENT_ID'> {/* Replace with your actual client ID */}
       <div className='Logindiv' data-theme={isDark ? "dark" : "light"}>
         <div className="LoginContainer">
           <div className="image-container">
@@ -259,9 +253,8 @@ function Signup() {
             <div className='Signup2'>Have an account?<span className='SignupSpan'><Link to="/Login"> Login here</Link></span></div>
           </div>
         </div>
+        <Modal isOpen={isModalOpen} onClose={closeModal} /> {/* Add Modal component */}
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} /> {/* Add Modal component */}
-    </div>
     </GoogleOAuthProvider>
   );
 }
