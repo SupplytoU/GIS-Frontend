@@ -1,48 +1,39 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useGoogleAuthenticateMutation } from '../redux/features/auth/authApiSlice';
 import { setAuth } from '../redux/features/auth/authSlice';
+import { useGoogleAuthenticateMutation } from '../redux/features/auth/authApiSlice';
 
-const CLIENT_ID = '599325683287-m0dvd4mm77na25p7qfoldped6opvek4q.apps.googleusercontent.com';
-
-export default function useGoogleAuth() {
+export const useGoogleAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [googleAuthenticate] = useGoogleAuthenticateMutation();
   const effectRan = useRef(false);
-  const [googleAuthenticate, { isLoading, isError, data, error }] = useGoogleAuthenticateMutation();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
-    const state = params.get('state');
+    // Check if effect has already run
+    if (effectRan.current) return;
 
-    if (code && state && !effectRan.current) {
-      googleAuthenticate({
-        code,
-        state,
-        redirect_uri: 'http://localhost:3000/auth/google',
-      })
-      .then((result) => {
-        if (result.data?.success) {
-          dispatch(setAuth(result.data));
+    // Mark the effect as run
+    effectRan.current = true;
+
+    const searchParams = new URLSearchParams(location.search);
+    const state = searchParams.get('state');
+    const code = searchParams.get('code');
+
+    if (state && code) {
+      googleAuthenticate({ state, code })
+        .unwrap()
+        .then(() => {
+          dispatch(setAuth());
+          // Add toast message for success
           navigate('/');
-        } else {
+        })
+        .catch(() => {
+          // Add toast message for error
           navigate('/login');
-        }
-      })
-      .catch((err) => {
-        console.error('Authentication error:', err);
-        navigate('/login');
-      });
-
-      effectRan.current = true;
+        });
     }
-  }, [googleAuthenticate, dispatch, navigate]);
-
-  useEffect(() => {
-    if (isError) {
-      console.error('Google authentication error:', error);
-    }
-  }, [isError, error]);
-}
+  }, [location, googleAuthenticate, dispatch, navigate]);
+};

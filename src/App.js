@@ -37,7 +37,7 @@ import MainMap from './Mapping/components/MainMap';
 import UpdateLocation from './Mapping/components/UpdateLocation';
 import UpdateFarm from './Mapping/components/UpdateFarm';
 import ActivationPage from './ActivationPage';
-import GoogleRedirect from '../src/components/GoogleRedirect.js'; // Import the GoogleRedirect component
+import Google from './ContinueWithGoogle.js';
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -185,7 +185,7 @@ function App() {
             <Route path="/update-location/:id" element={<UpdateLocation locations={locations} farms={farms} onUpdate={handleUpdateLocation} />} />
             <Route path='/update-farm/:id' element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />} />
             <Route path="/activate/:uidb64/:token" element={<ActivationPage />} /> {/* New activation route */}
-            <Route path="/auth/google" element={<GoogleRedirect />} />
+            <Route path="/auth/google/" element={<Google/>}/>
           </Routes>
         </CustomProvider>
       </Router>
