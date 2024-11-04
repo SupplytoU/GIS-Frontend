@@ -41,23 +41,36 @@ function Login() {
   const dispatch = useDispatch();
  
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!isValidEmail(email)) {
-      setError('Please enter a valid email address.');
-      return;
-    }
-    setIsModalOpen(true); // Show modal when form is submitted
-    // Uncomment and adjust the following lines once login logic is ready
-    /*
-    login({email, password}).unwrap().then((result) => {
-      console.log(result);
-      dispatch(setAuth(true));
-      navigate('/');
-    }).catch((err) => {
-      console.log(error);
-    });
-    */
-  };
+  e.preventDefault();
+
+  // Validate email
+  if (!isValidEmail(email)) {
+    setError('Please enter a valid email address.');
+    return;
+  }
+
+  // Show modal initially
+  setIsModalOpen(true);
+
+  try {
+    const result = await login({ email, password }).unwrap();
+    console.log(result);
+
+    // Dispatch successful login state and navigate
+    dispatch(setAuth(true));
+    setIsModalOpen(false);  // Close modal after successful login
+    navigate('/');
+    
+  } catch (err) {
+    console.error(err);
+    setError(err.message || 'An error occurred during login.');
+    
+    // Keep modal open with error message or close it after a timeout
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 3000); // Show modal with error for 3 seconds
+  }
+};
 
   const closeModal = () => {
     setIsModalOpen(false); // Close modal function
