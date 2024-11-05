@@ -228,7 +228,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #949393; /* Color of the scrollbar thumb when hovered */
+  background: #949393; 
 }
 
 @media (max-width: 991px) {
