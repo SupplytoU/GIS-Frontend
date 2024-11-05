@@ -9,7 +9,6 @@ import { useJwtCreateMutation } from './redux/features/auth/authApiSlice';
 import { useDispatch } from 'react-redux';
 import { setAuth } from './redux/features/auth/authSlice';
 import { ContinueWithGoogle } from './components/ContinueWithGoogle';
-import Modal from './Modal'; 
 
 
 function Login() {
@@ -20,7 +19,6 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');  
   const [success, setSuccess] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
 
   useEffect(() => {
     if (emailRef.current) {
@@ -49,32 +47,20 @@ function Login() {
     return;
   }
 
-  // Show modal initially
-  setIsModalOpen(true);
-
   try {
     const result = await login({ email, password }).unwrap();
     console.log(result);
 
     // Dispatch successful login state and navigate
     dispatch(setAuth(true));
-    setIsModalOpen(false);  // Close modal after successful login
     navigate('/');
     
   } catch (err) {
     console.error(err);
     setError(err.message || 'An error occurred during login.');
-    
-    // Keep modal open with error message or close it after a timeout
-    setTimeout(() => {
-      setIsModalOpen(false);
-    }, 3000); // Show modal with error for 3 seconds
   }
 };
 
-  const closeModal = () => {
-    setIsModalOpen(false); // Close modal function
-  };
 
   const [isDark] = useLocalStorage("isDark", false);
 
@@ -132,7 +118,7 @@ function Login() {
                     <div className='Signup2'>Don't have an account yet?<br/> <span className='SignupSpan'><Link to="/Signup">Register here</Link></span></div>
                   </div>
                   <div className="Or">OR</div>
-                  <div className="SigninWithGoogle" onClick={() => setIsModalOpen(true)}> {/* Show modal when clicked */}
+                  <div className="SigninWithGoogle">
                     <img loading="lazy" src={google} className="Loginimg-2" alt="Google" />
                     <div className="Google"><ContinueWithGoogle/></div>
                   </div>
@@ -151,9 +137,6 @@ function Login() {
           </div>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        {/* <div>Google sign-in is still under development. Please check back later!</div> */}
-      </Modal>
     </>
   );
 }
