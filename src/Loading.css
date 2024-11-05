@@ -21,12 +21,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
 }
 
 .website-name {
-    font-size: 50px;
+    font-size: 40px;
     opacity: 0;
     animation: fadeIn 3s forwards, bounce 1s 1s;
 }
