@@ -4,8 +4,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
 import useLocalStorage from 'use-local-storage';
-import { useUserCreateMutation } from './redux/features/auth/authApiSlice'; // Only keep this import
-import Modal from './Modal'; 
+import { useUserCreateMutation } from './redux/features/auth/authApiSlice'; 
 import { ContinueWithGoogle } from './components/ContinueWithGoogle';
 
 function Signup() {
@@ -19,7 +18,6 @@ function Signup() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const validatePassword = (password, confirmPassword) => {
@@ -69,8 +67,6 @@ function Signup() {
     document.getElementById('password').setCustomValidity('');
     document.getElementById('confirmPassword').setCustomValidity('');
 
-    setIsModalOpen(true);
-
     try {
       await userCreate({
         first_name: formData.firstname,
@@ -83,10 +79,6 @@ function Signup() {
     } catch (err) {
       setError(err.message || 'An error occurred');
     }
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   const [isDark] = useLocalStorage("isDark", false);
@@ -186,7 +178,6 @@ function Signup() {
             <div className='Signup2'>Have an account?<span className='SignupSpan'><Link to="/Login"> Login here</Link></span></div>
           </div>
         </div>
-        <Modal isOpen={isModalOpen} onClose={closeModal} />
       </div>
     </GoogleOAuthProvider>
   );
