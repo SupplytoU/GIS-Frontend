@@ -47,7 +47,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
   useEffect(() => {
     const fetchFarmers = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/farmers');
+        const res = await axios.get('http://localhost:8000/api/fieldmapping/farmers');
         setFarmers(res.data);
       } catch (error) {
         console.error('Error fetching farmers:', error);
@@ -76,7 +76,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
       area,
     };
 
-    await axios.put(`http://localhost:5000/farms/${farm.id}`, updatedFarm);
+    await axios.put(`http://localhost:8000/farms/${farm.id}`, updatedFarm);
     onUpdateFarm(farm.id, updatedFarm);
     setNotification('Field updated successfully!');
       setTimeout(() => {

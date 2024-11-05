@@ -45,7 +45,7 @@ function App() {
   const [farmers, setFarmers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/fieldmapping/locations')
+    axios.get('http://localhost:8000/api/fieldmapping/locations/')
       .then(response => {
         setLocations(response.data);
       })
@@ -99,7 +99,7 @@ function App() {
 
   const addLocation = async (location) => {
     try {
-      const res = await axios.post('http://localhost:8000/api/fieldmapping/locations', location, {
+      const res = await axios.post('http://localhost:8000/api/fieldmapping/locations/', location, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -124,7 +124,7 @@ function App() {
   };
 
   const handleUpdateLocation = async (id, updatedLocation) => {
-    const res = await fetch(`http://localhost:8000/api/fieldmapping/locations/${id}`, {
+    const res = await fetch(`http://localhost:8000/api/fieldmapping/locations/${id}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

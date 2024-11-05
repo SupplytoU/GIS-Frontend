@@ -7,6 +7,28 @@ import './crudForm.css';
 
 const { BaseLayer } = LayersControl;
 
+// Create a mapping for label choices
+const LABEL_CHOICES = {
+  'Farm': 'farms',
+  'Processing Facility': 'processing-facilities',
+  'Distribution Center': 'distribution-centers',
+  'Warehouse': 'warehouses',
+  'Restaurant': 'restaurants',
+  'Supermarket': 'supermarkets'
+};
+
+// Create a mapping for region choices
+const REGION_CHOICES = {
+  'Central': 'central',
+  'Coast': 'coast',
+  'Eastern': 'eastern',
+  'Nairobi': 'nairobi',
+  'North Eastern': 'north-eastern',
+  'Nyanza': 'nyanza',
+  'Rift Valley': 'rift-valley',
+  'Western': 'western'
+};
+
 const AddLocation = ({ onAdd }) => {
   const [name, setName] = useState('');
   const [id, setId] = useState('');
@@ -23,7 +45,7 @@ const AddLocation = ({ onAdd }) => {
 
   useEffect(() => {
     const fetchFarms = async () => {
-      const res = await fetch('http://localhost:5000/farms');
+      const res = await fetch('http://localhost:8000/api/fieldmapping/farms/');
       const data = await res.json();
       setFarms(data); // Update farms state
     };
@@ -50,14 +72,18 @@ const AddLocation = ({ onAdd }) => {
       return;
     }
 
+    // Map the label and region to the corresponding values
+    const labelValue = LABEL_CHOICES[label] || '';
+    const regionValue = REGION_CHOICES[region] || '';
+
     onAdd({
-      id,
+      // id,
       name,
-      label,
+      label: labelValue, // Use the mapped label value
       location: `SRID=4326;POINT (${longitude} ${latitude})`,
-      region,
+      region: regionValue, // Use the mapped region value
       description,
-      farmName: label === 'Farm' ? farmName : undefined,
+      farmName: labelValue === 'farms' ? farmName : undefined, // Update farmName condition
     });
 
     // Reset form fields
@@ -109,12 +135,11 @@ const AddLocation = ({ onAdd }) => {
               <label>Label</label>
               <select value={label} onChange={(e) => setLabel(e.target.value)}>
                 <option value="">Select Label</option>
-                <option value="Farm">Farm</option>
-                <option value="Processing Facility">Processing Facility</option>
-                <option value="Distribution Center">Distribution Center</option>
-                <option value="Warehouse">Warehouse</option>
-                <option value="Restaurant">Restaurant</option>
-                <option value="Supermarket">Supermarket</option>
+                {Object.keys(LABEL_CHOICES).map((key) => (
+                  <option key={key} value={key}>
+                    {key}
+                  </option>
+                ))}
               </select>
             </div>
             {label === 'Farm' && (
@@ -152,14 +177,11 @@ const AddLocation = ({ onAdd }) => {
               <label>Region</label>
               <select value={region} onChange={(e) => setRegion(e.target.value)}>
                 <option value="">Select Region</option>
-                <option value="Central">Central</option>
-                <option value="Coast">Coast</option>
-                <option value="Eastern">Eastern</option>
-                <option value="Rift Valley">Rift Valley</option>
-                <option value="Nairobi">Nairobi</option>
-                <option value="North Eastern">North Eastern</option>
-                <option value="Nyanza">Nyanza</option>
-                <option value="Western">Western</option>
+                {Object.keys(REGION_CHOICES).map((key) => (
+                  <option key={key} value={key}>
+                    {key}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="form-control">
