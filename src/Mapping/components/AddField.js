@@ -165,7 +165,7 @@ const AddField = ({ onAddField}) => {
           readOnly
         />
       </div>
-      <button className="btn" type="submit">Save Field</button>
+      <button className="btnfield" type="submit">Save Field</button>
     </form>
     </div>
     <MapContainer center={[0, 38]} zoom={8} className='leaflet-container'>

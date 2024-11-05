@@ -45,6 +45,7 @@ const AddLocation = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    // If the form is valid, process the submission
     if (!id || !name || !latitude || !longitude) {
       alert('Please add all required location details');
       return;
@@ -94,6 +95,7 @@ const AddLocation = ({ onAdd }) => {
                 placeholder="Add Location Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
@@ -103,11 +105,12 @@ const AddLocation = ({ onAdd }) => {
                 placeholder="Add Identification Number"
                 value={id}
                 onChange={(e) => setId(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
               <label>Label</label>
-              <select value={label} onChange={(e) => setLabel(e.target.value)}>
+              <select value={label} onChange={(e) => setLabel(e.target.value)} required>
                 <option value="">Select Label</option>
                 <option value="Farm">Farm</option>
                 <option value="Processing Facility">Processing Facility</option>
@@ -120,7 +123,7 @@ const AddLocation = ({ onAdd }) => {
             {label === 'Farm' && (
               <div className="form-control">
                 <label>Farm</label>
-                <select value={farmName} onChange={(e) => setFarmName(e.target.value)}>
+                <select value={farmName} onChange={(e) => setFarmName(e.target.value)} required>
                   <option value="">Select Farm</option>
                   {farms.map((farm) => (
                     <option key={farm.name} value={farm.name}>
@@ -137,6 +140,7 @@ const AddLocation = ({ onAdd }) => {
                 placeholder="Add Latitude"
                 value={latitude}
                 onChange={(e) => setLatitude(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
@@ -146,11 +150,12 @@ const AddLocation = ({ onAdd }) => {
                 placeholder="Add Longitude"
                 value={longitude}
                 onChange={(e) => setLongitude(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
               <label>Region</label>
-              <select value={region} onChange={(e) => setRegion(e.target.value)}>
+              <select value={region} onChange={(e) => setRegion(e.target.value)} required>
                 <option value="">Select Region</option>
                 <option value="Central">Central</option>
                 <option value="Coast">Coast</option>
@@ -172,7 +177,7 @@ const AddLocation = ({ onAdd }) => {
                 rows="4"
               />
             </div>
-            <input type="submit" value="Save Location" className="btn" />
+            <input type="submit" value="Save Location" className="btnlocation" />
           </form>
         </div>
         <MapContainer center={[0, 38]} zoom={8} className='leaflet-container' ref={mapRef}>
