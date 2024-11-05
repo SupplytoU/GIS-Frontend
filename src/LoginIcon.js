@@ -32,7 +32,7 @@ const LoginIcon  = () => {
           {dropdownVisible && (
             <ul className="dropdown">
               <Link to='/Login'><li className="dropdown-item">Login</li></Link>
-              <Link to='/Account'><li className="dropdown-item">Edit Profile</li></Link>
+              <Link to='/Account'><li className="dropdown-item">Settings</li></Link>
             </ul>
           )}
         </li>

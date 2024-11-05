@@ -8,6 +8,7 @@ import web from "./Images/Web.png";
 import location from "./Images/Location.png";
 import Sidebar from './Sidebar';
 import useLocalStorage from "use-local-storage";
+import emailjs from 'emailjs-com'; // Ensure this import is present
 
 function Inquiries() {
   const [formData, setFormData] = useState({
@@ -19,34 +20,59 @@ function Inquiries() {
   });
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [id]: value,
-    });
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic
-    console.log("Form data submitted:", formData);
+    setIsButtonDisabled(false);
+    // Sending email with EmailJS
+    emailjs
+      .send("service_x61boxl", "template_80pq7tq", {
+        to_name: "Neema Ogao", // Your name
+        from_name: `${formData.firstName} ${formData.lastName}`, // User's full name
+        from_email: formData.email, // User's email
+        from_phone: formData.phone, // User's phone
+        message_sent: formData.message, // User's message
+      }, "ojtdHivq-jKvyVD7y") // Use the public key instead of user ID
+      .then((response) => {
+        setIsButtonDisabled(true);
+        console.log("Email sent successfully!", response.status, response.text);
+        alert("Message sent successfully!");
+        // Clear the form after submission
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      })
+      .catch((err) => {
+        console.error("Error sending email:", err);
+        alert("Failed to send message. Please try again.");
+        setIsButtonDisabled(false);
+      });
   };
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
   };
+
   const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
   return (
     <div className={`container1 ${sidebarCollapsed ? 'collapsed' : ''}`}>
       <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
-      <div className="inquiries-container">
-      <img src={inquiriesImg} alt="Background" className="inquiries-img" />
-        
+      <div className="inquiries-container">        
         <div className="form-container">
-      
           <div className="form-layout">
             <div className="message-column">
               <div className="message-box">
@@ -78,7 +104,7 @@ function Inquiries() {
                         onChange={handleInputChange}
                         placeholder="Last Name"
                       />
-                         <div className="Line5"></div>
+                      <div className="Line5"></div>
                     </div>
                   </div>
                   <div className="field-container">
@@ -91,7 +117,7 @@ function Inquiries() {
                       onChange={handleInputChange}
                       placeholder="Email"
                     />
-                        <div className="Line3"></div>
+                    <div className="Line3"></div>
                   </div>
                   <div className="field-container">
                     <label className="field-label" htmlFor="phone">Phone</label>
@@ -114,7 +140,7 @@ function Inquiries() {
                       onChange={handleInputChange}
                       placeholder="Message"
                     />
-                        <div className="Line4"></div>
+                    <div className="Line4"></div>
                   </div>
                   <button type="submit" className="send-button">Send</button>
                 </form>
@@ -127,21 +153,21 @@ function Inquiries() {
                 <div className="contact-details">
                   <div className="contact-info">
                     <img src={phone} alt="Phone" className="contact-icon" />
-                    +254-748-837-743
+                    <a href="tel:+254-748-837-743">+254-748-837-743</a> 
                   </div>
                   <div className="contact-info">
                     <img src={email} alt="Email" className="contact-icon" />
-                    supply2u@outlook.com
+                    <a href="mailto:supply2u@outlook.com">supply2u@outlook.com</a>                    
                   </div>
                   <div className="contact-info">
-                  <img src={web} alt="Web" className="contact-icon" />
-                 <a href="https://supply2u.jhubafrica.com" target="_blank" rel="noopener noreferrer">
-                  supply2u.jhubafrica.com
-                 </a>
+                    <img src={web} alt="Web" className="contact-icon" />
+                    <a href="https://supply2u.jhubafrica.com" target="_blank" rel="noopener noreferrer">
+                      supply2u.jhubafrica.com
+                    </a>
                   </div>
                   <div className="contact-info">
                     <img src={location} alt="Location" className="contact-icon" />
-                    Jomo Kenyatta University <br />Of Agriculture And Technology
+                    <a href="https://maps.app.goo.gl/QYzmJ1MJv6ygqVtZA">Jomo Kenyatta University Of Agriculture And Technology</a> 
                   </div>
                 </div>
               </div>
