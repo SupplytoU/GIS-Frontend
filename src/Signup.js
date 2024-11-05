@@ -5,7 +5,9 @@ import './Signup.css';
 import img from './Images/Signup.jpeg';
 import useLocalStorage from 'use-local-storage';
 import { useUserCreateMutation } from './redux/features/auth/authApiSlice';
-import Modal from './Modal'; // Import Modal component
+import Modal from './Modal'; 
+import { useUserCreateMutation } from '../src/redux/features/auth/authApiSlice';
+import { ContinueWithGoogle } from './components/ContinueWithGoogle';
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -241,14 +243,7 @@ function Signup() {
             </form>
             <div className="OR">OR</div>
             <div className="SigninWithGoogle">
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onFailure={handleGoogleFailure}
-                useOneTap
-                flow="auth-code"
-                cookiePolicy={'single_host_origin'}
-                onClick={initiateGoogleSignIn} // Set the state when the Google Sign-In button is clicked
-              />
+              <ContinueWithGoogle/>
             </div>
             <div className='Signup2'>Have an account?<span className='SignupSpan'><Link to="/Login"> Login here</Link></span></div>
           </div>
