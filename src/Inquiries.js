@@ -18,8 +18,9 @@ function Inquiries() {
     phone: "",
     message: "",
   });
-
+  const [errors, setErrors] = useState({});
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
+  const [isDark, setIsDark] = useLocalStorage("isDark", false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const handleInputChange = (e) => {
@@ -30,22 +31,58 @@ function Inquiries() {
     }));
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required.";
+    }
+
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Last name is required.";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(formData.email)) {
+      newErrors.email = "Invalid email format.";
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required.";
+    } else if (!/^\d{10,15}$/.test(formData.phone)) {
+      newErrors.phone = "Invalid phone number format.";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsButtonDisabled(false);
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsButtonDisabled(true); // Disable button on form submit
+
     // Sending email with EmailJS
     emailjs
-      .send("service_x61boxl", "template_80pq7tq", {
-        to_name: "Neema Ogao", // Your name
+      .send("service_i8r0sol", "template_2joutye", {
         from_name: `${formData.firstName} ${formData.lastName}`, // User's full name
         from_email: formData.email, // User's email
         from_phone: formData.phone, // User's phone
         message_sent: formData.message, // User's message
-      }, "ojtdHivq-jKvyVD7y") // Use the public key instead of user ID
+      }, "UzzQKjNZgNgkBw5Cb")
       .then((response) => {
-        setIsButtonDisabled(true);
         console.log("Email sent successfully!", response.status, response.text);
         alert("Message sent successfully!");
+
         // Clear the form after submission
         setFormData({
           firstName: "",
@@ -54,11 +91,13 @@ function Inquiries() {
           phone: "",
           message: "",
         });
+        setErrors({}); // Clear errors
+        setIsButtonDisabled(false); // Re-enable button after alert
       })
       .catch((err) => {
         console.error("Error sending email:", err);
         alert("Failed to send message. Please try again.");
-        setIsButtonDisabled(false);
+        setIsButtonDisabled(false); // Re-enable button if there's an error
       });
   };
 
@@ -66,12 +105,10 @@ function Inquiries() {
     setSidebarCollapsed(!sidebarCollapsed);
   };
 
-  const [isDark, setIsDark] = useLocalStorage("isDark", false);
-
   return (
     <div className={`container1 ${sidebarCollapsed ? 'collapsed' : ''}`}>
       <Sidebar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
-      <div className="inquiries-container">        
+      <div className="inquiries-container" data-theme={isDark ? "dark" : "light"}>         
         <div className="form-container">
           <div className="form-layout">
             <div className="message-column">
@@ -92,6 +129,7 @@ function Inquiries() {
                         onChange={handleInputChange}
                         placeholder="First Name"
                       />
+                      {errors.firstName && <span className="error-message">{errors.firstName}</span>}
                       <div className="Line2"></div>
                     </div>
                     <div className="field-container">
@@ -104,6 +142,7 @@ function Inquiries() {
                         onChange={handleInputChange}
                         placeholder="Last Name"
                       />
+                      {errors.lastName && <span className="error-message">{errors.lastName}</span>}
                       <div className="Line5"></div>
                     </div>
                   </div>
@@ -117,6 +156,7 @@ function Inquiries() {
                       onChange={handleInputChange}
                       placeholder="Email"
                     />
+                    {errors.email && <span className="error-message">{errors.email}</span>}
                     <div className="Line3"></div>
                   </div>
                   <div className="field-container">
@@ -127,8 +167,9 @@ function Inquiries() {
                       className="form-fields"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="Phone"
+                      placeholder="e.g. 071234567"
                     />
+                    {errors.phone && <span className="error-message">{errors.phone}</span>}
                     <div className="Line6"></div>
                   </div>
                   <div className="field-container">
@@ -140,9 +181,10 @@ function Inquiries() {
                       onChange={handleInputChange}
                       placeholder="Message"
                     />
+                    {errors.message && <span className="error-message">{errors.message}</span>}
                     <div className="Line4"></div>
                   </div>
-                  <button type="submit" className="send-button">Send</button>
+                  <button type="submit" className="send-button" disabled={isButtonDisabled}>Send</button>
                 </form>
               </div>
             </div>
