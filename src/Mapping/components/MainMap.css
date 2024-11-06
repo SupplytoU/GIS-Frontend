@@ -10,15 +10,15 @@
     /* align-items: center; */
     /* margin-bottom: 10px; */
     padding: 20px;
-    background: #e9f7ef; /* Light green background */
-    border-radius: 0px; /* Rounded corners */
+    background: white; /* Light green background */
+    border-radius: 6px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     max-width: 300px;
     padding-top: 30px;
 }
 
 .filtered-results h4{
-    color: black;
+    color: #333;
 }
 
 .search-bar {
@@ -29,13 +29,13 @@
 }
 
 input[type="text"], input[type="text"]::placeholder{
-    color: black;
+    color:black;
 }
 
 .search-bar input {
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-right: 10px;
     flex: 1;
 }
@@ -130,6 +130,7 @@ select {
     text-decoration: none;
     border-radius: 5px;
     width: 80px;
+    margin-top: 10px;
 }
 
 .mainSideBar-button a {
@@ -138,10 +139,10 @@ select {
 }
 
 .mainSideBar-button:hover {
-    background: #27ae60; /* Darker green on hover */
+    background: #05661b; /* Darker green on hover */
 }
 
 /* Add styles for the MapContainer if needed */
 .map-container {
-    border-radius: 12px; /* Match the border-radius with filter-container */
+    border-radius: 10px; /* Match the border-radius with filter-container */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */}

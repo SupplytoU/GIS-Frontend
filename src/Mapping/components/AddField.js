@@ -111,6 +111,7 @@ const AddField = ({ onAddField }) => {
     }
   };
 
+
   return (
     <>
       <div className="add-location-container">
@@ -241,6 +242,7 @@ const AddField = ({ onAddField }) => {
       </div>
     </>
   );
+
 };
 
 export default AddField;
