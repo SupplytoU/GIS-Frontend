@@ -8,17 +8,17 @@ import useLocalStorage from 'use-local-storage';
 import { useJwtCreateMutation } from './redux/features/auth/authApiSlice';
 import { useDispatch } from 'react-redux';
 import { setAuth } from './redux/features/auth/authSlice';
-import Modal from './Modal'; // Import Modal component
+import { ContinueWithGoogle } from './components/ContinueWithGoogle';
+
 
 function Login() {
   const emailRef = useRef(null);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');  
   const [success, setSuccess] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
 
   useEffect(() => {
     if (emailRef.current) {
@@ -39,27 +39,28 @@ function Login() {
   const dispatch = useDispatch();
  
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!isValidEmail(email)) {
-      setError('Please enter a valid email address.');
-      return;
-    }
-    setIsModalOpen(true); // Show modal when form is submitted
-    // Uncomment and adjust the following lines once login logic is ready
-    /*
-    login({email, password}).unwrap().then((result) => {
-      console.log(result);
-      dispatch(setAuth(true));
-      history.push('/');
-    }).catch((err) => {
-      console.log(error);
-    });
-    */
-  };
+  e.preventDefault();
 
-  const closeModal = () => {
-    setIsModalOpen(false); // Close modal function
-  };
+  // Validate email
+  if (!isValidEmail(email)) {
+    setError('Please enter a valid email address.');
+    return;
+  }
+
+  try {
+    const result = await login({ email, password }).unwrap();
+    console.log(result);
+
+    // Dispatch successful login state and navigate
+    dispatch(setAuth(true));
+    navigate('/');
+    
+  } catch (err) {
+    console.error(err);
+    setError(err.message || 'An error occurred during login.');
+  }
+};
+
 
   const [isDark] = useLocalStorage("isDark", false);
 
@@ -117,9 +118,9 @@ function Login() {
                     <div className='Signup2'>Don't have an account yet?<br/> <span className='SignupSpan'><Link to="/Signup">Register here</Link></span></div>
                   </div>
                   <div className="Or">OR</div>
-                  <div className="SigninWithGoogle" onClick={() => setIsModalOpen(true)}> {/* Show modal when clicked */}
+                  <div className="SigninWithGoogle">
                     <img loading="lazy" src={google} className="Loginimg-2" alt="Google" />
-                    <div className="Google">Sign in with Google</div>
+                    <div className="Google"><ContinueWithGoogle/></div>
                   </div>
                 </>
               ) : (
@@ -136,9 +137,6 @@ function Login() {
           </div>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        {/* <div>Google sign-in is still under development. Please check back later!</div> */}
-      </Modal>
     </>
   );
 }

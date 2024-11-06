@@ -37,7 +37,7 @@ import MainMap from './Mapping/components/MainMap';
 import UpdateLocation from './Mapping/components/UpdateLocation';
 import UpdateFarm from './Mapping/components/UpdateFarm';
 import ActivationPage from './ActivationPage';
-import GoogleRedirect from '../src/components/GoogleRedirect.js'; // Import the GoogleRedirect component
+import Google from './ContinueWithGoogle.js';
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -45,7 +45,7 @@ function App() {
   const [farmers, setFarmers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/fieldmapping/locations')
+    axios.get('http://localhost:8000/api/fieldmapping/locations/')
       .then(response => {
         setLocations(response.data);
       })
@@ -99,7 +99,7 @@ function App() {
 
   const addLocation = async (location) => {
     try {
-      const res = await axios.post('http://localhost:8000/api/fieldmapping/locations', location, {
+      const res = await axios.post('http://localhost:8000/api/fieldmapping/locations/', location, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -124,7 +124,7 @@ function App() {
   };
 
   const handleUpdateLocation = async (id, updatedLocation) => {
-    const res = await fetch(`http://localhost:8000/api/fieldmapping/locations/${id}`, {
+    const res = await fetch(`http://localhost:8000/api/fieldmapping/locations/${id}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -185,7 +185,7 @@ function App() {
             <Route path="/update-location/:id" element={<UpdateLocation locations={locations} farms={farms} onUpdate={handleUpdateLocation} />} />
             <Route path='/update-farm/:id' element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />} />
             <Route path="/activate/:uidb64/:token" element={<ActivationPage />} /> {/* New activation route */}
-            <Route path="/auth/google" element={<GoogleRedirect />} />
+            <Route path="/auth/google/" element={<Google/>}/>
           </Routes>
         </CustomProvider>
       </Router>

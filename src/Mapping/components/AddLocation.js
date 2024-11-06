@@ -2,9 +2,32 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, FeatureGroup, LayersControl } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
 import Geocoder from './Geocoder';
-import './crudForm.css'
+import Modal from './Modal'; // Import your Modal component
+import './crudForm.css';
 
 const { BaseLayer } = LayersControl;
+
+// Create a mapping for label choices
+const LABEL_CHOICES = {
+  'Farm': 'farms',
+  'Processing Facility': 'processing-facilities',
+  'Distribution Center': 'distribution-centers',
+  'Warehouse': 'warehouses',
+  'Restaurant': 'restaurants',
+  'Supermarket': 'supermarkets'
+};
+
+// Create a mapping for region choices
+const REGION_CHOICES = {
+  'Central': 'central',
+  'Coast': 'coast',
+  'Eastern': 'eastern',
+  'Nairobi': 'nairobi',
+  'North Eastern': 'north-eastern',
+  'Nyanza': 'nyanza',
+  'Rift Valley': 'rift-valley',
+  'Western': 'western'
+};
 
 const AddLocation = ({ onAdd }) => {
   const [name, setName] = useState('');
@@ -14,18 +37,17 @@ const AddLocation = ({ onAdd }) => {
   const [longitude, setLongitude] = useState('');
   const [region, setRegion] = useState('');
   const [description, setDescription] = useState('');
-  const [farms, setFarms] = useState([]);
   const [farmName, setFarmName] = useState('');
-  const [notification, setNotification] = useState('');
-  
+  const [farms, setFarms] = useState([]); // Define farms state
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const mapRef = useRef();
   const markerRef = useRef();
 
   useEffect(() => {
     const fetchFarms = async () => {
-      const res = await fetch('http://localhost:5000/farms');
+      const res = await fetch('http://localhost:8000/api/fieldmapping/farms/');
       const data = await res.json();
-      setFarms(data);
+      setFarms(data); // Update farms state
     };
 
     fetchFarms();
@@ -51,16 +73,21 @@ const AddLocation = ({ onAdd }) => {
       return;
     }
 
+    // Map the label and region to the corresponding values
+    const labelValue = LABEL_CHOICES[label] || '';
+    const regionValue = REGION_CHOICES[region] || '';
+
     onAdd({
-      id,
+      // id,
       name,
-      label,
+      label: labelValue, // Use the mapped label value
       location: `SRID=4326;POINT (${longitude} ${latitude})`,
-      region,
+      region: regionValue, // Use the mapped region value
       description,
-      farmName: label === 'Farm' ? farmName : undefined,
+      farmName: labelValue === 'farms' ? farmName : undefined, // Update farmName condition
     });
 
+    // Reset form fields
     setId('');
     setName('');
     setLabel('');
@@ -69,10 +96,10 @@ const AddLocation = ({ onAdd }) => {
     setRegion('');
     setDescription('');
     setFarmName('');
-    setNotification('Location details saved successfully!');
     
-    setTimeout(() => setNotification(''), 5000); // Clear the notification after 5 seconds
-
+    // Open modal to show success message
+    setIsModalOpen(true);
+    
     if (markerRef.current) {
       markerRef.current.remove(); // Remove the marker from the map
       markerRef.current = null;
@@ -87,7 +114,6 @@ const AddLocation = ({ onAdd }) => {
         <div className="form-sidebar-container">
           <form className="add-location-form" onSubmit={onSubmit}>
             <h2 className='LocationTitle'>Enter Location Details</h2>
-            {notification && <div className="notification">{notification}</div>}
             <div className="form-control">
               <label>Location Name</label>
               <input
@@ -112,12 +138,11 @@ const AddLocation = ({ onAdd }) => {
               <label>Label</label>
               <select value={label} onChange={(e) => setLabel(e.target.value)} required>
                 <option value="">Select Label</option>
-                <option value="Farm">Farm</option>
-                <option value="Processing Facility">Processing Facility</option>
-                <option value="Distribution Center">Distribution Center</option>
-                <option value="Warehouse">Warehouse</option>
-                <option value="Restaurant">Restaurant</option>
-                <option value="Supermarket">Supermarket</option>
+                {Object.keys(LABEL_CHOICES).map((key) => (
+                  <option key={key} value={key}>
+                    {key}
+                  </option>
+                ))}
               </select>
             </div>
             {label === 'Farm' && (
@@ -157,14 +182,11 @@ const AddLocation = ({ onAdd }) => {
               <label>Region</label>
               <select value={region} onChange={(e) => setRegion(e.target.value)} required>
                 <option value="">Select Region</option>
-                <option value="Central">Central</option>
-                <option value="Coast">Coast</option>
-                <option value="Eastern">Eastern</option>
-                <option value="Rift Valley">Rift Valley</option>
-                <option value="Nairobi">Nairobi</option>
-                <option value="North Eastern">North Eastern</option>
-                <option value="Nyanza">Nyanza</option>
-                <option value="Western">Western</option>
+                {Object.keys(REGION_CHOICES).map((key) => (
+                  <option key={key} value={key}>
+                    {key}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="form-control">
@@ -222,6 +244,9 @@ const AddLocation = ({ onAdd }) => {
           </FeatureGroup>
         </MapContainer>
       </div>
+
+      {/* Modal to show success message */}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };

@@ -3,85 +3,101 @@ import { MapContainer, TileLayer, FeatureGroup, LayersControl } from 'react-leaf
 import { EditControl } from 'react-leaflet-draw';
 import axios from 'axios';
 import Geocoder from './Geocoder';
-import './crudForm.css'
-
-
+import './crudForm.css';
 
 const { BaseLayer } = LayersControl;
 
-const AddField = ({ onAddField}) => {
-  const [drawnCoordinates, setDrawnCoordinates] = useState('');
-  const [name, setName] = useState('');
-  const [id, setId] = useState('');
-  const [description, setDescription] = useState('');
-  const [produce, setProduce] = useState([{ produce_type: '', variety: '' }]);
-  const [farmer, setFarmer] = useState('');
-  const [farm_area, setFarmArea] = useState('');
-  const [farmers, setFarmers] = useState([]);
-  const [notification, setNotification] = useState('');
+const AddField = ({ onAddField }) => {
+    const [drawnCoordinates, setDrawnCoordinates] = useState('');
+    const [name, setName] = useState('');
+    const [id, setId] = useState('');
+    const [description, setDescription] = useState('');
+    const [produce, setProduce] = useState([{ produce_type: '', variety: '' }]);
+    const [farmer, setFarmer] = useState('');
+    const [farmers, setFarmers] = useState([]);
+    const [notification, setNotification] = useState('');
 
-  useEffect(() => {
-    const fetchFarmers = async () => {
-      try {
-        const res = await axios.get('http://localhost:5000/farmers');
-        setFarmers(res.data);
-      } catch (error) {
-        console.error('Error fetching farmers:', error);
+    useEffect(() => {
+        const fetchFarmers = async () => {
+            try {
+                const res = await axios.get('http://localhost:8000/api/fieldmapping/farmers/');
+                setFarmers(res.data);
+            } catch (error) {
+                console.error('Error fetching farmers:', error);
+            }
+        };
+
+        fetchFarmers();
+    }, []);
+
+    const handleProduceChange = (index, field, value) => {
+        const newProduce = [...produce];
+        newProduce[index][field] = value;
+        setProduce(newProduce);
+    };
+
+    const handleFieldAddition = async (e) => {
+        e.preventDefault();
+
+        // Validate that farm_area is set
+        if (!drawnCoordinates) {
+            setNotification('Please draw the farm area on the map before saving.');
+            setTimeout(() => {
+                setNotification('');
+            }, 3000);
+            return; // Prevent submission if no coordinates
+        }
+
+        const fieldData = {
+            name,
+            description,
+            farm_area: drawnCoordinates, // Ensure we're sending the coordinates
+            farmer,
+            produce,
+        };
+
+        console.log('Field Data to send:', fieldData); // Debugging
+
+        try {
+            await axios.post('http://localhost:8000/api/fieldmapping/farms/', fieldData);
+            onAddField(fieldData);
+            // Reset form fields
+            setName('');
+            setId('');
+            setDescription('');
+            setProduce([{ produce_type: '', variety: '' }]);
+            setFarmer('');
+            setDrawnCoordinates(''); // Reset coordinates after submission
+            setNotification('Field added successfully!');
+            setTimeout(() => {
+                setNotification('');
+            }, 3000);
+        } catch (error) {
+            console.error('Error adding field:', error);
+            setNotification('Error adding field. Please try again.');
+            setTimeout(() => {
+                setNotification('');
+            }, 3000);
+        }
+    };
+
+    const handleCreated = (e) => {
+      const type = e.layerType;
+      const layer = e.layer;
+      if (type === 'polygon') {
+          const latlngs = layer.getLatLngs()[0].map(latlng => `${latlng.lng} ${latlng.lat}`);
+  
+          // Ensure the first and last points are the same
+          if (latlngs[0] !== latlngs[latlngs.length - 1]) {
+              latlngs.push(latlngs[0]); // Close the polygon
+          }
+  
+          const polygonString = `SRID=4326;POLYGON ((${latlngs.join(', ')}))`;
+          console.log('Polygon Coordinates:', polygonString); // Debugging
+          setDrawnCoordinates(polygonString);
       }
-    };
-
-    fetchFarmers();
-  }, []);
-
-  useEffect(() => {
-    setFarmArea(drawnCoordinates);
-  }, [drawnCoordinates]);
-
-  const handleProduceChange = (index, field, value) => {
-    const newProduce = [...produce];
-    newProduce[index][field] = value;
-    setProduce(newProduce);
   };
 
-  const handleFieldAddition = async (e) => {
-    e.preventDefault();
-
-    const fieldData = {
-      id,
-      name,
-      description,
-      produce,
-      farmer,
-      farm_area,
-    };
-
-    try {
-      await axios.post('http://localhost:5000/farms', fieldData);
-      onAddField(fieldData);
-      setName('');
-      setId('');
-      setDescription('');
-      setProduce([{ produce_type: '', variety: '' }]);
-      setFarmer('');
-      setFarmArea('');
-      setNotification('Field added successfully!');
-      setTimeout(() => {
-        setNotification('');
-      }, 3000); // Clear notification after 3 seconds
-    } catch (error) {
-      console.error('Error adding field:', error);
-    }
-  };
-
-  const handleCreated = (e) => {
-    const type = e.layerType;
-    const layer = e.layer;
-    if (type === 'polygon') {
-      const latlngs = layer.getLatLngs()[0].map(latlng => `${latlng.lng} ${latlng.lat}`);
-      const polygonString = `SRID=4326;POLYGON ((${latlngs.join(', ')}))`;
-      setDrawnCoordinates(polygonString);
-    }
-  };
 
   return (
     <>
@@ -204,7 +220,7 @@ const AddField = ({ onAddField}) => {
     </div>
     </>
   );
-
+  
 };
 
 export default AddField;

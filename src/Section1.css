@@ -30,7 +30,7 @@ body, html {
   50% { border-color: rgb(255, 255, 255); }
 }
 
-/* Custom Scrollbar Styles */
+/* Custom Scrollbar*/
 ::-webkit-scrollbar {
   width: 12px;
 }

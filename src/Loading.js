@@ -34,7 +34,7 @@ const Loading = ({ onLoadComplete = () => {} }) => { // Default value to no-op f
         <div className="loader-container">
             {!showText ? (
                 <div className="lottie-container">
-                    <Lottie options={defaultOptions} height={400} width={400} />
+                    <Lottie options={defaultOptions} height={350} width={350} />
                 </div>
             ) : (
                 <h1 className="website-name">
