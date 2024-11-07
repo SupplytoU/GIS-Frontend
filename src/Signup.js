@@ -4,8 +4,10 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
 import useLocalStorage from 'use-local-storage';
+
 import { useUserCreateMutation } from './redux/features/auth/authApiSlice'; 
 import { ContinueWithGoogle } from './components/ContinueWithGoogle';
+
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -67,6 +69,8 @@ function Signup() {
     document.getElementById('password').setCustomValidity('');
     document.getElementById('confirmPassword').setCustomValidity('');
 
+
+
     try {
       await userCreate({
         first_name: formData.firstname,
@@ -81,10 +85,12 @@ function Signup() {
     }
   };
 
+
   const [isDark] = useLocalStorage("isDark", false);
 
   return (
     <GoogleOAuthProvider clientId='YOUR_CLIENT_ID'> {/* Replace with your actual client ID */}
+
       <div className='Logindiv' data-theme={isDark ? "dark" : "light"}>
         <div className="LoginContainer">
           <div className="image-container">

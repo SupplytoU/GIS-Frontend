@@ -236,6 +236,7 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
           </button>
           <button className="mainSideBar-button" onClick={clearFilters}>Clear</button>
         </div>
+        <div className="Settingsdiv-29"><Link to="/">SUPPLY2U</Link></div>
       </div>
       <MapContainer center={[0, 38]} zoom={7} ref={mapRef} style={{ height: "100vh" }}>
         <Geocoder />
