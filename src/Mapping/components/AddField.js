@@ -23,44 +23,48 @@ const AddField = ({ onAddField }) => {
     const [notification, setNotification] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        const fetchFarmers = async () => {
-            try {
-                const res = await axios.get('http://localhost:8000/api/fieldmapping/farmers/');
-                setFarmers(res.data);
-            } catch (error) {
-                console.error('Error fetching farmers:', error);
-            }
-        };
-
-        fetchFarmers();
-    }, []);
-
-    const handleProduceChange = (index, field, value) => {
-        const newProduce = [...produce];
-        newProduce[index][field] = value;
-        setProduce(newProduce);
+  useEffect(() => {
+    const fetchFarmers = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8000/api/fieldmapping/farmers/"
+        );
+        setFarmers(res.data);
+      } catch (error) {
+        console.error("Error fetching farmers:", error);
+      }
     };
 
-    const handleFieldAddition = async (e) => {
-        e.preventDefault();
+    fetchFarmers();
+  }, []);
 
-        // Validate that farm_area is set
-        if (!drawnCoordinates) {
-            setNotification('Please draw the farm area on the map before saving.');
-            setTimeout(() => {
-                setNotification('');
-            }, 3000);
-            return; // Prevent submission if no coordinates
-        }
+  const handleProduceChange = (index, field, value) => {
+    const newProduce = [...produce];
+    newProduce[index][field] = value;
+    setProduce(newProduce);
+  };
 
-        const fieldData = {
-            name,
-            description,
-            farm_area: drawnCoordinates, // Ensure we're sending the coordinates
-            farmer,
-            produce,
-        };
+  const handleFieldAddition = async (e) => {
+    e.preventDefault();
+
+    if (!drawnCoordinates || !farmArea) {
+      setNotification(
+        "Please draw the farm area on the map and input the area in acres before saving."
+      );
+      setTimeout(() => {
+        setNotification("");
+      }, 3000);
+      return; // Prevent submission if no coordinates or farm area
+    }
+
+    const fieldData = {
+      name,
+      description,
+      farm_area: drawnCoordinates, // Ensuring we send coordinates as a farm area
+      area_acres: farmArea, // New area field in acres
+      farmer,
+      produce,
+    };
 
         console.log('Field Data to send:', fieldData); // Debugging
 
@@ -84,21 +88,22 @@ const AddField = ({ onAddField }) => {
         }
     };
 
-    const handleCreated = (e) => {
-      const type = e.layerType;
-      const layer = e.layer;
-      if (type === 'polygon') {
-          const latlngs = layer.getLatLngs()[0].map(latlng => `${latlng.lng} ${latlng.lat}`);
-  
+  const handleCreated = (e) => {
+    const type = e.layerType;
+    const layer = e.layer;
+    if (type === "polygon") {
+      const latlngs = layer
+        .getLatLngs()[0]
+        .map((latlng) => `${latlng.lng} ${latlng.lat}`);
+
           // Ensure the first and last points are the same
-          if (latlngs[0] !== latlngs[latlngs.length - 1]) {
-              latlngs.push(latlngs[0]); // Close the polygon
-          }
-  
-          const polygonString = `SRID=4326;POLYGON ((${latlngs.join(', ')}))`;
-          console.log('Polygon Coordinates:', polygonString); // Debugging
-          setDrawnCoordinates(polygonString);
+      if (latlngs[0] !== latlngs[latlngs.length - 1]) {
+        latlngs.push(latlngs[0]); // Close the polygon
       }
+
+      const polygonString = `SRID=4326;POLYGON((${latlngs.join(", ")}))`;
+      setDrawnCoordinates(polygonString);
+    }
   };
   const navigate = useNavigate();
   const handleUpdate = (id, type) => {

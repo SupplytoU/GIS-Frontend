@@ -70,6 +70,7 @@ const AddLocation = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    // If the form is valid, process the submission
     if (!id || !name || !latitude || !longitude) {
       alert('Please add all required location details');
       return;
@@ -134,6 +135,7 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
                 placeholder="Add Location Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
@@ -143,11 +145,12 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
                 placeholder="Add Identification Number"
                 value={id}
                 onChange={(e) => setId(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
               <label>Label</label>
-              <select value={label} onChange={(e) => setLabel(e.target.value)}>
+              <select value={label} onChange={(e) => setLabel(e.target.value)} required>
                 <option value="">Select Label</option>
                 {Object.keys(LABEL_CHOICES).map((key) => (
                   <option key={key} value={key}>
@@ -159,7 +162,7 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
             {label === 'Farm' && (
               <div className="form-control">
                 <label>Farm</label>
-                <select value={farmName} onChange={(e) => setFarmName(e.target.value)}>
+                <select value={farmName} onChange={(e) => setFarmName(e.target.value)} required>
                   <option value="">Select Farm</option>
                   {farms.map((farm) => (
                     <option key={farm.name} value={farm.name}>
@@ -176,6 +179,7 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
                 placeholder="Add Latitude"
                 value={latitude}
                 onChange={(e) => setLatitude(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
@@ -185,11 +189,12 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
                 placeholder="Add Longitude"
                 value={longitude}
                 onChange={(e) => setLongitude(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
               <label>Region</label>
-              <select value={region} onChange={(e) => setRegion(e.target.value)}>
+              <select value={region} onChange={(e) => setRegion(e.target.value)} required>
                 <option value="">Select Region</option>
                 {Object.keys(REGION_CHOICES).map((key) => (
                   <option key={key} value={key}>
@@ -208,7 +213,7 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
                 rows="4"
               />
             </div>
-            <input type="submit" value="Save Location" className="btn" />
+            <input type="submit" value="Save Location" className="btnlocation" />
           </form>
           <div className="home-button" onClick={() => navigate('/')}>SUPPLY2U </div>
         </div>

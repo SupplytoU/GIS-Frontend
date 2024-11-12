@@ -7,10 +7,13 @@
 }
 
 .LocationTitle {
+
+.LocationTitle {
     color: #068727;
     font-size: 1.5rem; /* Larger, more noticeable title */
     margin-bottom: 15px;
 }
+
 
 .form-sidebar-container {
     width: 400px;
@@ -20,6 +23,7 @@
     overflow-y: auto;
     background-color: var(--background-color);
 }
+
 
 .add-location-form,
 .add-field-form,
@@ -35,6 +39,7 @@
 input {
     font-family: 'Nunito', sans-serif;
 }
+
 
 .form-control {
     margin-bottom: 20px; /* Increased spacing for better readability */

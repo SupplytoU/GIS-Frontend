@@ -186,5 +186,5 @@ select:focus {
 
 /* Add styles for the MapContainer if needed */
 .map-container {
-    border-radius: 12px; /* Match the border-radius with filter-container */
+    border-radius: 10px; /* Match the border-radius with filter-container */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */}
