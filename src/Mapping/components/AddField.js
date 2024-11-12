@@ -4,8 +4,13 @@ import { EditControl } from 'react-leaflet-draw';
 import axios from 'axios';
 import Geocoder from './Geocoder';
 import './crudForm.css';
+import { useNavigate, Link } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+import useLocalStorage from "use-local-storage";
+import Modal from './Modal';
 
 const { BaseLayer } = LayersControl;
+
 
 const AddField = ({ onAddField }) => {
     const [drawnCoordinates, setDrawnCoordinates] = useState('');
@@ -16,6 +21,7 @@ const AddField = ({ onAddField }) => {
     const [farmer, setFarmer] = useState('');
     const [farmers, setFarmers] = useState([]);
     const [notification, setNotification] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchFarmers = async () => {
@@ -68,10 +74,7 @@ const AddField = ({ onAddField }) => {
             setProduce([{ produce_type: '', variety: '' }]);
             setFarmer('');
             setDrawnCoordinates(''); // Reset coordinates after submission
-            setNotification('Field added successfully!');
-            setTimeout(() => {
-                setNotification('');
-            }, 3000);
+            setIsModalOpen(true);
         } catch (error) {
             console.error('Error adding field:', error);
             setNotification('Error adding field. Please try again.');
@@ -97,11 +100,20 @@ const AddField = ({ onAddField }) => {
           setDrawnCoordinates(polygonString);
       }
   };
+  const navigate = useNavigate();
+  const handleUpdate = (id, type) => {
+    navigate(`/update-${type}/${id}`);
+  };
+
+  const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
     return (
         <>
             <div className="add-location-container">
-                <div className="form-sidebar-container">
+                <div className="form-sidebar-container" data-theme={isDark ? "dark" : "mapping"}>
+                <button className="back-button" onClick={() => navigate('/View Locations')}>
+                 <FaArrowLeft /> Back
+                </button>
                     <form className="add-field-form" onSubmit={handleFieldAddition}>
                         <h2 className='LocationTitle'>Add Field Drawing</h2>
                         {notification && <div className="notification">{notification}</div>}
@@ -146,6 +158,7 @@ const AddField = ({ onAddField }) => {
                                         required={index === 0}
                                     />
                                     <input
+                                    className='produce'
                                         type='text'
                                         placeholder={`Variety ${index + 1}`}
                                         value={prod.variety}
@@ -187,6 +200,7 @@ const AddField = ({ onAddField }) => {
                         </div>
                         <button className="btn" type="submit">Save Field</button>
                     </form>
+                    <div className="home-button" onClick={() => navigate('/')}>SUPPLY2U </div>
                 </div>
                 <MapContainer center={[0, 38]} zoom={8} className='leaflet-container'>
                     <Geocoder />
@@ -222,6 +236,7 @@ const AddField = ({ onAddField }) => {
                     </FeatureGroup>
                 </MapContainer>
             </div>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
         </>
     );
 };

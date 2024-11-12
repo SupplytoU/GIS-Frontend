@@ -8,6 +8,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './MainMap.css'; // Import the CSS file for button styling
 import MapLoading from './MapLoading'; // Import the renamed MapLoading component
+import { FaArrowLeft } from 'react-icons/fa'; // Import the arrow icon
+import useLocalStorage from "use-local-storage";
 
 const { BaseLayer, Overlay } = LayersControl;
 
@@ -143,6 +145,7 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
     mapRef.current.setView([lat, lng], 15);
     setActiveFarm(farm);
   };
+  const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
   const clearFilters = () => {
     setSearchTerm('');
@@ -162,7 +165,11 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
   return (
     <>
     <div className='MainMap'>
-      <div className="filter-container">
+      <div className="filter-container" data-theme={isDark ? "dark" : "mapping"}>
+      <button className="back-button" onClick={() => navigate('/')}>
+          <FaArrowLeft /> Home
+        </button>
+        <div className='search-section'>
         <div className="search-bar">
           <input
             type="text"
@@ -228,13 +235,12 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
           </div>
         </div>
         <div className="mainSideBar">
-          <button className="mainSideBar-button">
-            <Link to="/add-location">Add Location</Link>
+          <button className="mainSideBar-button" onClick={() => navigate('/add-location')}>
+           Add Location
           </button>
-          <button className="mainSideBar-button">
-            <Link to="/add-field">Add Field</Link>
-          </button>
+          <button className="mainSideBar-button" onClick={() => navigate('/add-field')}>Add Field</button>
           <button className="mainSideBar-button" onClick={clearFilters}>Clear</button>
+        </div>
         </div>
       </div>
       <MapContainer center={[0, 38]} zoom={7} ref={mapRef} style={{ height: "100vh" }}>

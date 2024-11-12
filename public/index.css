@@ -18,6 +18,7 @@
     --color-text:rgb(222, 222, 222);
     --toggle-bg: rgba(248, 249, 204, 0.769);
     --toggle-fg: yellow;
+    --border-color: white;
 }
     /* LIGHT MODE */
 [data-theme='light']{
@@ -36,4 +37,14 @@
     --secondary-text-color:rgb(0, 0, 0);
     --toggle-bg: rgb(1, 1, 19);
     --toggle-fg: rgb(0, 208, 255);
+}
+
+[data-theme='mapping']{
+    --background-color: #e9f7ef;
+    --foreground-color:rgb(255, 255, 255);
+    --primary-text-color:rgb(0, 0, 0);
+    --border-color: #a5a5a5;
+    --secondary-text-color:#02570a;
+    --toggle-bg: rgb(1, 1, 19);
+    --toggle-fg: #03A9F8;
 }
