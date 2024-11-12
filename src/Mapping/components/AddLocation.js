@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  FeatureGroup,
-  LayersControl,
-} from "react-leaflet";
-import { EditControl } from "react-leaflet-draw";
-import Geocoder from "./Geocoder";
-import Modal from "./Modal"; // Import your Modal component
-import "./crudForm.css";
+import React, { useState, useEffect, useRef } from 'react';
+import { MapContainer, TileLayer, FeatureGroup, LayersControl } from 'react-leaflet';
+import { EditControl } from 'react-leaflet-draw';
+import { useNavigate, Link } from 'react-router-dom';
+import Geocoder from './Geocoder';
+import Modal from './Modal'; // Import your Modal component
+import './crudForm.css';
+import { FaArrowLeft } from 'react-icons/fa';
+import useLocalStorage from "use-local-storage";
 
 const { BaseLayer } = LayersControl;
 
@@ -109,10 +107,21 @@ const AddLocation = ({ onAdd }) => {
     mapRef.current.flyTo([0, 38], 8); // Reset map to initial position
   };
 
+  const navigate = useNavigate();
+  const handleUpdate = (id, type) => {
+    navigate(`/update-${type}/${id}`);
+  };
+
+  //Dark mode/light mode
+const [isDark, setIsDark] = useLocalStorage("isDark", false);
+
   return (
     <>
       <div className="add-location-container">
-        <div className="form-sidebar-container">
+        <div className="form-sidebar-container" data-theme={isDark ? "dark" : "mapping"}>
+        <button className="back-button" onClick={() => navigate('/View Locations')}>
+          <FaArrowLeft /> Back
+        </button>
           <form className="add-location-form" onSubmit={onSubmit}>
             <h2 className="LocationTitle">Enter Location Details</h2>
             <div className="form-control">
@@ -208,6 +217,7 @@ const AddLocation = ({ onAdd }) => {
               className="btnlocation"
             />
           </form>
+          <div className="home-button" onClick={() => navigate('/')}>SUPPLY2U </div>
         </div>
         <MapContainer
           center={[0, 38]}

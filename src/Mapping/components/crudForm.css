@@ -3,67 +3,64 @@
     display: flex;
     height: 100vh;
     width: 100vw;
-    color: black;
-    font-family: 'Nunito';
-    background: #f8f8f8;
-    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
 }
 
 .LocationTitle {
     color: #068727;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-size: 1.5rem; /* Larger, more noticeable title */
+    margin-bottom: 15px;
 }
+
 
 .form-sidebar-container {
     width: 400px;
-    padding: 30px 25px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0;
+    padding: 20px;
+    background: var(--background-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     overflow-y: auto;
-    background: white;
-    height: 100vh;
+    background-color: var(--background-color);
 }
+
 
 .add-location-form,
 .add-field-form,
 .update-location-form {
-    background: white;
+    background: var(--foreground-color); 
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
     max-width: 400px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0;
+    margin-bottom: 20px; /* Added spacing */
 }
 
 input {
-    font-family: 'Nunito';
+    font-family: 'Nunito', sans-serif;
 }
 
+
 .form-control {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Increased spacing for better readability */
 }
 
 .form-control label {
+    display: block;
+    margin-bottom: 8px; /* Slightly larger spacing */
     font-weight: bold;
-    color: #070707;
-    margin-bottom: 5px;
+    color: #05631c; /* Complementary color */
 }
 
 .form-control input,
 .form-control select,
 .form-control textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #dcdcdc;
+    padding: 8px;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
-    font-size: 0.9rem;
-    background: #ffffff;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 0.8rem; 
+    background: var(--foreground-color);
+    transition: border 0.3s, box-shadow 0.3s;
+    color: var(--text-color);
 }
 
 .form-control input:focus,
@@ -71,60 +68,61 @@ input {
 .form-control textarea:focus {
     border-color: #068727;
     outline: none;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 5px rgba(6, 135, 39, 0.2);
+    box-shadow: 0 0 5px rgba(6, 135, 39, 0.3); /* Subtle glow effect */
 }
 
 .btn {
     display: inline-block;
     background: #068727;
     color: white;
-    padding: 12px 18px;
+    padding: 8px 10px; /* Slightly larger padding */
     border: none;
-    border-radius: 6px;
+    border-radius: 8px; /* Softer corners */
     cursor: pointer;
     font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.btnfield,.btnlocation{
-    display: inline-block;
-    background: #068727;
-    color: white;
-    padding: 12px 18px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 15px; /* More space from form elements */
+    transition: background 0.3s, transform 0.2s;
 }
 
 .btn:hover {
-    background: #05661b;
-    color: #ffffff;
+    background: #7fe07fc6;
+    color: black;
+    transform: translateY(-2px); /* Small lift effect */
 }
 
 .notification {
-    padding: 15px;
+    padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #b0e6b0;
+    border: 1px solid #ccc;
     border-radius: 6px;
-    background: #f0f9f0;
+    background: #e7f7e7;
     color: #2e662e;
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* Balanced font size */
 }
 
 .map-container {
     flex: 1;
     position: relative;
     height: 100vh;
-    border-left: 1px solid #dcdcdc;
+    overflow: hidden; /* Smooth edges for embedded maps */
 }
 
 .leaflet-container {
     height: 100%;
     width: 100%;
+}
+
+.home-button{
+    color: var(--text-color);
+    font-weight: 700;
+    margin-top: 30px;
+    cursor: pointer;
+    width: fit-content;
+}
+.home-button:hover{
+    color: #05631c;
+}
+
+.produce{
+    margin-top: 10px;
 }
