@@ -11,7 +11,6 @@ import Modal from './Modal';
 
 const { BaseLayer } = LayersControl;
 
-
 const AddField = ({ onAddField }) => {
     const [drawnCoordinates, setDrawnCoordinates] = useState('');
     const [name, setName] = useState('');
@@ -22,62 +21,58 @@ const AddField = ({ onAddField }) => {
     const [farmers, setFarmers] = useState([]);
     const [notification, setNotification] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [farmArea, setFarmArea] = useState(''); // New state for farm area
 
-  useEffect(() => {
-    const fetchFarmers = async () => {
-      try {
-        const res = await axios.get(
-          "http://localhost:8000/api/fieldmapping/farmers/"
-        );
-        setFarmers(res.data);
-      } catch (error) {
-        console.error("Error fetching farmers:", error);
-      }
+    useEffect(() => {
+        const fetchFarmers = async () => {
+            try {
+                const res = await axios.get("http://localhost:8000/api/fieldmapping/farmers/");
+                setFarmers(res.data);
+            } catch (error) {
+                console.error("Error fetching farmers:", error);
+            }
+        };
+        fetchFarmers();
+    }, []);
+
+    const handleProduceChange = (index, field, value) => {
+        const newProduce = [...produce];
+        newProduce[index][field] = value;
+        setProduce(newProduce);
     };
 
-    fetchFarmers();
-  }, []);
+    const handleFieldAddition = async (e) => {
+        e.preventDefault();
 
-  const handleProduceChange = (index, field, value) => {
-    const newProduce = [...produce];
-    newProduce[index][field] = value;
-    setProduce(newProduce);
-  };
+        if (!drawnCoordinates || !farmArea) {
+            setNotification("Please draw the farm area on the map and input the area in acres before saving.");
+            setTimeout(() => {
+                setNotification("");
+            }, 3000);
+            return;
+        }
 
-  const handleFieldAddition = async (e) => {
-    e.preventDefault();
+        const fieldData = {
+            name,
+            description,
+            farm_area: drawnCoordinates,
+            area_acres: farmArea, // Send area in acres
+            farmer,
+            produce,
+        };
 
-    if (!drawnCoordinates || !farmArea) {
-      setNotification(
-        "Please draw the farm area on the map and input the area in acres before saving."
-      );
-      setTimeout(() => {
-        setNotification("");
-      }, 3000);
-      return; // Prevent submission if no coordinates or farm area
-    }
-
-    const fieldData = {
-      name,
-      description,
-      farm_area: drawnCoordinates, // Ensuring we send coordinates as a farm area
-      area_acres: farmArea, // New area field in acres
-      farmer,
-      produce,
-    };
-
-        console.log('Field Data to send:', fieldData); // Debugging
+        console.log('Field Data to send:', fieldData);
 
         try {
             await axios.post('http://localhost:8000/api/fieldmapping/farms/', fieldData);
             onAddField(fieldData);
-            // Reset form fields
             setName('');
             setId('');
             setDescription('');
             setProduce([{ produce_type: '', variety: '' }]);
             setFarmer('');
-            setDrawnCoordinates(''); // Reset coordinates after submission
+            setFarmArea(''); // Reset farm area after submission
+            setDrawnCoordinates('');
             setIsModalOpen(true);
         } catch (error) {
             console.error('Error adding field:', error);
@@ -88,37 +83,33 @@ const AddField = ({ onAddField }) => {
         }
     };
 
-  const handleCreated = (e) => {
-    const type = e.layerType;
-    const layer = e.layer;
-    if (type === "polygon") {
-      const latlngs = layer
-        .getLatLngs()[0]
-        .map((latlng) => `${latlng.lng} ${latlng.lat}`);
+    const handleCreated = (e) => {
+        const type = e.layerType;
+        const layer = e.layer;
+        if (type === "polygon") {
+            const latlngs = layer.getLatLngs()[0].map((latlng) => `${latlng.lng} ${latlng.lat}`);
+            if (latlngs[0] !== latlngs[latlngs.length - 1]) {
+                latlngs.push(latlngs[0]);
+            }
+            const polygonString = `SRID=4326;POLYGON((${latlngs.join(", ")}))`;
+            setDrawnCoordinates(polygonString);
+        }
+    };
 
-          // Ensure the first and last points are the same
-      if (latlngs[0] !== latlngs[latlngs.length - 1]) {
-        latlngs.push(latlngs[0]); // Close the polygon
-      }
+    const navigate = useNavigate();
+    const handleUpdate = (id, type) => {
+        navigate(`/update-${type}/${id}`);
+    };
 
-      const polygonString = `SRID=4326;POLYGON((${latlngs.join(", ")}))`;
-      setDrawnCoordinates(polygonString);
-    }
-  };
-  const navigate = useNavigate();
-  const handleUpdate = (id, type) => {
-    navigate(`/update-${type}/${id}`);
-  };
-
-  const [isDark, setIsDark] = useLocalStorage("isDark", false);
+    const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
     return (
         <>
             <div className="add-location-container">
                 <div className="form-sidebar-container" data-theme={isDark ? "dark" : "mapping"}>
-                <button className="back-button" onClick={() => navigate('/View Locations')}>
-                 <FaArrowLeft /> Back
-                </button>
+                    <button className="back-button" onClick={() => navigate('/View Locations')}>
+                        <FaArrowLeft /> Back
+                    </button>
                     <form className="add-field-form" onSubmit={handleFieldAddition}>
                         <h2 className='LocationTitle'>Add Field Drawing</h2>
                         {notification && <div className="notification">{notification}</div>}
@@ -163,7 +154,7 @@ const AddField = ({ onAddField }) => {
                                         required={index === 0}
                                     />
                                     <input
-                                    className='produce'
+                                        className='produce'
                                         type='text'
                                         placeholder={`Variety ${index + 1}`}
                                         value={prod.variety}
@@ -184,21 +175,31 @@ const AddField = ({ onAddField }) => {
                             <label>Farmer</label>
                             <select
                                 value={farmer}
-                                onChange={(e) => setFarmer(e.target.value)}  // e.target.value should hold the ID
+                                onChange={(e) => setFarmer(e.target.value)}
                                 required
                             >
                                 <option value="">Select Farmer</option>
                                 {farmers.map((farmer) => (
-                                    <option key={farmer.id} value={farmer.id}> {/* farmer.id as the value */}
+                                    <option key={farmer.id} value={farmer.id}>
                                         {farmer.name}
                                     </option>
                                 ))}
                             </select>
                         </div>
+                        <div className="form-control">
+                            <label>Farm Area (acres)</label>
+                            <input
+                                type="number"
+                                value={farmArea}
+                                onChange={(e) => setFarmArea(e.target.value)}
+                                placeholder="Enter farm area in acres"
+                                required
+                            />
+                        </div>
                         <div className='form-control'>
                             <label>Farm Area Coordinates</label>
                             <textarea
-                                value={drawnCoordinates} // Update this to show the drawn coordinates
+                                value={drawnCoordinates}
                                 rows="5"
                                 readOnly
                             />
@@ -241,7 +242,9 @@ const AddField = ({ onAddField }) => {
                     </FeatureGroup>
                 </MapContainer>
             </div>
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Success">
+                <p>Field added successfully.</p>
+            </Modal>
         </>
     );
 };
