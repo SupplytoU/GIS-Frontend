@@ -9,14 +9,18 @@
 /* Main container styling */
 .container1 {
   display: flex;
-  flex-direction: row; /* Ensure row layout for larger screens */
-  height: 100vh;
+  flex-direction: row; 
+  height: auto !important;
   background-color: var(--background-color);
   color: var(--text-color);
+  position: relative;
+  /* overflow: hidden !important; */
+
 }
 
 .container1.collapsed .inquiries-container {
   width: 100%; /* Full width when sidebar is collapsed */
+  
 }
 
 .container1:not(.collapsed) .inquiries-container {
@@ -182,17 +186,24 @@ textarea {
   .form-layout {
     flex-direction: column; /* Stack items vertically on smaller screens */
   }
+  .form-container{
+    height: auto ;
+  
+  }
 
   .container1 {
     flex-direction: column; /* Stack items vertically on smaller screens */
+    height: 100vh !important;
   }
 
   .container1.collapsed .inquiries-container,
   .inquiries-container {
     width: 100%;
     padding: 10px;
+  
   }
-
+  
+  
   .message-box {
     margin-left: 0; /* Remove margin on smaller screens */
     margin-bottom: 20px; /* Add margin for spacing */
@@ -221,4 +232,179 @@ textarea {
   .contact-header {
     font-size: 24px; /* Smaller contact header font */
   }
+} /* Base adjustments for small screens */
+@media (max-width: 991px) {
+  /* Stack form and contact columns vertically */
+  .form-layout {
+    flex-direction:column;
+    display: flex;
+    /* height: auto !important; */
+  }
+  
+  /* Make container full-width when sidebar is collapsed or on small screens */
+  .container1 {
+    flex-direction: column;
+    
+  }
+
+  .Settingsdiv,
+  .inquiries-container {
+    padding: 10px;
+    flex-direction: row;
+    z-index: 1;
+    position: absolute;
+    
+  }
+  .Settingsdiv{
+    z-index: 2;
+  }
+  .inquiries-container{
+    position: relative !important;
+    width: 100% !important;
+    z-index: 1;
+  }
+
+  .container1.collapsed .inquiries-container,
+  .inquiries-container {
+    width: 100%;
+    padding: 10px;
+    transition: margin-left 0.3s ease;
+  }
+
+  /* Message box adjustments */
+  .message-box {
+    margin-left: 0; /* Remove margin */
+    margin-bottom: 20px; /* Add spacing */
+  }
+
+  /* Adjust contact box */
+  .contact-column {
+    margin: 0;
+    
+  }
+
+  /* Reduce padding for smaller screens */
+  .form-container {
+    padding: 20px;
+  }
+
+  /* Adjust font sizes and spacing */
+  .send-message-header {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
 }
+
+/* Further adjustments for extra small screens */
+@media (max-width: 576px) {
+  /* Decrease header font size */
+  .send-message-header {
+    font-size: 18px;
+  }
+  .form-container{
+    height: 100vh;
+    overflow : hidden;
+  }
+ .Settingsdiv,
+  .inquiries-container {
+    width: auto;
+    
+  }
+  /* Reduce input and button sizes */
+  .field-container input,
+  .field-container textarea {
+    font-size: 12px;
+  }
+
+  .send-button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  /* Smaller contact header font */
+  .contact-header {
+    font-size: 20px;
+  }
+
+  /* Make inputs full-width on very small screens */
+  .name-fields {
+    flex-direction: column;
+  }
+
+  .field-container input,
+  .field-container textarea {
+    width: 100%;
+  }
+
+  /* Adjust padding and margin for mobile */
+  .inquiries-container {
+    padding: 10px;
+  }
+  
+}
+
+
+@media (max-width: 375px) {
+  .contact-box {
+    padding: 10px; /* Reduce padding for smaller screens */
+    width: 100%; /* Full width */
+    max-width: 100%; /* Ensure no overflow */
+    margin: 0; /* Remove margins */
+  }
+
+  .send-message-header {
+    font-size: 18px; /* Adjust font sizes for smaller screens */
+  }
+
+  .contact-header {
+    font-size: 18px; /* Smaller font size for contact header */
+  }
+
+  .contact-info a {
+    font-size: 14px; /* Adjust font size for links */
+  }
+  .form-container{
+    height: 100vh;
+   
+  }
+ 
+}
+/* Portrait single screen - Surface Duo */
+@media (max-width: 540px) and (orientation: portrait) {
+  .contact-box {
+    padding: 15px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 14px;
+  }
+
+  .contact-header {
+    font-size: 20px;
+  }
+  .form-container{
+    height: 120vh ;
+
+  
+  }
+  .container1{
+    height: 100vh !important;
+  }
+}
+
+/* Landscape single screen - Surface Duo */
+@media (max-width: 720px) and (orientation: landscape) {
+  .contact-box {
+    padding: 15px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 14px;
+  }
+
+  .contact-header {
+    font-size: 20px;
+  }
+  .form-container{
+    height: 150vh;
+  }
+}
+

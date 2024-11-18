@@ -21,6 +21,7 @@ function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false); // Define modal state
 
   const validatePassword = (password, confirmPassword) => {
     if (password !== confirmPassword) {
