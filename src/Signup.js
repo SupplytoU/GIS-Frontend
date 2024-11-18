@@ -4,9 +4,10 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
 import useLocalStorage from 'use-local-storage';
-import Modal from './Modal'; 
-import { useUserCreateMutation } from '../src/redux/features/auth/authApiSlice';
-import ContinueWithGoogle from './ContinueWithGoogle'; // Add this import for the Google button
+
+import { useUserCreateMutation } from './redux/features/auth/authApiSlice'; 
+import { ContinueWithGoogle } from './components/ContinueWithGoogle';
+
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -69,6 +70,8 @@ function Signup() {
     document.getElementById('password').setCustomValidity('');
     document.getElementById('confirmPassword').setCustomValidity('');
 
+
+
     try {
       await userCreate({
         first_name: formData.firstname,
@@ -83,28 +86,12 @@ function Signup() {
     }
   };
 
+
   const [isDark] = useLocalStorage("isDark", false);
-
-  const generateState = () => Math.random().toString(36).substring(2, 15); // Define generateState function
-
-  const initiateGoogleSignIn = () => {
-    const state = generateState();
-    sessionStorage.setItem('oauth_state', state);
-
-    const clientId = 'YOUR_CLIENT_ID'; // Replace with your actual client ID
-    const redirectUri = 'http://localhost:3000/auth/google'; 
-    const scope = 'profile email';
-    const responseType = 'code';
-
-    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&state=${state}`;
-
-    window.location.href = googleAuthUrl; 
-  };
-
-  const closeModal = () => setIsModalOpen(false); // Define closeModal function
 
   return (
     <GoogleOAuthProvider clientId='YOUR_CLIENT_ID'> {/* Replace with your actual client ID */}
+
       <div className='Logindiv' data-theme={isDark ? "dark" : "light"}>
         <div className="LoginContainer">
           <div className="image-container">
@@ -199,7 +186,6 @@ function Signup() {
           </div>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} /> {/* Add Modal component */}
     </GoogleOAuthProvider>
   );
 }
