@@ -52,7 +52,7 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
     const confirmDelete = window.confirm("Are you sure you want to delete this item?");
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:8000/${type}/${id}`);
+        await axios.delete(`http://localhost:8000/api/fieldmapping/${type}/${id}`);
         window.location.reload(); // Reload the page to reflect changes
       } catch (error) {
         console.error("There was an error deleting the item!", error);
