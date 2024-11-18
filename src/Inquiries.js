@@ -115,7 +115,7 @@ function Inquiries() {
               <div className="message-box">
                 <div className="send-message-header">
                   <span className="send-message-title">Send us a message</span>
-                  <img src={mail} alt="Mail icon" className="icon-mail" />
+                  {/* <img src={mail} alt="Mail icon" className="icon-mail" /> */}
                 </div>
                 <form onSubmit={handleSubmit}>
                   <div className="name-fields">

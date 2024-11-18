@@ -1,0 +1,224 @@
+/* General Styling */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Full viewport height */
+  /* overflow: hidden; */
+  font-family: "Public Sans", sans-serif;
+  box-sizing: border-box;
+  transition: background-color 0.25s ease-in-out;
+}
+
+/* Welcome Page Container */
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100vh; /* Fit to viewport */
+  width: 100%;
+  background: url('/src/Images/Welcome.jpg') center/cover no-repeat;
+  background-color: var(--background-color);
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent scrolling inside */
+}
+
+.welcome-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Subtle dark overlay */
+}
+
+/* Navigation Bar */
+.HomeNav1 {
+  position: absolute;
+  top: 5%; /* Dynamically positioned */
+  right: 5%;
+  display: flex;
+  gap: 15px;
+  font-size: 15px;
+  font-weight: 500;
+  z-index: 2;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.HomeNav1.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.HomeNav1 a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.HomeNav1 a:hover {
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* Welcome Content */
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Align content to the left */
+  flex-grow: 1; /* Occupy remaining space */
+  padding: 10px;
+}
+
+.welcome-heading {
+  font-size: 3em; /* Adjust for better fit */
+  font-weight: 800;
+  color: white;
+  text-align: left;
+  padding-bottom: 3px;
+  margin-top:4%; /* Adjust heading position */
+}
+
+.welcome-subtext {
+  margin-top: 15px;
+  font-size: 1.2em;
+  color: #ddd; /* Subtle text */
+}
+
+/* Get Started Button */
+.GetStartedBtn1 {
+  position: absolute;
+  bottom: 5%; /* Align at the bottom */
+  right: 5%;
+  z-index: 2;
+}
+
+.GetStartedBtn1 a {
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  border-radius: 30px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.GetStartedBtn1 a:hover {
+  background-color: white;
+  color: #262626;
+  transform: scale(1.1);
+}
+
+/* Recommendations Section */
+.recommendations {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+}
+
+.recommendations h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.recommendations ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recommendations .highlighted {
+  color: #ffdd57;
+  font-weight: bold;
+}
+
+.recommendations .highlighted:hover {
+  /* text-decoration: underline; */
+}
+
+/* Quick Access Section */
+.quick-access {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  color: white;
+}
+
+.quick-access h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.quick-links {
+  display: flex;
+  gap: 10px;
+}
+
+.quick-links a {
+  color: #ffdd57;
+  text-decoration: none;
+}
+
+/* Daily Tip Section */
+.daily-tip {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-style: italic;
+  border-radius: 8px;
+}
+
+/* Info Widgets (e.g., Weather, Calendar) */
+.info-widgets {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.info-widgets > div {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .welcome-heading {
+    font-size: 2.5em;
+  }
+
+  .info-widgets {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .quick-links {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-heading {
+    font-size: 2em;
+  }
+
+  .recommendations, .quick-access, .daily-tip {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+
+  .GetStartedBtn1 {
+    bottom: 10%;
+    right: 10%;
+  }
+}

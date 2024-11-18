@@ -29,6 +29,7 @@ import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
+import WelcomePage from './WelcomePage';
 
 // MAPPING
 import AddLocation from './Mapping/components/AddLocation.js';
@@ -40,6 +41,7 @@ import ActivationPage from './ActivationPage';
 import Google from './ContinueWithGoogle.js';
 
 function App() {
+  const userFirstName = "Neema";
   const [locations, setLocations] = useState([]);
   const [farms, setFarms] = useState([]);
   const [farmers, setFarmers] = useState([]);
@@ -158,6 +160,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/landingPage" element={<LandingPage />} />
             <Route path="/" element={<HomeFinal />} />
+            <Route path="/welcome" element={<WelcomePage userFirstName="Neema" />} />
             <Route path="/OurSolutions" element={<Solutions />} />
             <Route path="/Signup" element={<Signup />} />
             <Route path="/Success" element={<Success />} />

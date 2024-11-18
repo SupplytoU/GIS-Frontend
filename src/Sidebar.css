@@ -478,3 +478,114 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+/* Styling for Settingsdiv-28 */
+.Settingsdiv-28 {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 10px;
+  color: var(--primary-text-color);
+  text-align: center;
+  transition: font-size 0.3s ease;
+  margin-left: 40px ;
+  
+}
+
+/* Styling for Settingsdiv-29 */
+.Settingsdiv-29 {
+  display: flex;
+  align-items: center;
+  padding: -10px 15px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: font-size 0.3s ease;
+}
+
+/* Styling for Logout icon inside Settingsdiv-29 */
+.Settingsdiv-29 .LogoutIcon {
+  font-size: 1.8em;
+  margin-right: 8px;
+  color: rgb(117, 112, 112);
+  
+}
+
+.Settingsdiv-29:hover .LogoutIcon {
+  color: #3B6727;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 991px) {
+  .Settingsdiv-28 {
+    font-size: 1.3em;
+  
+    
+  }
+  .Settingsdiv-29 {
+    font-size: 1.1em;
+    margin-left: -280px;
+    margin-bottom: 100px;
+  }
+  .Settingsdiv-29 .LogoutIcon {
+    font-size: 1.6em;
+   
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .Settingsdiv-28 {
+    font-size: 1.2em;
+  }
+  .Settingsdiv-29 {
+    font-size: 1em;
+    margin-left: -230px;
+  }
+  .Settingsdiv-29 .LogoutIcon {
+    font-size: 1.5em;
+    
+  }
+  
+
+}
+
+@media (max-width: 480px) {
+  .Settingsdiv-28 {
+    font-size: 1em;
+  }
+  .Settingsdiv-29 {
+    font-size: 0.9em;
+  }
+  .Settingsdiv-29 .LogoutIcon {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 390px) {
+  .Settingsdiv-28 {
+    font-size: 0.9em;
+  }
+  .Settingsdiv-29 {
+    font-size: 0.85em;
+  }
+  .Settingsdiv-29 .LogoutIcon {
+    font-size: 1.2em;
+  }
+}
+@media (min-width: 991px) {
+  .Settingsdiv-28 {
+    font-size: 1.3em;
+   
+  }
+  .Settingsdiv-29 {
+    font-size: 1.1em;
+    margin-left: 10px;
+    margin-bottom: 70px;
+  }
+  .Settingsdiv-29 .LogoutIcon {
+    font-size: 1.6em;
+  
+  }
+  .LogoutImg{
+    margin-left: -100px;
+    visibility: hidden;
+  }
+}
