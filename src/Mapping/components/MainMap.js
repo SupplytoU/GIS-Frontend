@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup, LayersControl, Polygon, LayerGr
 import { Icon } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import Geocoder from './Geocoder';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './MainMap.css'; // Import the CSS file for button styling
 import MapLoading from './MapLoading'; // Import the renamed MapLoading component
@@ -145,7 +145,7 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
     mapRef.current.setView([lat, lng], 15);
     setActiveFarm(farm);
   };
-  const [isDark, setIsDark] = useLocalStorage("isDark", false);
+  const [isDark] = useLocalStorage("isDark", false);
 
   const clearFilters = () => {
     setSearchTerm('');
