@@ -10,6 +10,7 @@ import './MainMap.css'; // Import the CSS file for button styling
 import MapLoading from './MapLoading'; // Import the renamed MapLoading component
 import { FaArrowLeft } from 'react-icons/fa'; // Import the arrow icon
 import useLocalStorage from "use-local-storage";
+import { useDebounce } from "use-debounce";
 
 const { BaseLayer, Overlay } = LayersControl;
 
@@ -32,9 +33,17 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const [filteredFarms, setFilteredFarms] = useState(farms);
   const [isLoading, setIsLoading] = useState(true);
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 3000);
+
 
   const navigate = useNavigate();
   const mapRef = useRef();
+
+  useEffect(() => {
+    if (debouncedSearchTerm.trim()) {
+      handleSearch(debouncedSearchTerm.trim());
+    }
+  }, [debouncedSearchTerm]);
 
   useEffect(() => {
     setFilteredLocations(locations);
@@ -127,7 +136,7 @@ const zoomToLocation = (location) => {
   if (!location) return;
   const [lat, lng] = parseLocation(location.location);
   if (mapRef.current) {
-    mapRef.current.setView([lat, lng], 15);
+    mapRef.current.setView([lat, lng], 15, { duration: 1.5 });
   }
 };
 
@@ -158,7 +167,7 @@ const zoomToFarm = (farm) => {
   if (!farm) return;
   const [lat, lng] = parsePolygon(farm.farm_area)[0];
   if (mapRef.current) {
-    mapRef.current.setView([lat, lng], 15);
+    mapRef.current.setView([lat, lng], 15, { duration: 1.5 });
   }
 };
   const [isDark] = useLocalStorage("isDark", false);
