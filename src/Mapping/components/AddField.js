@@ -106,9 +106,6 @@ const AddField = ({ onAddField }) => {
     };
 
     const navigate = useNavigate();
-    const handleUpdate = (id, type) => {
-        navigate(`/update-${type}/${id}`);
-    };
 
     const [isDark, setIsDark] = useLocalStorage("isDark", false);
 

@@ -86,7 +86,6 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
 
     console.log(updatedFarm);
 
-    // await axios.put(`http://localhost:8000/api/fieldmapping/farms/${farm.id}/`, updatedFarm);
     onUpdateFarm(farm.id, updatedFarm);
     setNotification('Field updated successfully!');
       setTimeout(() => {
