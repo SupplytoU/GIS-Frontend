@@ -141,7 +141,7 @@ function App() {
 
   const updateFarm = async (id, updatedFarm) => {
     try {
-      await axios.put(`http://localhost:8000/api/fieldmapping/farms/${id}`, updatedFarm);
+      await axios.put(`http://localhost:8000/api/fieldmapping/farms/${id}/`, updatedFarm);
       setFarms(farms.map((farm) => (farm.id === id ? updatedFarm : farm)));
     } catch (error) {
       console.error("There was an error updating the farm!", error);
@@ -149,7 +149,7 @@ function App() {
   };
 
   return (
-    <GoogleOAuthProvider clientId='599325683287-m0dvd4mm77na25p7qfoldped6opvek4q.apps.googleusercontent.com'>
+    <GoogleOAuthProvider clientId="599325683287-m0dvd4mm77na25p7qfoldped6opvek4q.apps.googleusercontent.com">
       <Router>
         <CustomProvider>
           <Routes>
@@ -174,21 +174,47 @@ function App() {
             <Route path="/Footer" element={<Footer />} />
             <Route path="/Change Password" element={<SettingsPass />} />
             <Route path="/Soon" element={<Construct />} />
-            <Route path="/View Locations" element={<MainMap
-              locations={locations}
-              farms={farms}
-              parseLocation={parseLocation}
-              parsePolygon={parsePolygon}
-              customIcon={customIcon}
-              createCustomClusterIcon={createCustomClusterIcon}
-              farmers={farmers}
-            />} />
-            <Route path="/add-location" element={<AddLocation onAdd={addLocation} />} />
+            <Route
+              path="/View Locations"
+              element={
+                <>
+                  <MainMap
+                    locations={locations}
+                    farms={farms}
+                    parseLocation={parseLocation}
+                    parsePolygon={parsePolygon}
+                    customIcon={customIcon}
+                    createCustomClusterIcon={createCustomClusterIcon}
+                    farmers={farmers}
+                  />
+                </>
+              }
+            />
+            <Route
+              path="/add-location"
+              element={<AddLocation onAdd={addLocation} />}
+            />
             <Route path="/add-field" element={<AddField onAdd={addField} />} />
-            <Route path="/update-location/:id" element={<UpdateLocation locations={locations} farms={farms} onUpdate={handleUpdateLocation} />} />
-            <Route path='/update-farm/:id' element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />} />
-            <Route path="/activate/:uidb64/:token" element={<ActivationPage />} /> {/* New activation route */}
-            <Route path="/auth/google/" element={<Google/>}/>
+            <Route
+              path="/update-location/:id"
+              element={
+                <UpdateLocation
+                  locations={locations}
+                  farms={farms}
+                  onUpdate={handleUpdateLocation}
+                />
+              }
+            />
+            <Route
+              path="/update-farm/:id"
+              element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />}
+            />
+            <Route
+              path="/activate/:uidb64/:token"
+              element={<ActivationPage />}
+            />{" "}
+            {/* New activation route */}
+            <Route path="/auth/google/" element={<Google />} />
           </Routes>
         </CustomProvider>
       </Router>

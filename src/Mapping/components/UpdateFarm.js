@@ -14,7 +14,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const mapRef = useRef();
-  const polygonRef = useRef(); // Create a ref for the Polygon
+  const polygonRef = useRef(); // Create a ref for the Polygon  
   const [farm, setFarm] = useState(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -26,23 +26,32 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
   const [notification, setNotification] = useState('');
   const [mapReady, setMapReady] = useState(false);
 
-  useEffect(() => {
-    const currentFarm = farms.find((farm) => farm.id === id);
-    if (currentFarm) {
-      setFarm(currentFarm);
-      setName(currentFarm.name);
-      setDescription(currentFarm.description);
-      setProduce(currentFarm.produce);
-      setFarmer(currentFarm.farmer);
-      setFarmArea(currentFarm.farm_area);
-      setArea(currentFarm.area);
 
-      const parsedArea = parseFarmArea(currentFarm.farm_area);
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/fieldmapping/farms/' + id)
+      .then(response => {
+        setFarm(response.data);
+      })
+      .catch(error => {
+        console.error("There was an error fetching the farm data!", error);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    if (farm) {
+      setName(farm.name);
+      setDescription(farm.description);
+      setProduce(farm.produce);
+      setFarmer(farm.farmer);
+      setFarmArea(farm.farm_area);
+      setArea(farm.area_acres);
+
+      const parsedArea = parseFarmArea(farm.farm_area);
       if (mapReady && mapRef.current) {
         mapRef.current.fitBounds(parsedArea);
       }
     }
-  }, [id, farms, mapReady]);
+  }, [id, farm, farms, mapReady]);
 
   useEffect(() => {
     const fetchFarmers = async () => {
@@ -53,7 +62,6 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
         console.error('Error fetching farmers:', error);
       }
     };
-
     fetchFarmers();
   }, []);
 
@@ -73,10 +81,12 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
       produce,
       farmer,
       farm_area: farmArea,
-      area,
+      area_acres: area,
     };
 
-    await axios.put(`http://localhost:8000/farms/${farm.id}`, updatedFarm);
+    console.log(updatedFarm);
+
+    // await axios.put(`http://localhost:8000/api/fieldmapping/farms/${farm.id}/`, updatedFarm);
     onUpdateFarm(farm.id, updatedFarm);
     setNotification('Field updated successfully!');
       setTimeout(() => {
@@ -113,6 +123,9 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
     });
     return coordinates;
   };
+  if (!farm || !farmers.length) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -179,7 +192,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
             <div className="form-control">
               <label>Area</label>
               <input
-                type="text"
+                type="number"
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
                 placeholder="Enter Area"
