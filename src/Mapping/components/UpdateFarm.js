@@ -100,7 +100,9 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
     e.layers.eachLayer((layer) => {
       if (layer instanceof L.Polygon) {
         const latlngs = layer.getLatLngs()[0].map((latlng) => `${latlng.lng} ${latlng.lat}`);
-        const polygonString = `SRID=4326;POLYGON ((${latlngs.join(', ')}))`;
+latlngs.push(latlngs[0]); // Close the polygon
+const polygonString = `SRID=4326;POLYGON ((${latlngs.join(', ')}))`;
+console.log(polygonString);
         setFarmArea(polygonString);
       }
     });
@@ -110,6 +112,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
     const layer = e.layer;
     if (layer instanceof L.Polygon) {
       const latlngs = layer.getLatLngs()[0].map((latlng) => `${latlng.lng} ${latlng.lat}`);
+      latlngs.push(latlngs[0]);
       const polygonString = `SRID=4326;POLYGON ((${latlngs.join(', ')}))`;
       setFarmArea(polygonString);
     }
