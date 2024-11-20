@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { MapContainer, TileLayer, Marker, Popup, LayersControl, Polygon, LayerGroup } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
@@ -10,7 +12,6 @@ import './MainMap.css'; // Import the CSS file for button styling
 import MapLoading from './MapLoading'; // Import the renamed MapLoading component
 import { FaArrowLeft } from 'react-icons/fa'; // Import the arrow icon
 import useLocalStorage from "use-local-storage";
-import { useDebounce } from "use-debounce";
 
 const { BaseLayer, Overlay } = LayersControl;
 
@@ -33,17 +34,11 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
   const [filteredLocations, setFilteredLocations] = useState(locations);
   const [filteredFarms, setFilteredFarms] = useState(farms);
   const [isLoading, setIsLoading] = useState(true);
-  const [debouncedSearchTerm] = useDebounce(searchTerm, 3000);
 
 
   const navigate = useNavigate();
   const mapRef = useRef();
 
-  useEffect(() => {
-    if (debouncedSearchTerm.trim()) {
-      handleSearch(debouncedSearchTerm.trim());
-    }
-  }, [debouncedSearchTerm]);
 
   useEffect(() => {
     setFilteredLocations(locations);
@@ -63,14 +58,20 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:8000/api/fieldmapping/${type}/${id}`);
+        toast.success(`${type} deleted successfully!`);
         window.location.reload(); // Reload the page to reflect changes
       } catch (error) {
         console.error("There was an error deleting the item!", error);
+        toast.error("Failed to delete the item. Please try again.");
       }
     }
   };
 
   const handleUpdate = (id, type) => {
+    if (!id || !type) {
+      toast.error("Invalid update request. Please select a valid item.");
+      return;
+    }
     navigate(`/update-${type}/${id}`);
   };
 
@@ -81,15 +82,17 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
     let foundFarm = farms.find(farm => farm.name.toLowerCase() === searchTermLower);
 
     if (foundLocation) {
+      toast.info(`Searching for: ${foundLocation.name}`);
       setFilteredLocations([foundLocation]);
       setFilteredFarms([]);
       zoomToLocation(foundLocation);
     } else if (foundFarm) {
+      toast.info(`Searching for: ${foundFarm.name}`);
       setFilteredLocations([]);
       setFilteredFarms([foundFarm]);
       zoomToFarm(foundFarm);
     } else {
-      alert("No matching location or farm found!");
+      toast.warning("No matching location or farm found. Try again.");
     }
   };
 
@@ -130,6 +133,11 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
 
     setFilteredLocations(filteredLocs);
     setFilteredFarms(filteredFarms);
+
+    if (!filteredLocs.length || !filteredFarms.length) {
+      toast.info("No matching locations or farms for the selected filters.");
+    }
+
   };
 
 const zoomToLocation = (location) => {
@@ -173,6 +181,11 @@ const zoomToFarm = (farm) => {
   const [isDark] = useLocalStorage("isDark", false);
 
   const clearFilters = () => {
+    toast.info("Filters cleared and map reset.", {
+      autoClose: 1000,
+    }
+    );
+    //window.location.reload(); // Reload the page to reflect change
     setSearchTerm('');
     setSelectedRegion('');
     setSelectedLabel('');
@@ -181,6 +194,7 @@ const zoomToFarm = (farm) => {
     setFilteredLocations(locations);
     setFilteredFarms(farms);
     mapRef.current.setView([0, 38], 7);
+    
   };
 
   if (isLoading) {
@@ -235,6 +249,7 @@ const zoomToFarm = (farm) => {
                 </div>
                 <div className="filtered-results">
                   <h4>Locations Found ({filteredLocations.length}):</h4>
+
                   <select onChange={handleLocationSelectChange}>
                     <option value="">Select Location</option>
                     {filteredLocations.map((location) => (
@@ -311,6 +326,13 @@ const zoomToFarm = (farm) => {
           zoom={7}
           ref={mapRef}
           style={{ height: "100vh" }}
+          whenReady={() => toast.success("Map loaded successfully!")}
+          error={(err) => {
+            console.error("Map loading error:", err);
+            toast.error(
+              "Failed to load the map. Please try refreshing the page."
+            );
+          }}
         >
           <Geocoder />
           <LayersControl position="topright">
@@ -421,10 +443,17 @@ const zoomToFarm = (farm) => {
                     <div>
                       <h2>{activeFarm.name}</h2>
                       <p>
-                        <b>Acres: </b>{activeFarm.area_acres}
+                        <b>Acres: </b>
+                        {activeFarm.area_acres}
                       </p>
-                      <p><b>Owner: </b>{activeFarm.farmer}</p>
-                      <p><b>Description: </b>{activeFarm.description}</p>
+                      <p>
+                        <b>Owner: </b>
+                        {activeFarm.farmer}
+                      </p>
+                      <p>
+                        <b>Description: </b>
+                        {activeFarm.description}
+                      </p>
                       <button
                         className="delete-button"
                         onClick={() => handleDelete(activeFarm.id, "farms")}
@@ -445,6 +474,19 @@ const zoomToFarm = (farm) => {
           </LayersControl>
         </MapContainer>
       </div>
+      <ToastContainer
+position="top-right"
+autoClose={2000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+transition={Bounce}
+/>
     </>
   );
 }
