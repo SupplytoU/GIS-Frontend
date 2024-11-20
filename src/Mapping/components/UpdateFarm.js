@@ -7,6 +7,8 @@ import Geocoder from './Geocoder';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import L from 'leaflet';
 import './crudForm.css';
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { BaseLayer } = LayersControl;
 
@@ -33,6 +35,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
         setFarm(response.data);
       })
       .catch(error => {
+        toast.error('Error fetching farm data');
         console.error("There was an error fetching the farm data!", error);
       });
   }, [id]);
@@ -59,6 +62,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
         const res = await axios.get('http://localhost:8000/api/fieldmapping/farmers');
         setFarmers(res.data);
       } catch (error) {
+        toast.error('Error fetching farmers data');
         console.error('Error fetching farmers:', error);
       }
     };
@@ -87,6 +91,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
     console.log(updatedFarm);
 
     onUpdateFarm(farm.id, updatedFarm);
+    toast.success('Field updated successfully!');
     setNotification('Field updated successfully!');
       setTimeout(() => {
         setNotification('');
@@ -163,31 +168,43 @@ console.log(polygonString);
                     type="text"
                     placeholder={`Produce Type ${index + 1}`}
                     value={prod.produce_type}
-                    onChange={(e) => handleProduceChange(index, 'produce_type', e.target.value)}
+                    onChange={(e) =>
+                      handleProduceChange(index, "produce_type", e.target.value)
+                    }
                     required={index === 0}
                   />
                   <input
                     type="text"
                     placeholder={`Variety ${index + 1}`}
                     value={prod.variety}
-                    onChange={(e) => handleProduceChange(index, 'variety', e.target.value)}
+                    onChange={(e) =>
+                      handleProduceChange(index, "variety", e.target.value)
+                    }
                     required={index === 0}
                   />
                 </div>
               ))}
               <button
                 type="button"
-                onClick={() => setProduce([...produce, { produce_type: '', variety: '' }])}
+                onClick={() =>
+                  setProduce([...produce, { produce_type: "", variety: "" }])
+                }
               >
                 Add Produce
               </button>
             </div>
             <div className="form-control">
               <label>Farmer</label>
-              <select value={farmer} onChange={(e) => setFarmer(e.target.value)} required>
+              <select
+                value={farmer}
+                onChange={(e) => setFarmer(e.target.value)}
+                required
+              >
                 <option value="">Select Farmer</option>
                 {farmers.map((farmer) => (
-                  <option key={farmer.id} value={farmer.id}>{farmer.name}</option>
+                  <option key={farmer.id} value={farmer.id}>
+                    {farmer.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -210,15 +227,23 @@ console.log(polygonString);
                 required
               />
             </div>
-            <button className="btn" type="submit">Update Field</button>
+            <button className="btn" type="submit">
+              Update Field
+            </button>
           </form>
         </div>
-        <MapContainer 
-          center={[0, 38]} 
-          zoom={8} 
-          className="leaflet-container" 
+        <MapContainer
+          center={[0, 38]}
+          zoom={8}
+          className="leaflet-container"
           ref={mapRef}
           whenReady={() => setMapReady(true)}
+          error={(err) => {
+            console.error("Map loading error:", err);
+            toast.error(
+              "Failed to load the map. Please try refreshing the page."
+            );
+          }}
         >
           <Geocoder />
           <LayersControl position="topright">
@@ -226,7 +251,7 @@ console.log(polygonString);
               <TileLayer
                 url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
                 attribution="&copy; Google Maps"
-                subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                subdomains={["mt0", "mt1", "mt2", "mt3"]}
                 maxZoom={23}
               />
             </BaseLayer>
@@ -252,14 +277,24 @@ console.log(polygonString);
               }}
             />
             {farmArea && (
-              <Polygon
-                ref={polygonRef}
-                positions={parseFarmArea(farmArea)}
-              />
+              <Polygon ref={polygonRef} positions={parseFarmArea(farmArea)} />
             )}
           </FeatureGroup>
         </MapContainer>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </>
   );
 };

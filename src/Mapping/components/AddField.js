@@ -8,6 +8,8 @@ import { useNavigate} from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import useLocalStorage from "use-local-storage";
 import Modal from './Modal';
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { BaseLayer } = LayersControl;
 
@@ -32,6 +34,7 @@ const AddField = ({ onAddField }) => {
                 setFarmers(res.data);
             } catch (error) {
                 console.error("Error fetching farmers:", error);
+                toast.error("Error fetching farmers. Please try again.");
             }
         };
         fetchFarmers();
@@ -52,6 +55,7 @@ const AddField = ({ onAddField }) => {
 
         if (!drawnCoordinates || !farmArea) {
             setNotification("Please draw the farm area on the map and input the area in acres before saving.");
+            toast.error("Please draw the farm area on the map and input the area in acres before saving.");
             setTimeout(() => {
                 setNotification("");
             }, 3000);
@@ -67,11 +71,10 @@ const AddField = ({ onAddField }) => {
             produce,
         };
 
-        console.log('Field Data to send:', fieldData);
 
         try {
             await axios.post('http://localhost:8000/api/fieldmapping/farms/', fieldData);
-            // onAddField(fieldData);
+            toast.success("Field added successfully.");
             setName('');
             setDescription('');
             setProduce([{ produce_type: '', variety: '' }]);
@@ -85,6 +88,7 @@ const AddField = ({ onAddField }) => {
             }
         } catch (error) {
             console.error('Error adding field:', error);
+            toast.error("Error saving field. Please try again.");
             setNotification('Error adding field. Please try again.');
             setTimeout(() => {
                 setNotification('');
@@ -268,6 +272,19 @@ const AddField = ({ onAddField }) => {
         >
           <p>Field added successfully.</p>
         </Modal>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition={Bounce}
+        />
       </>
     );
 };
