@@ -5,14 +5,38 @@ import { EditControl } from 'react-leaflet-draw';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import Geocoder from './Geocoder';
 import './crudForm.css';
+import axios from 'axios';
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { BaseLayer } = LayersControl;
 
-const UpdateLocation = ({ locations, farms, onUpdate }) => {
+// Create a mapping for label choices
+const LABEL_CHOICES = {
+  "Farm": "farms",
+  "Processing Facility": "processing-facilities",
+  "Distribution Center": "distribution-centers",
+  "Warehouse": "warehouses",
+  "Restaurant": "restaurants",
+  "Supermarket": "supermarkets",
+};
+
+const REGION_CHOICES = {
+  'Central': 'central',
+  'Coast': 'coast',
+  'Eastern': 'eastern',
+  'Nairobi': 'nairobi',
+  'North Eastern': 'north-eastern',
+  'Nyanza': 'nyanza',
+  'Rift Valley': 'rift-valley',
+  'Western': 'western'
+};
+
+const UpdateLocation = ({farms, onUpdate }) => 
+{
   const { id } = useParams();
   const navigate = useNavigate();
-  const location = locations.find((loc) => loc.id === id);
-
+  const [location, setLocation] = useState();
   const [name, setName] = useState('');
   const [label, setLabel] = useState('');
   const [latitude, setLatitude] = useState(0);
@@ -24,6 +48,18 @@ const UpdateLocation = ({ locations, farms, onUpdate }) => {
 
   const mapRef = useRef();
   const featureGroupRef = useRef();
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/fieldmapping/locations/' + id)
+      .then(response => {
+        setLocation(response.data);
+      })
+      .catch(error => {
+        toast.error('Error fetching location data');
+        console.error("There was an error fetching the location data!", error);
+      });
+  }, [id]);
 
   useEffect(() => {
     if (location) {
@@ -60,7 +96,8 @@ const UpdateLocation = ({ locations, farms, onUpdate }) => {
     e.preventDefault();
 
     if (!name || !latitude || !longitude) {
-      alert('Please add all required location details');
+      toast.error('Please fill in all required fields!');
+      setNotification('Please fill in all required fields!');
       return;
     }
 
@@ -77,6 +114,7 @@ const UpdateLocation = ({ locations, farms, onUpdate }) => {
     await onUpdate(id, updatedLocation);
 
     setNotification('Location details updated successfully!');
+    toast.success('Location details updated successfully!');
 
     setTimeout(() => {
       setNotification('');
@@ -115,20 +153,28 @@ const UpdateLocation = ({ locations, farms, onUpdate }) => {
             </div>
             <div className="form-control">
               <label>Label</label>
-              <select value={label} onChange={(e) => setLabel(e.target.value)}>
+              <select
+                value={Object.keys(LABEL_CHOICES).find(
+                  (key) => LABEL_CHOICES[key] === label
+                )}
+                onChange={(e) => setLabel(e.target.value)}
+                required
+              >
                 <option value="">Select Label</option>
-                <option value="Farm">Farm</option>
-                <option value="Processing Facility">Processing Facility</option>
-                <option value="Distribution Center">Distribution Center</option>
-                <option value="Warehouse">Warehouse</option>
-                <option value="Restaurant">Restaurant</option>
-                <option value="Supermarket">Supermarket</option>
+                {Object.keys(LABEL_CHOICES).map((key) => (
+                  <option key={key} value={key}>
+                    {key}
+                  </option>
+                ))}
               </select>
             </div>
-            {label === 'Farm' && (
+            {label === "Farm" && (
               <div className="form-control">
                 <label>Farm</label>
-                <select value={farmName} onChange={(e) => setFarmName(e.target.value)}>
+                <select
+                  value={farmName}
+                  onChange={(e) => setFarmName(e.target.value)}
+                >
                   <option value="">Select Farm</option>
                   {farms.map((farm) => (
                     <option key={farm.name} value={farm.name}>
@@ -158,16 +204,19 @@ const UpdateLocation = ({ locations, farms, onUpdate }) => {
             </div>
             <div className="form-control">
               <label>Region</label>
-              <select value={region} onChange={(e) => setRegion(e.target.value)}>
+              <select
+                value={Object.keys(REGION_CHOICES).find(
+                  (key) => REGION_CHOICES[key] === region
+                )}
+                onChange={(e) => setRegion(e.target.value)}
+                required
+              >
                 <option value="">Select Region</option>
-                <option value="Central">Central</option>
-                <option value="Coast">Coast</option>
-                <option value="Eastern">Eastern</option>
-                <option value="Rift Valley">Rift Valley</option>
-                <option value="Nairobi">Nairobi</option>
-                <option value="North Eastern">North Eastern</option>
-                <option value="Nyanza">Nyanza</option>
-                <option value="Western">Western</option>
+                {Object.keys(REGION_CHOICES).map((key) => (
+                  <option key={key} value={key}>
+                    {key}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="form-control">
@@ -180,39 +229,57 @@ const UpdateLocation = ({ locations, farms, onUpdate }) => {
                 rows="4"
               />
             </div>
-            <input type="submit" value="Update Location" className="btn btn-block" />
+            <input
+              type="submit"
+              value="Update Location"
+              className="btn btn-block"
+            />
           </form>
         </div>
-        <MapContainer center={[latitude || 0, longitude || 38]} zoom={8} className='leaflet-container' ref={mapRef} >
+        <MapContainer
+          center={[latitude || 0, longitude || 38]}
+          zoom={8}
+          className="leaflet-container"
+          ref={mapRef}
+          whenReady={() => toast.success("Map loaded successfully!")}
+          error={(err) => {
+            console.error("Map loading error:", err);
+            toast.error(
+              "Failed to load the map. Please try refreshing the page."
+            );
+          }}
+        >
           <Geocoder />
           <LayersControl position="topright">
-            <BaseLayer checked name='Google Hybrid Map'>
+            <BaseLayer checked name="Google Hybrid Map">
               <TileLayer
                 url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
-                attribution='&copy; Google Maps'
-                subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                attribution="&copy; Google Maps"
+                subdomains={["mt0", "mt1", "mt2", "mt3"]}
                 maxZoom={23}
               />
             </BaseLayer>
-            <BaseLayer name='Terrain Map'>
+            <BaseLayer name="Terrain Map">
               <TileLayer
                 url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"
-                attribution='&copy; Google Maps'
-                subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                attribution="&copy; Google Maps"
+                subdomains={["mt0", "mt1", "mt2", "mt3"]}
                 maxZoom={20}
               />
             </BaseLayer>
-            <BaseLayer name='Esri World'>
+            <BaseLayer name="Esri World">
               <TileLayer
                 url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                attribution='&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                attribution="&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
                 maxZoom={20}
               />
             </BaseLayer>
           </LayersControl>
           <FeatureGroup ref={featureGroupRef}>
             {latitude && longitude && (
-              <Marker position={[latitude, longitude]} draggable
+              <Marker
+                position={[latitude, longitude]}
+                draggable
                 eventHandlers={{
                   dragend: (event) => {
                     const marker = event.target;
@@ -227,7 +294,7 @@ const UpdateLocation = ({ locations, farms, onUpdate }) => {
               position="topright"
               onCreated={(e) => {
                 const { layerType, layer } = e;
-                if (layerType === 'marker') {
+                if (layerType === "marker") {
                   const { lat, lng } = layer.getLatLng();
                   setLatitude(lat);
                   setLongitude(lng);
@@ -245,6 +312,19 @@ const UpdateLocation = ({ locations, farms, onUpdate }) => {
           </FeatureGroup>
         </MapContainer>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </>
   );
 };

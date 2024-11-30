@@ -35,7 +35,6 @@ const LoginIcon = () => {
           <span className="arrow-login"><FaChevronDown/></span>
           {dropdownVisible && (
             <ul className="dropdownlogin">
-              <Link to='/Login'><li className="dropdown-item1">Login</li></Link>
               <Link to='/Account'><li className="dropdown-item1">Settings</li></Link>
             </ul>
           )}

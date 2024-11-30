@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, FeatureGroup, LayersControl } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import Geocoder from './Geocoder';
 import Modal from './Modal'; 
 import './crudForm.css';
 import { FaArrowLeft } from 'react-icons/fa';
 import useLocalStorage from "use-local-storage";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { BaseLayer } = LayersControl;
 
@@ -70,7 +72,7 @@ const AddLocation = ({ onAdd }) => {
 
     // Validate required fields
     if (!name || !latitude || !longitude) {
-      alert("Please add all required location details");
+      toast.error("Please fill in all required fields!");
       return;
     }
 
@@ -108,9 +110,6 @@ const AddLocation = ({ onAdd }) => {
   };
 
   const navigate = useNavigate();
-  const handleUpdate = (id, type) => {
-    navigate(`/update-${type}/${id}`);
-  };
 
   //Dark mode/light mode
 const [isDark, setIsDark] = useLocalStorage("isDark", false);
@@ -118,10 +117,16 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
   return (
     <>
       <div className="add-location-container">
-        <div className="form-sidebar-container" data-theme={isDark ? "dark" : "mapping"}>
-        <button className="back-button" onClick={() => navigate('/View Locations')}>
-          <FaArrowLeft /> Back
-        </button>
+        <div
+          className="form-sidebar-container"
+          data-theme={isDark ? "dark" : "mapping"}
+        >
+          <button
+            className="back-button"
+            onClick={() => navigate("/View Locations")}
+          >
+            <FaArrowLeft /> Back
+          </button>
           <form className="add-location-form" onSubmit={onSubmit}>
             <h2 className="LocationTitle">Enter Location Details</h2>
             <div className="form-control">
@@ -217,13 +222,22 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
               className="btnlocation"
             />
           </form>
-          <div className="home-button" onClick={() => navigate('/')}>SUPPLY2U </div>
+          <div className="home-button" onClick={() => navigate("/")}>
+            SUPPLY2U{" "}
+          </div>
         </div>
         <MapContainer
           center={[0, 38]}
           zoom={8}
           className="leaflet-container"
           ref={mapRef}
+          whenReady={() => toast.success("Map loaded successfully!")}
+          error={(err) => {
+            console.error("Map loading error:", err);
+            toast.error(
+              "Failed to load the map. Please try refreshing the page."
+            );
+          }}
         >
           <Geocoder />
           <LayersControl position="topright">
@@ -269,6 +283,19 @@ const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
       {/* Modal to show success message */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </>
   );
 };
