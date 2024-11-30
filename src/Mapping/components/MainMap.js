@@ -164,8 +164,8 @@ function MainMap({ locations, farms, parseLocation, parsePolygon, customIcon, cr
 
   return (
     <>
-    <div className='MainMap'>
-      <div className="filter-container" data-theme={isDark ? "dark" : "mapping"}>
+    <div className='MainMap'data-theme={isDark ? "dark" : "mapping"}>
+      <div className="filter-container">
       <button className="back-button" onClick={() => navigate('/')}>
           <FaArrowLeft /> Home
         </button>

@@ -7,6 +7,7 @@ import Geocoder from './Geocoder';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import L from 'leaflet';
 import './crudForm.css';
+import useLocalStorage from "use-local-storage";
 
 const { BaseLayer } = LayersControl;
 
@@ -113,11 +114,12 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
     });
     return coordinates;
   };
+  const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
   return (
     <>
       <div className="add-location-container">
-        <div className="form-sidebar-container">
+        <div className="form-sidebar-container" data-theme={isDark ? "dark" : "mapping"}>
           <form className="add-field-form" onSubmit={handleFieldUpdate}>
             <h2>Update Field Drawing</h2>
             {notification && <div className="notification">{notification}</div>}
@@ -161,6 +163,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
                 </div>
               ))}
               <button
+              className='btnlocation'
                 type="button"
                 onClick={() => setProduce([...produce, { produce_type: '', variety: '' }])}
               >
@@ -195,7 +198,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
                 required
               />
             </div>
-            <button className="btn" type="submit">Update Field</button>
+            <button className="btnlocation" type="submit">Update Field</button>
           </form>
         </div>
         <MapContainer 

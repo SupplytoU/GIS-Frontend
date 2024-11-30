@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, FeatureGroup, LayersControl } from 'react-leaf
 import { EditControl } from 'react-leaflet-draw';
 import { useNavigate, Link } from 'react-router-dom';
 import Geocoder from './Geocoder';
-import Modal from './Modal'; // Import your Modal component
+import Modal from './Modal'; 
 import './crudForm.css';
 import { FaArrowLeft } from 'react-icons/fa';
 import useLocalStorage from "use-local-storage";

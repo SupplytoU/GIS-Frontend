@@ -4,7 +4,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import './Signup.css';
 import img from './Images/Signup.jpeg';
 import useLocalStorage from 'use-local-storage';
-
+import google from './Images/Google.png';
 import { useUserCreateMutation } from './redux/features/auth/authApiSlice'; 
 import { ContinueWithGoogle } from './components/ContinueWithGoogle';
 
@@ -179,6 +179,7 @@ function Signup() {
             </form>
             <div className="OR">OR</div>
             <div className="SigninWithGoogle">
+            <img loading="lazy" src={google} className="Loginimg-2" alt="Google" />
               <ContinueWithGoogle/>
             </div>
             <div className='Signup2'>Have an account?<span className='SignupSpan'><Link to="/Login"> Login here</Link></span></div>

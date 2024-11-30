@@ -1,5 +1,7 @@
 // src/components/ContinueWithGoogle.js
 import React from "react";
+import './ContinueWithGoogle.css'
+import useLocalStorage from 'use-local-storage';
 
 export const ContinueWithGoogle = () => {
   const handleGoogleLogin = async () => {
@@ -25,6 +27,7 @@ export const ContinueWithGoogle = () => {
       console.log("Error:", error);
     }
   };
-
-  return <button onClick={handleGoogleLogin}>Continue with Google</button>;
+  const [isDark] = useLocalStorage("isDark", false);
+  
+  return <button onClick={handleGoogleLogin} className="ContinueWithGoogle" data-theme={isDark ? "dark" : "light"}>Continue with Google</button>;
 };

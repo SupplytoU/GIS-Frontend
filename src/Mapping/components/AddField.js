@@ -174,7 +174,7 @@ const AddField = ({ onAddField }) => {
                             ))}
                             <button
                                 type='button'
-                                className='btn'
+                                className='btnlocation'
                                 onClick={() => setProduce([...produce, { produce_type: '', variety: '' }])}
                             >
                                 Add Produce
@@ -203,7 +203,7 @@ const AddField = ({ onAddField }) => {
                                 readOnly
                             />
                         </div>
-                        <button className="btn" type="submit">Save Field</button>
+                        <button className="btnlocation" type="submit">Save Field</button>
                     </form>
                     <div className="home-button" onClick={() => navigate('/')}>SUPPLY2U </div>
                 </div>
