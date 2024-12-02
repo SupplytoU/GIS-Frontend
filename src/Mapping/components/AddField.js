@@ -19,6 +19,7 @@ const AddField = ({ onAddField }) => {
     const [description, setDescription] = useState('');
     const [produce, setProduce] = useState([{ produce_type: '', variety: '' }]);
     const [farmer, setFarmer] = useState('');
+    const [farmArea, setFarmArea] = useState(''); // New state for farm area in acres
     const [farmers, setFarmers] = useState([]);
     const [notification, setNotification] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
