@@ -188,3 +188,7 @@ select:focus {
 .map-container {
     border-radius: 10px; /* Match the border-radius with filter-container */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */}
+
+.leaflet-control-geocoder-form input {
+    color: black!important;
+}

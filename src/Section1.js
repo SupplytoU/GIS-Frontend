@@ -73,10 +73,12 @@ function Section1() {
             <a href="https://supply2u.jhubafrica.com/">
               <IoIosGlobe className="home-image-secondary"/>
             </a>
-            <MdOutlineEmail className="home-image-secondary"/>
-            <Link to="Inquiries">
+            <a href="mailto:supplytou@outlook.com">
+               <MdOutlineEmail className="home-image-secondary"/>
+            </a>
+            <a href="tel:+254-748-837-743">
               <IoCallOutline className="home-image-secondary"/>
-            </Link>
+            </a>
           </div>
         </div>
         <div className="home-content-section fade-in">

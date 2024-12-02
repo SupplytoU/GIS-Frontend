@@ -7,6 +7,7 @@ import Geocoder from './Geocoder';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import L from 'leaflet';
 import './crudForm.css';
+import useLocalStorage from "use-local-storage";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -130,6 +131,7 @@ console.log(polygonString);
     });
     return coordinates;
   };
+  const [isDark, setIsDark] = useLocalStorage("isDark", false);
   if (!farm || !farmers.length) {
     return <div>Loading...</div>;
   }
@@ -137,7 +139,7 @@ console.log(polygonString);
   return (
     <>
       <div className="add-location-container">
-        <div className="form-sidebar-container">
+        <div className="form-sidebar-container" data-theme={isDark ? "dark" : "mapping"}>
           <form className="add-field-form" onSubmit={handleFieldUpdate}>
             <h2>Update Field Drawing</h2>
             {notification && <div className="notification">{notification}</div>}
@@ -185,6 +187,7 @@ console.log(polygonString);
                 </div>
               ))}
               <button
+              className='btnlocation'
                 type="button"
                 onClick={() =>
                   setProduce([...produce, { produce_type: "", variety: "" }])
@@ -227,9 +230,7 @@ console.log(polygonString);
                 required
               />
             </div>
-            <button className="btn" type="submit">
-              Update Field
-            </button>
+            <button className="btnlocation" type="submit">Update Field</button>
           </form>
         </div>
         <MapContainer

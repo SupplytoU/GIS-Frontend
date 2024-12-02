@@ -25,6 +25,7 @@ import Analytics from './OurSolutions/Analytics.js';
 import SideBar from './Sidebar.js';
 import Section1 from './Section1.js';
 import Inquries from './Inquiries.js';
+import UserInquiries from './UserInquiries.js';
 import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
 import SettingsPass from './Password.js';
@@ -157,6 +158,7 @@ function App() {
             <Route path="/password-changed" element={<PasswordChanged />} />
             <Route path="/help" element={<Help />} />
             <Route path="/inquiries" element={<Inquries />} />
+            <Route path="/Contact Us" element={<UserInquiries />} />
             <Route path="/login" element={<Login />} />
             <Route path="/landingPage" element={<LandingPage />} />
             <Route path="/" element={<HomeFinal />} />
