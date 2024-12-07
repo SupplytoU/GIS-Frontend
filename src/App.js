@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
-import axios from 'axios';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -40,6 +39,7 @@ import UpdateLocation from './Mapping/components/UpdateLocation';
 import UpdateFarm from './Mapping/components/UpdateFarm';
 import ActivationPage from './ActivationPage';
 import Google from './ContinueWithGoogle.js';
+import axiosInstance from './utils/axiosInstance.js';
 
 function App() {
   const userFirstName = "Neema";
@@ -48,7 +48,10 @@ function App() {
   const [farmers, setFarmers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/fieldmapping/locations/')
+    const token = localStorage.getItem('access');
+    
+    if (token) {
+      axiosInstance.get('/fieldmapping/locations/')
       .then(response => {
         setLocations(response.data);
       })
@@ -56,7 +59,7 @@ function App() {
         console.error("There was an error fetching the location data!", error);
       });
 
-    axios.get('http://localhost:8000/api/fieldmapping/farms')
+    axiosInstance.get('/fieldmapping/farms')
       .then(response => {
         setFarms(response.data);
       })
@@ -64,7 +67,7 @@ function App() {
         console.error("There was an error fetching the farm data!", error);
       });
 
-    axios.get('http://localhost:8000/api/fieldmapping/farmers')
+    axiosInstance.get('/fieldmapping/farmers')
 
       .then(response => {
         setFarmers(response.data);
@@ -72,6 +75,8 @@ function App() {
       .catch(error => {
         console.error("There was an error fetching the farmers data!", error);
       });
+    }
+    
   }, []);
 
   const customIcon = new Icon({
@@ -102,9 +107,10 @@ function App() {
 
   const addLocation = async (location) => {
     try {
-      const res = await axios.post('http://localhost:8000/api/fieldmapping/locations/', location, {
+      const res = await axiosInstance.post('/fieldmapping/locations/', location, {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
       });
       setLocations([...locations, res.data]);
@@ -115,7 +121,7 @@ function App() {
 
   const addField = async (farm) => {
     try {
-      const res = await axios.post('http://localhost:8000/api/fieldmapping/farms', farm, {
+      const res = await axiosInstance.post('/fieldmapping/farms', farm, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -127,7 +133,7 @@ function App() {
   };
 
   const handleUpdateLocation = async (id, updatedLocation) => {
-    const res = await fetch(`http://localhost:8000/api/fieldmapping/locations/${id}/`, {
+    const res = await axiosInstance.put(`/fieldmapping/locations/${id}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -142,7 +148,7 @@ function App() {
 
   const updateFarm = async (id, updatedFarm) => {
     try {
-      await axios.put(`http://localhost:8000/api/fieldmapping/farms/${id}/`, updatedFarm);
+      await axiosInstance.put(`/fieldmapping/farms/${id}/`, updatedFarm);
       setFarms(farms.map((farm) => (farm.id === id ? updatedFarm : farm)));
     } catch (error) {
       console.error("There was an error updating the farm!", error);
