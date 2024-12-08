@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, FeatureGroup, LayersControl, Polygon } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
-import axios from 'axios';
+import axiosInstance from '../../utils/axiosInstance';
 import { useParams, useNavigate } from 'react-router-dom';
 import Geocoder from './Geocoder';
 import 'leaflet-draw/dist/leaflet.draw.css';
@@ -31,7 +31,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/fieldmapping/farms/' + id)
+    axiosInstance.get('http://localhost:8000/api/fieldmapping/farms/' + id)
       .then(response => {
         setFarm(response.data);
       })
@@ -60,7 +60,7 @@ const UpdateFarm = ({ farms, onUpdateFarm }) => {
   useEffect(() => {
     const fetchFarmers = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/fieldmapping/farmers');
+        const res = await axiosInstance.get('http://localhost:8000/api/fieldmapping/farmers');
         setFarmers(res.data);
       } catch (error) {
         toast.error('Error fetching farmers data');

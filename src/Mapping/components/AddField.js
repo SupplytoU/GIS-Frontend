@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, FeatureGroup, LayersControl } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
-import axios from 'axios';
+import axiosInstance from '../../utils/axiosInstance';
 import Geocoder from './Geocoder';
 import './crudForm.css';
 import { useNavigate, Link } from 'react-router-dom';
@@ -27,8 +27,8 @@ const AddField = ({ onAddField }) => {
   useEffect(() => {
     const fetchFarmers = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:8000/api/fieldmapping/farmers/"
+        const res = await axiosInstance.get(
+          "/fieldmapping/farmers/"
         );
         setFarmers(res.data);
       } catch (error) {
@@ -70,7 +70,7 @@ const AddField = ({ onAddField }) => {
         console.log('Field Data to send:', fieldData); // Debugging
 
         try {
-            await axios.post('http://localhost:8000/api/fieldmapping/farms/', fieldData);
+            await axiosInstance.post('/fieldmapping/farms/', fieldData);
             onAddField(fieldData);
             // Reset form fields
             setName('');

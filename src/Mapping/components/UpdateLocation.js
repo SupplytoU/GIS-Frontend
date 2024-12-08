@@ -5,7 +5,7 @@ import { EditControl } from 'react-leaflet-draw';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import Geocoder from './Geocoder';
 import './crudForm.css';
-import axios from 'axios';
+import axiosInstance from '../../utils/axiosInstance';
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -51,7 +51,7 @@ const UpdateLocation = ({farms, onUpdate }) =>
 
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/fieldmapping/locations/' + id)
+    axiosInstance.get('http://localhost:8000/api/fieldmapping/locations/' + id)
       .then(response => {
         setLocation(response.data);
       })

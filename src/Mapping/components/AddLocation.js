@@ -9,6 +9,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import useLocalStorage from "use-local-storage";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axiosInstance from '../../utils/axiosInstance';
 
 const { BaseLayer } = LayersControl;
 
@@ -48,9 +49,8 @@ const AddLocation = ({ onAdd }) => {
 
   useEffect(() => {
     const fetchFarms = async () => {
-      const res = await fetch("http://localhost:8000/api/fieldmapping/farms/");
-      const data = await res.json();
-      setFarms(data); // Update farms state
+      const res = await axiosInstance.get("http://localhost:8000/api/fieldmapping/farms/");
+      setFarms(res.data); // Update farms state
     };
 
     fetchFarms();

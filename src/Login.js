@@ -51,6 +51,9 @@ function Login() {
     const result = await login({ email, password }).unwrap();
     console.log(result);
 
+    localStorage.setItem('access', result.access);
+    localStorage.setItem('refresh', result.refresh);
+
     // Dispatch successful login state and navigate
     dispatch(setAuth(true));
     navigate('/welcome');
