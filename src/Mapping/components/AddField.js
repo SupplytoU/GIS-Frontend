@@ -16,6 +16,7 @@ const AddField = ({ onAddField }) => {
     const [farmer, setFarmer] = useState('');
     const [farmers, setFarmers] = useState([]);
     const [notification, setNotification] = useState('');
+    const [farm_area, setFarmArea] = useState('');
 
     useEffect(() => {
         const fetchFarmers = async () => {
