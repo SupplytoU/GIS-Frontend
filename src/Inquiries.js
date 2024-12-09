@@ -166,7 +166,7 @@ function Inquiries() {
                       id="phone"
                       className="form-fields"
                       value={formData.phone}
-                      onChange={handleInputChange}
+                      onChange={handleInputChange} 
                       placeholder="e.g. 071234567"
                     />
                     {errors.phone && <span className="error-message">{errors.phone}</span>}

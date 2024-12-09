@@ -1,23 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, FeatureGroup, LayersControl } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
+import { useNavigate, Link } from 'react-router-dom';
 import Geocoder from './Geocoder';
 import Modal from './Modal'; // Import your Modal component
 import './crudForm.css';
+import { FaArrowLeft } from 'react-icons/fa';
+import useLocalStorage from "use-local-storage";
 
 const { BaseLayer } = LayersControl;
 
 // Create a mapping for label choices
 const LABEL_CHOICES = {
-  'Farm': 'farms',
-  'Processing Facility': 'processing-facilities',
-  'Distribution Center': 'distribution-centers',
-  'Warehouse': 'warehouses',
-  'Restaurant': 'restaurants',
-  'Supermarket': 'supermarkets'
+  "Farm": "farms",
+  "Processing Facility": "processing-facilities",
+  "Distribution Center": "distribution-centers",
+  "Warehouse": "warehouses",
+  "Restaurant": "restaurants",
+  "Supermarket": "supermarkets",
 };
 
-// Create a mapping for region choices
 const REGION_CHOICES = {
   'Central': 'central',
   'Coast': 'coast',
@@ -30,14 +32,13 @@ const REGION_CHOICES = {
 };
 
 const AddLocation = ({ onAdd }) => {
-  const [name, setName] = useState('');
-  const [id, setId] = useState('');
-  const [label, setLabel] = useState('');
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
-  const [region, setRegion] = useState('');
-  const [description, setDescription] = useState('');
-  const [farmName, setFarmName] = useState('');
+  const [name, setName] = useState("");
+  const [label, setLabel] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const [region, setRegion] = useState("");
+  const [description, setDescription] = useState("");
+  const [farmName, setFarmName] = useState("");
   const [farms, setFarms] = useState([]); // Define farms state
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const mapRef = useRef();
@@ -45,7 +46,7 @@ const AddLocation = ({ onAdd }) => {
 
   useEffect(() => {
     const fetchFarms = async () => {
-      const res = await fetch('http://localhost:8000/api/fieldmapping/farms/');
+      const res = await fetch("http://localhost:8000/api/fieldmapping/farms/");
       const data = await res.json();
       setFarms(data); // Update farms state
     };
@@ -55,7 +56,7 @@ const AddLocation = ({ onAdd }) => {
 
   const onCreated = (e) => {
     const { layerType, layer } = e;
-    if (layerType === 'marker') {
+    if (layerType === "marker") {
       const { lat, lng } = layer.getLatLng();
       setLatitude(lat);
       setLongitude(lng);
@@ -67,39 +68,37 @@ const AddLocation = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    // If the form is valid, process the submission
-    if (!id || !name || !latitude || !longitude) {
-      alert('Please add all required location details');
+    // Validate required fields
+    if (!name || !latitude || !longitude) {
+      alert("Please add all required location details");
       return;
     }
 
     // Map the label and region to the corresponding values
-    const labelValue = LABEL_CHOICES[label] || '';
-    const regionValue = REGION_CHOICES[region] || '';
+    const labelValue = LABEL_CHOICES[label] || "";
+    const regionValue = REGION_CHOICES[region] || "";
 
     onAdd({
-      // id,
       name,
       label: labelValue, // Use the mapped label value
       location: `SRID=4326;POINT (${longitude} ${latitude})`,
       region: regionValue, // Use the mapped region value
       description,
-      farmName: labelValue === 'farms' ? farmName : undefined, // Update farmName condition
+      farmName: labelValue === "farms" ? farmName : undefined, // Update farmName condition
     });
 
     // Reset form fields
-    setId('');
-    setName('');
-    setLabel('');
-    setLatitude('');
-    setLongitude('');
-    setRegion('');
-    setDescription('');
-    setFarmName('');
-    
+    setName("");
+    setLabel("");
+    setLatitude("");
+    setLongitude("");
+    setRegion("");
+    setDescription("");
+    setFarmName("");
+
     // Open modal to show success message
     setIsModalOpen(true);
-    
+
     if (markerRef.current) {
       markerRef.current.remove(); // Remove the marker from the map
       markerRef.current = null;
@@ -108,12 +107,23 @@ const AddLocation = ({ onAdd }) => {
     mapRef.current.flyTo([0, 38], 8); // Reset map to initial position
   };
 
+  const navigate = useNavigate();
+  const handleUpdate = (id, type) => {
+    navigate(`/update-${type}/${id}`);
+  };
+
+  //Dark mode/light mode
+const [isDark, setIsDark] = useLocalStorage("isDark", false);
+
   return (
     <>
       <div className="add-location-container">
-        <div className="form-sidebar-container">
+        <div className="form-sidebar-container" data-theme={isDark ? "dark" : "mapping"}>
+        <button className="back-button" onClick={() => navigate('/View Locations')}>
+          <FaArrowLeft /> Back
+        </button>
           <form className="add-location-form" onSubmit={onSubmit}>
-            <h2 className='LocationTitle'>Enter Location Details</h2>
+            <h2 className="LocationTitle">Enter Location Details</h2>
             <div className="form-control">
               <label>Location Name</label>
               <input
@@ -125,18 +135,12 @@ const AddLocation = ({ onAdd }) => {
               />
             </div>
             <div className="form-control">
-              <label>Identification Number</label>
-              <input
-                type="text"
-                placeholder="Add Identification Number"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-control">
               <label>Label</label>
-              <select value={label} onChange={(e) => setLabel(e.target.value)} required>
+              <select
+                value={label}
+                onChange={(e) => setLabel(e.target.value)}
+                required
+              >
                 <option value="">Select Label</option>
                 {Object.keys(LABEL_CHOICES).map((key) => (
                   <option key={key} value={key}>
@@ -145,10 +149,14 @@ const AddLocation = ({ onAdd }) => {
                 ))}
               </select>
             </div>
-            {label === 'Farm' && (
+            {label === "Farm" && (
               <div className="form-control">
                 <label>Farm</label>
-                <select value={farmName} onChange={(e) => setFarmName(e.target.value)} required>
+                <select
+                  value={farmName}
+                  onChange={(e) => setFarmName(e.target.value)}
+                  required
+                >
                   <option value="">Select Farm</option>
                   {farms.map((farm) => (
                     <option key={farm.name} value={farm.name}>
@@ -180,7 +188,11 @@ const AddLocation = ({ onAdd }) => {
             </div>
             <div className="form-control">
               <label>Region</label>
-              <select value={region} onChange={(e) => setRegion(e.target.value)} required>
+              <select
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+                required
+              >
                 <option value="">Select Region</option>
                 {Object.keys(REGION_CHOICES).map((key) => (
                   <option key={key} value={key}>
@@ -199,32 +211,42 @@ const AddLocation = ({ onAdd }) => {
                 rows="4"
               />
             </div>
-            <input type="submit" value="Save Location" className="btnlocation" />
+            <input
+              type="submit"
+              value="Save Location"
+              className="btnlocation"
+            />
           </form>
+          <div className="home-button" onClick={() => navigate('/')}>SUPPLY2U </div>
         </div>
-        <MapContainer center={[0, 38]} zoom={8} className='leaflet-container' ref={mapRef}>
+        <MapContainer
+          center={[0, 38]}
+          zoom={8}
+          className="leaflet-container"
+          ref={mapRef}
+        >
           <Geocoder />
           <LayersControl position="topright">
-            <BaseLayer checked name='Google Hybrid Map'>
+            <BaseLayer checked name="Google Hybrid Map">
               <TileLayer
                 url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
-                attribution='&copy; Google Maps'
-                subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                attribution="&copy; Google Maps"
+                subdomains={["mt0", "mt1", "mt2", "mt3"]}
                 maxZoom={23}
               />
             </BaseLayer>
-            <BaseLayer name='Terrain Map'>
+            <BaseLayer name="Terrain Map">
               <TileLayer
                 url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"
-                attribution='&copy; Google Maps'
-                subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                attribution="&copy; Google Maps"
+                subdomains={["mt0", "mt1", "mt2", "mt3"]}
                 maxZoom={20}
               />
             </BaseLayer>
-            <BaseLayer name='Esri World'>
+            <BaseLayer name="Esri World">
               <TileLayer
                 url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                attribution='&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                attribution="&copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
                 maxZoom={20}
               />
             </BaseLayer>
@@ -237,7 +259,7 @@ const AddLocation = ({ onAdd }) => {
                 circle: false,
                 circlemarker: false,
                 polyline: false,
-                polygon: false
+                polygon: false,
               }}
               onCreated={onCreated}
             />
