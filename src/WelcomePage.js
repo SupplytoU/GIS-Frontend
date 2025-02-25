@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./WelcomePage.css";
 import welcome from './Images/Welcome.jpg';
 import Solutions from "./Dropdown/Solutions";
@@ -30,10 +31,10 @@ function WelcomePage() {
   useEffect(() => {
       const handleTyping = () => {
       if (isDeleting) {
-        setDisplayedText(prev => prev.slice(0, -1));
+        setDisplayedText((prev) => prev.slice(0, -1));
         setTypingSpeed(110);
       } else {
-        setDisplayedText(prev => userFirstName.slice(0, prev.length + 1));
+        setDisplayedText((prev) => userFirstName.slice(0, prev.length + 1));
         setTypingSpeed(150);
       }
 
@@ -47,7 +48,7 @@ function WelcomePage() {
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, typingSpeed, userFirstName]);
- 
+
   useEffect(() => {
     // Determine greeting based on time of day
     const hour = new Date().getHours();
@@ -57,7 +58,7 @@ function WelcomePage() {
 
     // Add fade-in animations on mount
     const elementsToFade = document.querySelectorAll(".fade-in");
-    elementsToFade.forEach(element => {
+    elementsToFade.forEach((element) => {
       element.classList.add("visible");
     });
   }, []);
@@ -91,32 +92,32 @@ function WelcomePage() {
           Ready to explore new insights and innovations in agriculture?
         </p>
         <div className="recommendations fade-in">
-  <h2>Recommended Insights</h2>
-  <ul>
-    <li>
-      <span className="highlighted">Tips to Boost Crop Yield:</span> 
-      <span className="details"> Use precise irrigation and soil analysis for better outcomes.</span>
-    </li>
-    <li>
-      <span className="highlighted">New Innovations:</span> 
-      <span className="details"> Explore smart sensors and AI tools for sustainable agriculture.</span>
-    </li>
-  </ul>
-</div>
-  <div className="quick-access fade-in">
-    <h2>Quick Access</h2>
-    <div className="quick-links">
-      <Link to="/Account">Profile</Link>
-      <Link to="/inquiries">Messages</Link>
-    </div>
-    <div className="daily-tip fade-in">
-    "The future of agriculture is in our hands; let's grow sustainably."
-  </div>
-  </div>
+          <h2>Recommended Insights</h2>
+          <ul>
+            <li>
+              <span className="highlighted">Tips to Boost Crop Yield:</span> 
+              <span className="details"> Use precise irrigation and soil analysis for better outcomes.</span>
+            </li>
+            <li>
+              <span className="highlighted">New Innovations:</span> 
+              <span className="details"> Explore smart sensors and AI tools for sustainable agriculture.</span>
+            </li>
+          </ul>
+        </div>
+        <div className="quick-access fade-in">
+          <h2>Quick Access</h2>
+          <div className="quick-links">
+            <Link to="/Account">Profile</Link>
+            <Link to="/inquiries">Messages</Link>
+          </div>
+          <div className="daily-tip fade-in">
+            "The future of agriculture is in our hands; let's grow sustainably."
+          </div>
+        </div>
       </div>
       <div className="GetStartedBtn1 fade-in">
-            <Link to='/View Locations'>Explore Farms</Link>
-          </div>
+        <Link to='/View Locations'>Explore Farms</Link>
+      </div>
     </div>
   );
 }

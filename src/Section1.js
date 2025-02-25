@@ -83,10 +83,11 @@ function Section1() {
         </div>
         <div className="home-content-section fade-in">
           <div className="HomeNav fade-in">
-            <Link to="/">Home</Link>
+            {/* <Link to="/">Home</Link> */}
             <a href="https://supply2u.jhubafrica.com/#introduction">About us</a>
-            <div className="HomeServices"><Solutions /></div>
+            <div className="nav-item"><a href='https://supply2u.jhubafrica.com/#solutions'>Our Solutions</a></div>
             <Link to="/Help">Help</Link>
+            
             <div className="loginSct">
               <LoginIcon />
             </div>

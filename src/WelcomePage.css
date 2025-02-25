@@ -139,10 +139,6 @@ body, html {
   font-weight: bold;
 }
 
-.recommendations .highlighted:hover {
-  /* text-decoration: underline; */
-}
-
 /* Quick Access Section */
 .quick-access {
   margin-top: 20px;
