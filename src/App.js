@@ -7,8 +7,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { CustomProvider } from './redux/provider.js';
 import { Icon, divIcon, point } from 'leaflet';
-
-
 import Login from './Login.js';
 import Reset from './Reset.js';
 import PasswordChanged from './PasswordChanged.js';
@@ -30,7 +28,8 @@ import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
-
+import Landing from './Landing Page/Landing.js';
+import FAQs from './Landing Page/FAQs.js';
 // MAPPING
 import AddLocation from './Mapping/components/AddLocation.js';
 import AddField from './Mapping/components/AddField';
@@ -172,6 +171,7 @@ function App() {
             <Route path="/LoginIcon" element={<LoginIcon />} />
             <Route path="/Footer" element={<Footer />} />
             <Route path="/Change Password" element={<SettingsPass />} />
+            <Route path="/FAQs" element={<FAQs />} />
             <Route path="/Soon" element={<Construct />} />
             <Route path="/View Locations" element={<MainMap
               locations={locations}
@@ -188,6 +188,7 @@ function App() {
             <Route path='/update-farm/:id' element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />} />
             <Route path="/activate/:uidb64/:token" element={<ActivationPage />} /> {/* New activation route */}
             <Route path="/auth/google/" element={<Google/>}/>
+            <Route path="/LP" element={<Landing/>}/>
           </Routes>
         </CustomProvider>
       </Router>

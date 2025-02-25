@@ -1,0 +1,20 @@
+.container {
+    background: linear-gradient(black,rgba(194, 194, 194, 0.187), white);
+  }
+  
+  .content {
+    display: contents;
+  }
+
+  .section1{
+    gap: 20px;
+    display: flex;
+  }
+  
+  @media (max-width: 991px) {
+    .content {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  }

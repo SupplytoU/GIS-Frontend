@@ -1,0 +1,141 @@
+.sideNav {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 5%;
+    height: auto;
+  }
+  
+  .logoContainer {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .logoWrapper {
+    border-radius: 0 0 15px 0;
+    background-color: #000000;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 11vw;
+    padding-top: 10px;
+  }
+  
+  .logo {
+    aspect-ratio: 1.13;
+    object-fit: contain;
+    object-position: center;
+    width: 170px;
+  }
+  
+  .navDots {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    white-space: nowrap;
+    margin-left: auto;
+    margin-top: 60px;
+    font: 800 13px Inter, sans-serif;
+  }
+  
+  .divider {
+    align-self: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    width: 1px;
+    height: 50px;
+    border: 1px solid #fff;
+  }
+  
+
+  .icons{
+    align-self: center;
+    margin-left: 70%;
+    margin-top: 35px;
+    width: 1px;
+  }
+
+  .navIcon {
+    
+  }
+    
+  @media (max-width: 991px) {
+    .sideNav {
+      align-items: center;
+    }
+  
+    .logoWrapper {
+      width: 100%;
+      border-radius: 0;
+    }
+  
+    .logo {
+      width: 120px; /* Adjusted size for smaller screens */
+    }
+  
+    .navDots {
+      margin-left: 10%;
+      font-size: 12px;
+    }
+  
+    .navIcon {
+      width: 40%;
+      margin-left: 30%;
+    }
+  
+    .divider {
+      width: 2px;
+      height: 40px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sideNav {
+      width: 8%;
+      height: auto;
+    }
+  
+    .logo {
+      width: 90px;
+    }
+  
+    .navDots {
+      font-size: 10px;
+      margin-left: 5%;
+    }
+  
+    .navIcon {
+      width: 35%;
+      margin-left: 25%;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .sideNav {
+      width: 5%;
+      height: auto;
+    }
+  
+    .logoWrapper {
+      display: none; /* Hides only the wrapper, but keeps some navigation elements */
+    }
+  
+    .navDots {
+      display: none; /* Hides dots on very small screens */
+    }
+  
+    .navIcon {
+      width: 30%;
+      margin-left: 20%;
+    }
+  
+    .divider {
+      display: none; /* Removes unnecessary space */
+    }
+  }
+  
