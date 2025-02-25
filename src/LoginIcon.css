@@ -1,32 +1,121 @@
+/* Circle for user initial */
+.UserCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px; /* Adjust as needed */
+  height: 25px; /* Adjust as needed */
+  border-radius: 50%; /* Makes it a circle */
+  background-color: white; /* Circle background */
+  color: black; /* Text color */
+  font-size: 14px; /* Font size for initial */
+  /* font-weight: bold; */
+  margin-left: 40px; /* Matches previous image margin */
+  margin-top: -3px;
+}
 
-.LoginImage {
-    width: 27px;
-    height: auto;
-    margin-left: 40px;
+@media (max-width: 991px) {
+  .UserCircle {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-bottom: 180px;
   }
-  
-  @media (max-width: 991px) {
-    .LoginImage {
-      width: 22px;
-      margin-left: 20px;
-      margin-bottom: 180px;
-    }
-    .arrow-login{
-        margin-bottom: 170px;   
-    }
+  .arrow-login {
+    margin-bottom: 170px;   
+  }
+}
 
+@media (max-width: 600px) {
+  .UserCircle {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-bottom: 120px;
   }
-  
-  @media (max-width: 600px) {
-    .LoginImage {
-      width: 16px;
-      margin-left: 10px;
-     margin-bottom: 120px;
-    }
-    .arrow-login{
-        margin-bottom: 110px;   
-    }
-  
+  .arrow-login {
+    margin-bottom: 110px;   
   }
-  
-  
+}
+
+/* Keep dropdown styles the same */
+.dropdownlogin {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 140px;
+  list-style-type: none;
+  margin-left: 2%;
+  padding: 10px 0;
+  padding-top: 0px;
+  padding-bottom: 0%;
+  border-radius: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-item:hover .dropdownlogin {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-item1 {
+  padding: 12px 16px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.253);
+  color: #000000;
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.3s ease;
+}
+
+.dropdown-item1:hover {
+  background-color: rgba(73, 74, 73, 0.3);
+  color: white;
+}
+@media (max-width: 991px) {
+  .dropdownlogin {
+    min-width: 120px; /* Adjust dropdown width */
+    top: 25% !important; /* Adjust position */
+    transform: translateX(-50%);
+    padding: 8px 0; /* Smaller padding */
+  }
+
+  .dropdown-item1 {
+    padding: 10px 14px; /* Adjust item padding */
+    font-size: 13px; /* Smaller font */
+  }
+}
+
+/* Small screens (max-width: 600px) */
+@media (max-width: 600px) {
+  .dropdownlogin {
+    min-width: 100px; /* Further reduced dropdown width */
+    top: 25% !important; /* Adjust position for smaller screens */
+    transform: translateX(-50%);
+    padding: 6px 0; /* Compact padding */
+  }
+
+  .dropdown-item1 {
+    padding: 8px 12px; /* Reduced item padding */
+    font-size: 12px; /* Smaller font */
+  }
+}
+
+/* Larger screens (min-width: 992px) */
+@media (min-width: 992px) {
+  .dropdownlogin {
+    min-width: 150px; /* Larger dropdown width */
+    padding: 12px 0; /* Ample padding */
+  }
+
+  .dropdown-item1 {
+    padding: 14px 18px; /* Larger item padding */
+    font-size: 15px; /* Larger font */
+  }
+}
+

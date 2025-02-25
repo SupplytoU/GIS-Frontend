@@ -53,7 +53,7 @@ function Login() {
 
     // Dispatch successful login state and navigate
     dispatch(setAuth(true));
-    navigate('/');
+    navigate('/welcome');
     
   } catch (err) {
     console.error(err);

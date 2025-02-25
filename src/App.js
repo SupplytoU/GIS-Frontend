@@ -30,6 +30,7 @@ import SettingsPass from './Password.js';
 import Construct from './Construct.js';
 import Landing from './Landing Page/Landing.js';
 import FAQs from './Landing Page/FAQs.js';
+import WelcomePage from './WelcomePage';
 // MAPPING
 import AddLocation from './Mapping/components/AddLocation.js';
 import AddField from './Mapping/components/AddField';
@@ -40,6 +41,7 @@ import ActivationPage from './ActivationPage';
 import Google from './ContinueWithGoogle.js';
 
 function App() {
+  const userFirstName = "Neema";
   const [locations, setLocations] = useState([]);
   const [farms, setFarms] = useState([]);
   const [farmers, setFarmers] = useState([]);
@@ -139,7 +141,7 @@ function App() {
 
   const updateFarm = async (id, updatedFarm) => {
     try {
-      await axios.put(`http://localhost:8000/api/fieldmapping/farms/${id}`, updatedFarm);
+      await axios.put(`http://localhost:8000/api/fieldmapping/farms/${id}/`, updatedFarm);
       setFarms(farms.map((farm) => (farm.id === id ? updatedFarm : farm)));
     } catch (error) {
       console.error("There was an error updating the farm!", error);
@@ -147,7 +149,7 @@ function App() {
   };
 
   return (
-    <GoogleOAuthProvider clientId='599325683287-m0dvd4mm77na25p7qfoldped6opvek4q.apps.googleusercontent.com'>
+    <GoogleOAuthProvider clientId="599325683287-m0dvd4mm77na25p7qfoldped6opvek4q.apps.googleusercontent.com">
       <Router>
         <CustomProvider>
           <Routes>
@@ -159,6 +161,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/landingPage" element={<LandingPage />} />
             <Route path="/" element={<HomeFinal />} />
+            <Route path="/welcome" element={<WelcomePage userFirstName="Neema" />} />
             <Route path="/OurSolutions" element={<Solutions />} />
             <Route path="/Signup" element={<Signup />} />
             <Route path="/Success" element={<Success />} />
@@ -173,16 +176,26 @@ function App() {
             <Route path="/Change Password" element={<SettingsPass />} />
             <Route path="/FAQs" element={<FAQs />} />
             <Route path="/Soon" element={<Construct />} />
-            <Route path="/View Locations" element={<MainMap
-              locations={locations}
-              farms={farms}
-              parseLocation={parseLocation}
-              parsePolygon={parsePolygon}
-              customIcon={customIcon}
-              createCustomClusterIcon={createCustomClusterIcon}
-              farmers={farmers}
-            />} />
-            <Route path="/add-location" element={<AddLocation onAdd={addLocation} />} />
+            <Route
+              path="/View Locations"
+              element={
+                <>
+                  <MainMap
+                    locations={locations}
+                    farms={farms}
+                    parseLocation={parseLocation}
+                    parsePolygon={parsePolygon}
+                    customIcon={customIcon}
+                    createCustomClusterIcon={createCustomClusterIcon}
+                    farmers={farmers}
+                  />
+                </>
+              }
+            />
+            <Route
+              path="/add-location"
+              element={<AddLocation onAdd={addLocation} />}
+            />
             <Route path="/add-field" element={<AddField onAdd={addField} />} />
             <Route path="/update-location/:id" element={<UpdateLocation locations={locations} farms={farms} onUpdate={handleUpdateLocation} />} />
             <Route path='/update-farm/:id' element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />} />

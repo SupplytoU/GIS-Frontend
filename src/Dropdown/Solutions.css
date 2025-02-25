@@ -89,11 +89,13 @@
   .dropdown {/* Full viewport width */
 
     box-sizing: border-box;
+    
   }
   .dropdown-item {
     padding: 5px 10px;
     font-size: 10px;
     width: 70%;
+    /* margin-top: 10px; */
   }
  
 }
