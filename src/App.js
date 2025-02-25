@@ -1,14 +1,11 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
-import axios from 'axios';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { CustomProvider } from './redux/provider.js';
 import { Icon, divIcon, point } from 'leaflet';
-
-
 import Login from './Login.js';
 import Reset from './Reset.js';
 import PasswordChanged from './PasswordChanged.js';
@@ -25,12 +22,14 @@ import Analytics from './OurSolutions/Analytics.js';
 import SideBar from './Sidebar.js';
 import Section1 from './Section1.js';
 import Inquries from './Inquiries.js';
+import UserInquiries from './UserInquiries.js';
 import HomeFinal from './HomeFinal.js';
 import Footer from './Footer.js';
 import SettingsPass from './Password.js';
 import Construct from './Construct.js';
+import Landing from './Landing Page/Landing.js';
+import FAQs from './Landing Page/FAQs.js';
 import WelcomePage from './WelcomePage';
-
 // MAPPING
 import AddLocation from './Mapping/components/AddLocation.js';
 import AddField from './Mapping/components/AddField';
@@ -39,6 +38,7 @@ import UpdateLocation from './Mapping/components/UpdateLocation';
 import UpdateFarm from './Mapping/components/UpdateFarm';
 import ActivationPage from './ActivationPage';
 import Google from './ContinueWithGoogle.js';
+import axiosInstance from './utils/axiosInstance.js';
 
 function App() {
   const userFirstName = "Neema";
@@ -47,7 +47,10 @@ function App() {
   const [farmers, setFarmers] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/fieldmapping/locations/')
+    const token = localStorage.getItem('access');
+    
+    if (token) {
+      axiosInstance.get('/fieldmapping/locations/')
       .then(response => {
         setLocations(response.data);
       })
@@ -55,7 +58,7 @@ function App() {
         console.error("There was an error fetching the location data!", error);
       });
 
-    axios.get('http://localhost:8000/api/fieldmapping/farms')
+    axiosInstance.get('/fieldmapping/farms')
       .then(response => {
         setFarms(response.data);
       })
@@ -63,7 +66,7 @@ function App() {
         console.error("There was an error fetching the farm data!", error);
       });
 
-    axios.get('http://localhost:8000/api/fieldmapping/farmers')
+    axiosInstance.get('/fieldmapping/farmers')
 
       .then(response => {
         setFarmers(response.data);
@@ -71,6 +74,8 @@ function App() {
       .catch(error => {
         console.error("There was an error fetching the farmers data!", error);
       });
+    }
+    
   }, []);
 
   const customIcon = new Icon({
@@ -101,9 +106,10 @@ function App() {
 
   const addLocation = async (location) => {
     try {
-      const res = await axios.post('http://localhost:8000/api/fieldmapping/locations/', location, {
+      const res = await axiosInstance.post('/fieldmapping/locations/', location, {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         }
       });
       setLocations([...locations, res.data]);
@@ -114,7 +120,7 @@ function App() {
 
   const addField = async (farm) => {
     try {
-      const res = await axios.post('http://localhost:8000/api/fieldmapping/farms', farm, {
+      const res = await axiosInstance.post('/fieldmapping/farms', farm, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -126,7 +132,7 @@ function App() {
   };
 
   const handleUpdateLocation = async (id, updatedLocation) => {
-    const res = await fetch(`http://localhost:8000/api/fieldmapping/locations/${id}/`, {
+    const res = await axiosInstance.put(`/fieldmapping/locations/${id}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -141,7 +147,7 @@ function App() {
 
   const updateFarm = async (id, updatedFarm) => {
     try {
-      await axios.put(`http://localhost:8000/api/fieldmapping/farms/${id}/`, updatedFarm);
+      await axiosInstance.put(`/fieldmapping/farms/${id}/`, updatedFarm);
       setFarms(farms.map((farm) => (farm.id === id ? updatedFarm : farm)));
     } catch (error) {
       console.error("There was an error updating the farm!", error);
@@ -157,6 +163,7 @@ function App() {
             <Route path="/password-changed" element={<PasswordChanged />} />
             <Route path="/help" element={<Help />} />
             <Route path="/inquiries" element={<Inquries />} />
+            <Route path="/Contact Us" element={<UserInquiries />} />
             <Route path="/login" element={<Login />} />
             <Route path="/landingPage" element={<LandingPage />} />
             <Route path="/" element={<HomeFinal />} />
@@ -173,6 +180,7 @@ function App() {
             <Route path="/LoginIcon" element={<LoginIcon />} />
             <Route path="/Footer" element={<Footer />} />
             <Route path="/Change Password" element={<SettingsPass />} />
+            <Route path="/FAQs" element={<FAQs />} />
             <Route path="/Soon" element={<Construct />} />
             <Route
               path="/View Locations"
@@ -195,26 +203,11 @@ function App() {
               element={<AddLocation onAdd={addLocation} />}
             />
             <Route path="/add-field" element={<AddField onAdd={addField} />} />
-            <Route
-              path="/update-location/:id"
-              element={
-                <UpdateLocation
-                  locations={locations}
-                  farms={farms}
-                  onUpdate={handleUpdateLocation}
-                />
-              }
-            />
-            <Route
-              path="/update-farm/:id"
-              element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />}
-            />
-            <Route
-              path="/activate/:uidb64/:token"
-              element={<ActivationPage />}
-            />{" "}
-            {/* New activation route */}
-            <Route path="/auth/google/" element={<Google />} />
+            <Route path="/update-location/:id" element={<UpdateLocation locations={locations} farms={farms} onUpdate={handleUpdateLocation} />} />
+            <Route path='/update-farm/:id' element={<UpdateFarm farms={farms} onUpdateFarm={updateFarm} />} />
+            <Route path="/activate/:uidb64/:token" element={<ActivationPage />} /> {/* New activation route */}
+            <Route path="/auth/google/" element={<Google/>}/>
+            <Route path="/LP" element={<Landing/>}/>
           </Routes>
         </CustomProvider>
       </Router>

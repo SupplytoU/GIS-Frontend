@@ -19,7 +19,7 @@ function Footer() {
         <div className="nav-links">
           <div className="nav-item"><a href="https://supply2u.jhubafrica.com/">About</a></div>
           <div className="nav-item"><a href='https://supply2u.jhubafrica.com/#solutions'>Our Solutions</a></div>
-          <div className="nav-item"><Link to='/Inquiries'>Contact Us</Link></div>
+          <div className="nav-item"><Link to='/Contact Us'>Contact Us</Link></div>
           <div className="nav-item"><Link to='/Help'>FAQs</Link></div>
         </div>
       </div>

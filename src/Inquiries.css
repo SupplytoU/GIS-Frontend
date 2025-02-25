@@ -33,6 +33,7 @@
   transition: width 0.3s;
   position: relative;
   background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .error-message{
@@ -40,7 +41,7 @@
   font-size: 10px;
 }
 
-input::-webkit-input-placeholder { /* Chrome, Safari, Opera */
+input::-webkit-input-placeholder { 
   color: rgb(179, 179, 179)!important;
   font-size: 12px;
 }
@@ -59,7 +60,7 @@ input::-webkit-input-placeholder { /* Chrome, Safari, Opera */
 
 .form-fields{
   background-color: rgba(255, 0, 0, 0);
-  color: var(--text-color);
+  color: var(--text-color)!important;
 }
 
 .message-column,
@@ -100,7 +101,7 @@ input::-webkit-input-placeholder { /* Chrome, Safari, Opera */
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
-  color: var(--text-color);
+  color: var(--text-color)!important;
 }
 
 .field-container label {
@@ -110,7 +111,7 @@ input::-webkit-input-placeholder { /* Chrome, Safari, Opera */
 .field-container input,
 .field-container textarea {
   padding: 8px;
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--text-color)!important;
   border-radius: 4px;
   font-size: 14px;
 }
@@ -131,7 +132,7 @@ textarea {
 }
 
 .send-button:hover {
-  background-color: #26c0073e;
+  background-color: #89e377dd;
   color: black;
 }
 

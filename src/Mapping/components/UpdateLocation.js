@@ -5,7 +5,9 @@ import { EditControl } from 'react-leaflet-draw';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import Geocoder from './Geocoder';
 import './crudForm.css';
-import axios from 'axios';
+import axiosInstance from '../../utils/axiosInstance';
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { BaseLayer } = LayersControl;
 
@@ -49,11 +51,12 @@ const UpdateLocation = ({farms, onUpdate }) =>
 
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/fieldmapping/locations/' + id)
+    axiosInstance.get('http://localhost:8000/api/fieldmapping/locations/' + id)
       .then(response => {
         setLocation(response.data);
       })
       .catch(error => {
+        toast.error('Error fetching location data');
         console.error("There was an error fetching the location data!", error);
       });
   }, [id]);
@@ -93,7 +96,8 @@ const UpdateLocation = ({farms, onUpdate }) =>
     e.preventDefault();
 
     if (!name || !latitude || !longitude) {
-      alert('Please add all required location details');
+      toast.error('Please fill in all required fields!');
+      setNotification('Please fill in all required fields!');
       return;
     }
 
@@ -110,6 +114,7 @@ const UpdateLocation = ({farms, onUpdate }) =>
     await onUpdate(id, updatedLocation);
 
     setNotification('Location details updated successfully!');
+    toast.success('Location details updated successfully!');
 
     setTimeout(() => {
       setNotification('');
@@ -149,7 +154,9 @@ const UpdateLocation = ({farms, onUpdate }) =>
             <div className="form-control">
               <label>Label</label>
               <select
-                value={Object.keys(LABEL_CHOICES).find(key => LABEL_CHOICES[key] === label)}
+                value={Object.keys(LABEL_CHOICES).find(
+                  (key) => LABEL_CHOICES[key] === label
+                )}
                 onChange={(e) => setLabel(e.target.value)}
                 required
               >
@@ -198,7 +205,9 @@ const UpdateLocation = ({farms, onUpdate }) =>
             <div className="form-control">
               <label>Region</label>
               <select
-                value={Object.keys(REGION_CHOICES).find(key => REGION_CHOICES[key] === region)}
+                value={Object.keys(REGION_CHOICES).find(
+                  (key) => REGION_CHOICES[key] === region
+                )}
                 onChange={(e) => setRegion(e.target.value)}
                 required
               >
@@ -232,6 +241,13 @@ const UpdateLocation = ({farms, onUpdate }) =>
           zoom={8}
           className="leaflet-container"
           ref={mapRef}
+          whenReady={() => toast.success("Map loaded successfully!")}
+          error={(err) => {
+            console.error("Map loading error:", err);
+            toast.error(
+              "Failed to load the map. Please try refreshing the page."
+            );
+          }}
         >
           <Geocoder />
           <LayersControl position="topright">
@@ -296,6 +312,19 @@ const UpdateLocation = ({farms, onUpdate }) =>
           </FeatureGroup>
         </MapContainer>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </>
   );
 };

@@ -1,0 +1,11 @@
+.ContinueWithGoogle {
+    background-color: var(--foreground-color);
+    border: none;
+    color: var(--text-color);
+  }
+
+  .ContinueWithGoogle:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  

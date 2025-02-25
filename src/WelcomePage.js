@@ -5,24 +5,23 @@ import "./WelcomePage.css";
 import welcome from './Images/Welcome.jpg';
 import Solutions from "./Dropdown/Solutions";
 import LoginIcon from "./LoggedinIcon";
+import axiosInstance from "./utils/axiosInstance";
 
 function WelcomePage() {
+  const [userFirstName, setUserFirstName] = useState('User');
   const [greeting, setGreeting] = useState('');
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);
-  const [userFirstName, setUserFirstName] = useState('');
-
+ 
   useEffect(() => {
-    // Fetch user data from API
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/users/me/");
-        const email = response.data.email || "";
-        const firstName = email.charAt(0).toUpperCase(); // Get the first letter of the email and capitalize it
-        setUserFirstName(firstName);
+        const response = await axiosInstance.get('/users/me/');
+        setUserFirstName(response.data.first_name || 'User'); // Fallback to 'User' if first_name is undefined
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error('Error fetching user data:', error);
+        setUserFirstName('User'); // Fallback in case of error
       }
     };
 
@@ -30,7 +29,7 @@ function WelcomePage() {
   }, []);
 
   useEffect(() => {
-    const handleTyping = () => {
+      const handleTyping = () => {
       if (isDeleting) {
         setDisplayedText((prev) => prev.slice(0, -1));
         setTypingSpeed(110);

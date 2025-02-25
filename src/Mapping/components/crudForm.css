@@ -7,7 +7,7 @@
 }
 
 .LocationTitle {
-    color: #068727;
+    color: var(--text-color);
     font-size: 1.5rem; /* Larger, more noticeable title */
     margin-bottom: 15px;
 }
@@ -19,7 +19,6 @@
     background: var(--background-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     overflow-y: auto;
-    background-color: var(--background-color);
 }
 
 
@@ -71,11 +70,11 @@ input {
     box-shadow: 0 0 5px rgba(6, 135, 39, 0.3); /* Subtle glow effect */
 }
 
-.btn {
+.btnlocation {
     display: inline-block;
-    background: #068727;
+    background: #03641b;
     color: white;
-    padding: 8px 10px; /* Slightly larger padding */
+    padding: 3px 8px; /* Slightly larger padding */
     border: none;
     border-radius: 8px; /* Softer corners */
     cursor: pointer;
@@ -84,7 +83,7 @@ input {
     transition: background 0.3s, transform 0.2s;
 }
 
-.btn:hover {
+.btnlocation:hover {
     background: #7fe07fc6;
     color: black;
     transform: translateY(-2px); /* Small lift effect */
